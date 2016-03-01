@@ -26,6 +26,16 @@ When not in incremental mode, machinePaused is always 1 in the paused state
 A[] ((ProcReinhard.paused and mode != 2) imply machinePaused==1)
 
 /*
+
+*/
+A[] mode==0 or mode==1 or mode==2
+
+/*
+
+*/
+ProcReinhard.peripheral_reset --> not ProcReinhard.INIT
+
+/*
 The system never deadlocks
 */
 A[] not deadlock
