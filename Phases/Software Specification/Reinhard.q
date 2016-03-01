@@ -8,7 +8,7 @@ E<> ProcReinhard.ABORT
 /*
 In the initial and paused states all peripherals are in their idle state
 */
-A[] (ProcReinhard.paused or ProcReinhard.INIT) imply (ProcessMotor.INIT and ProcessGyroSensor.INIT)
+A[] (ProcReinhard.paused or ProcReinhard.peripheral_reset) imply (ProcessMotor.INIT and ProcessGyroSensor.INIT)
 
 /*
 The gyro is never checked in full speed mode
@@ -29,11 +29,6 @@ A[] ((ProcReinhard.paused and mode != 2) imply machinePaused==1)
 
 */
 A[] mode==0 or mode==1 or mode==2
-
-/*
-
-*/
-ProcReinhard.peripheral_reset --> not ProcReinhard.INIT
 
 /*
 The system never deadlocks
