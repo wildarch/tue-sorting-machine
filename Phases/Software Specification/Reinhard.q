@@ -21,6 +21,11 @@ the sorting machine can finish sorting
 E<> ProcReinhard.DONE
 
 /*
+When not in incremental mode, machinePaused is always 1 in the paused state
+*/
+A[] ((ProcReinhard.paused and mode != 2) imply machinePaused==1)
+
+/*
 The system never deadlocks
 */
 A[] not deadlock
