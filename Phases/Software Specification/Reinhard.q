@@ -1,6 +1,11 @@
 //This file was generated from (Commercial) UPPAAL 4.0.14 (rev. 5615), May 2014
 
 /*
+
+*/
+A[] ProcReinhard.INIT imply not machinePaused == 1
+
+/*
 It is possible that the system goes to the ABORT state
 */
 E<> ProcReinhard.ABORT
