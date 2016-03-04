@@ -13,15 +13,18 @@ public class ReadColorState extends State {
 		int color = (int) sample[0];
 		if(color == Color.BLACK || color == Color.BROWN){
 			m.currentState = new BlackState();
+			m.motor.rotate(120, true);
 		}
 		else if(color == Color.WHITE){
 			m.currentState = new WhiteState();
+			m.motor.rotate(-120, true);
 		}
 		else if (color == Color.NONE){
 			m.currentState = new DoneState();
 		}
 		else {
 			m.currentState = new WhiteState();
+			m.motor.rotate(-120, true);
 		}
 	}
 
