@@ -20,7 +20,11 @@ public class Main {
 		colorSensor = new EV3ColorSensor(SensorPort.S1);
 		
 		currentState = new InitialState();
-		while(true){
+		motor.rotate(120, true);
+		
+		while(true);
+		
+		/*while(true){
 			if(Button.ESCAPE.isDown()){
 				LCD.clear();
 				LCD.drawString("ABORT!!!", 0, 0);
@@ -29,8 +33,9 @@ public class Main {
 			} else if(Button.ENTER.isDown()){
 				paused = true;
 			}
+			
 			currentState.run(this);
-		}
+		}*/
 	}
 	
 	public static void main(String[] args){

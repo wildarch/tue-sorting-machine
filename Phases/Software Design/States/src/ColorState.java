@@ -1,9 +1,6 @@
 import lejos.hardware.lcd.LCD;
 
-public abstract class ColorState extends State {	
-	public ColorState(int r, State s){
-	}
-
+public class ColorState extends State {	
 	@Override
 	public void run(Main m) {
 		//LCD.drawString(""+m.motor.isMoving(), 0, 0);
