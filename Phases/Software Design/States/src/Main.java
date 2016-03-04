@@ -20,7 +20,7 @@ public class Main {
 		colorSensor = new EV3ColorSensor(SensorPort.S1);
 		
 		currentState = new InitialState();
-		motor.rotate(120, true);
+		motor.rotate(120, false);
 		
 		while(true);
 		
