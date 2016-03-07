@@ -22,16 +22,16 @@ public class GyroSensor {
 		return sample[0];
 	}
 	
-	public GyroState getState(){
+	public Orientation getOrientation(){
 		float angle = getAngle();
 		if(angle > limitAngle){
-			return GyroState.Right;
+			return Orientation.Right;
 		}
 		else if(angle < -limitAngle){
-			return GyroState.Left;
+			return Orientation.Left;
 		}
 		else {
-			return GyroState.Stable;
+			return Orientation.Neutral;
 		}
 	}
 }

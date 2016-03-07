@@ -1,7 +1,5 @@
 package states;
 
-import sorter.Main;
-
-public class UnknownColorState extends WhiteState {
+public class UnknownColorState extends MotorLeftState {
 
 }
