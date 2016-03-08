@@ -14,7 +14,7 @@ public class PausedState extends State {
 		
 		if(Button.ENTER.isDown() && released){
 			m.setPaused(false);
-			//m.peripheralStart();
+			m.peripheralStart();
 			return new ReadState();
 			
 		}

@@ -6867,3 +6867,36 @@ org.lejos.ev3.ldt.util.LeJOSEV3Exception: EV3_HOME is not set. Please specify it
 
 !ENTRY org.infinitest.eclipse 1 0 2016-03-08 13:35:45.949
 !MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class]
+!SESSION 2016-03-08 15:10:56.459 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_66
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:10:58.679
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, infinitestActivationController, markerClearingRunnable, problemMarkerRegistry, markerClearingObserver, resourceLookupAdapter, markerPlacer, slowMarkerRegistry, testResultAggregator, coreLifecycleObserver, eclipseWorkspace, coreFactory, workspaceResourceFinder, infinitestCoreRegistry, javaProjectSet, failureMediator, slowTestObserver, resultCollectorBean, visualStatusPresenter, preferenceChangeHandler, saveDetector, cleanEventProcessor, coreUpdateNotifier, classFileChangeProcessor, swtEventQueue, workspace, sourceContainer]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:13:00.413
+!MESSAGE Filter file /home/daan/workspace/2IO70/Phases/Software Design/States/infinitest.filters does not exist.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:13:00.427
+!MESSAGE Reloading core States
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:13:00.434
+!MESSAGE Added core States with classpath /home/daan/workspace/2IO70/Phases/Software Design/States/bin:/home/daan/workspace/lejos/lib/pc/ev3tools.jar:/home/daan/workspace/lejos/lib/pc/3rdparty/jfreechart.jar:/home/daan/workspace/lejos/lib/pc/3rdparty/jsch-0.1.50.jar:/home/daan/workspace/lejos/lib/pc/3rdparty/jcommon.jar:/home/daan/workspace/lejos/lib/pc/3rdparty/commons-cli.jar:/home/daan/workspace/lejos/lib/ev3/ev3classes.jar:/home/daan/workspace/lejos/lib/ev3/dbusjava.jar:/tmp/infinitest.jar
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:13:00.436
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/State.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/WrongBasketWarning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/Warning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/InitialState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Mode.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/UnknownWarningState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorRightState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/PausedState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/ColorSensor.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/StabilizeState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/DoneState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Statistics.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/AbortState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/Error.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Say.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Orientation.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorLeftState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/ReadState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/UnknownColorWarning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorWarningState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/AbortButtonError.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Display.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/FatalError.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/GyroSensor.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Motor.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:33:05.845
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:35:35.497
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/InitialState.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:35:38.107
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:37:15.162
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/PausedState.class]

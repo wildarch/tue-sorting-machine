@@ -9,7 +9,7 @@ public class InitialState extends State {
 	public State run(Main m) {
 		if(m.startPausedPressed()){
 			m.setReset(false);
-			//m.peripheralStart();
+			m.peripheralStart();
 			return new ReadState();
 		}
 		
