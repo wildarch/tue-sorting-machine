@@ -60,6 +60,14 @@ public class Main {
 		return this.reset;
 	}
 	
+	public void setReset(boolean reset){
+		this.reset = reset;
+	}
+	
+	public void setPaused(boolean paused){
+		this.paused = paused;
+	}
+	
 	public boolean isAbort(){
 		return this.abort;
 	}
