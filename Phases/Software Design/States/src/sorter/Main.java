@@ -18,9 +18,7 @@ public class Main {
 	private State currentState;
 	public Display display;
 	
-	public Main(){
-		setupPeripherals();
-		
+	public Main(){		
 		currentState = new InitialState();
 		
 		while(true){
@@ -45,6 +43,10 @@ public class Main {
 		gyroSensor = new GyroSensor(SensorPort.S2, 20);
 		display = new Display();
 		stats = new Statistics();
+	}
+	
+	public final boolean startPausedPressed(){
+		return (Button.getButtons() & Button.ID_ENTER) == Button.ID_ENTER;
 	}
 	
 	public static void main(String[] args){
