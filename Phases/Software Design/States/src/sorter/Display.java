@@ -1,42 +1,45 @@
 package sorter;
 
-import error.FatalError;
-import error.Warning;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.lcd.Font;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.hardware.lcd.Image;
 import lejos.hardware.lcd.LCD;
 import states.State;
+import error.FatalError;
+import error.Warning;
 
 public class Display {
 	GraphicsLCD g = BrickFinder.getDefault().getGraphicsLCD();
     final int SW = g.getWidth();
     final int SH = g.getHeight();
 	
+	@SuppressWarnings("static-access")
 	public void update(State state, Statistics stats){
 		if(!isReady()) return;
 		String name = state.getClass().getSimpleName();
 		
 		g.clear();
 		
-		drawTitle("State: "+name);
+		drawTitle(name);
 		
 		g.setFont(Font.getLargeFont());
-		g.drawString("B", SW/3, SH/2, g.BASELINE|g.HCENTER);
+		g.drawString("B", SW/3, SH/2-10, g.BASELINE|g.HCENTER);
 		String b = String.valueOf(stats.black);
-		g.drawString(b, SW/3, SH/2+10, g.BASELINE|g.HCENTER);
+		g.drawString(b, SW/3, SH/2+30, g.BASELINE|g.HCENTER);
 		
-		g.drawString("W", 2*SW/3, SH/2, g.BASELINE|g.HCENTER);
+		g.drawString("W", 2*SW/3, SH/2-10, g.BASELINE|g.HCENTER);
 		String w = String.valueOf(stats.white);
-		g.drawString(w, 2*SW/3, SH/2+10, g.BASELINE|g.HCENTER);
+		g.drawString(w, 2*SW/3, SH/2+30, g.BASELINE|g.HCENTER);
 	}
 	
+	@SuppressWarnings("static-access")
 	private void drawTitle(String s){
-		g.setFont(Font.getSmallFont());
-		g.drawString(s, 0, 0, g.BASELINE|g.HCENTER);
+		g.setFont(Font.getDefaultFont());
+		g.drawString(s, SW/2, 14, g.BASELINE|g.HCENTER, true);
 	}
 	
+	@SuppressWarnings("static-access")
 	private void draw(String title, Image img, String caption){
 		g.clear();
 		drawTitle(title);
@@ -261,6 +264,6 @@ public class Display {
 	}
 
 	private boolean isReady() {
-		return LCD.getRefreshCompleteTime() > System.currentTimeMillis();
+		return LCD.getRefreshCompleteTime() < System.currentTimeMillis();
 	}
 }

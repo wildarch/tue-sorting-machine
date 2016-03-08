@@ -1,8 +1,8 @@
 package states;
 
-import error.WrongBasketWarning;
 import sorter.Main;
 import sorter.Orientation;
+import error.WrongBasketWarning;
 
 public abstract class GyroState extends State {
 	

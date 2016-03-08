@@ -1,8 +1,8 @@
 package states;
 
-import error.FatalError;
 import lejos.hardware.Button;
 import sorter.Main;
+import error.FatalError;
 
 public class AbortState extends State {
 	

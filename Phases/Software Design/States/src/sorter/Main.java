@@ -1,14 +1,12 @@
 package sorter;
-import error.AbortButtonError;
-import states.AbortState;
-import states.PausedState;
-import states.State;
 import lejos.hardware.Button;
-import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
-import lejos.utility.Delay;
+import states.AbortState;
+import states.InitialState;
+import states.PausedState;
+import states.State;
+import error.AbortButtonError;
 
 public class Main {
 	public Motor motor;
@@ -23,7 +21,7 @@ public class Main {
 	public Main(){
 		setupPeripherals();
 		
-		currentState = new PausedState();
+		currentState = new InitialState();
 		
 		while(true){
 			if(Button.ESCAPE.isDown() && !currentState.isAbort()){
@@ -44,7 +42,7 @@ public class Main {
 	private void setupPeripherals(){
 		motor = new Motor(MotorPort.A, 120, 400);
 		colorSensor = new ColorSensor(SensorPort.S1);
-		gyroSensor = new GyroSensor(SensorPort.S2, 10);
+		gyroSensor = new GyroSensor(SensorPort.S2, 20);
 		display = new Display();
 		stats = new Statistics();
 	}

@@ -1,7 +1,6 @@
 package sorter;
 
 import lejos.hardware.port.Port;
-import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3GyroSensor;
 
 public class GyroSensor {

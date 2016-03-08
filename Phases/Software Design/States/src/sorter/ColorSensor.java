@@ -1,9 +1,7 @@
 package sorter;
 
 import lejos.hardware.port.Port;
-import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.robotics.Color;
 
 public class ColorSensor {
 	private float[] sample = new float[1];

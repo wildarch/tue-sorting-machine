@@ -1,10 +1,7 @@
 package sorter;
 
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
-import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
-import lejos.robotics.RegulatedMotor;
-import lejos.robotics.RegulatedMotorListener;
 
 public class Motor {
 	private EV3MediumRegulatedMotor motor;

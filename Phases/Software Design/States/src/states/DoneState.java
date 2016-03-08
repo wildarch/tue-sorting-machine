@@ -1,6 +1,6 @@
 package states;
-import sorter.Main;
 import lejos.hardware.Button;
+import sorter.Main;
 
 public class DoneState extends State {
 

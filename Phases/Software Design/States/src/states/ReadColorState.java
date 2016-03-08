@@ -1,7 +1,7 @@
 package states;
-import error.UnknownColorWarning;
-import sorter.Main;
 import lejos.robotics.Color;
+import sorter.Main;
+import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
 
