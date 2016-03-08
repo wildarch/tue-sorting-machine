@@ -9,7 +9,7 @@ public class PausedState extends State {
 	@Override
 	public State nextState(Main m) {
 		if(Button.ENTER.isDown() && released){
-			m.paused = false;
+			m.setPaused(false);
 			return new ReadColorState();
 			
 		}

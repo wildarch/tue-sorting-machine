@@ -7,7 +7,7 @@ public class ReadColorState extends State {
 
 	@Override
 	public State nextState(Main m) {
-		if(m.paused){
+		if(m.isPaused()){
 			return new PausedState();
 		}
 
