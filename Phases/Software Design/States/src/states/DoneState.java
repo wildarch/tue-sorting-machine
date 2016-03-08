@@ -5,9 +5,10 @@ import sorter.Main;
 public class DoneState extends State {
 
 	@Override
-	public State nextState(Main m) {
+	public State run(Main m) {
 		if(Button.DOWN.isDown()){
-			return new ReadColorState();
+			m.setReset(false);
+			return new ReadState();
 		}
 		return this;
 	}

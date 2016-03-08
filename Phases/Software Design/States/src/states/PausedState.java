@@ -7,10 +7,15 @@ public class PausedState extends State {
 	boolean released = false;
 
 	@Override
-	public State nextState(Main m) {
+	public State run(Main m) {
+		if(m.isReset()){
+			return new InitialState();
+		}
+		
 		if(Button.ENTER.isDown() && released){
 			m.setPaused(false);
-			return new ReadColorState();
+			m.peripheralStart();
+			return new ReadState();
 			
 		}
 		else if(Button.ENTER.isUp()){

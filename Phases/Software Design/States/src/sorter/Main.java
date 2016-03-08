@@ -16,6 +16,7 @@ public class Main {
 	private boolean paused = true;
 	private boolean reset = false;
 	private boolean abort = false;
+	private Mode mode = Mode.SAFE;
 	
 	private State currentState;
 	public Display display;
@@ -25,14 +26,14 @@ public class Main {
 		currentState = new InitialState();
 		
 		while(true){
-			if(Button.ESCAPE.isDown() && !currentState.isAbort()){
+			if(Button.ESCAPE.isDown() && currentState instanceof AbortState){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
 			else if(Button.ENTER.isDown()){
 				paused = true;
 			}
 			
-			State newState = currentState.nextState(this);
+			State newState = currentState.run(this);
 			if(newState != currentState){
 				display.update(newState, stats);
 			}
@@ -41,11 +42,47 @@ public class Main {
 	}
 
 	private void setupPeripherals(){
+		//TODO remove
 		motor = new Motor(MotorPort.A, 120, 400);
 		colorSensor = new ColorSensor(SensorPort.S1);
 		gyroSensor = new GyroSensor(SensorPort.S2, 20);
 		display = new Display();
 		stats = new Statistics();
+	}
+	
+	public void peripheralStart(){
+		motor = new Motor(MotorPort.A, 120, 400);
+		colorSensor = new ColorSensor(SensorPort.S1);
+		gyroSensor = new GyroSensor(SensorPort.S2, 20);
+		display = new Display();
+		stats = new Statistics();
+	}
+	
+	public void peripheralReset(){
+		//TODO implement
+	}
+	
+	public void timerStart(){
+		//TODO implement
+	}
+	
+	public boolean timerLargerThanAvg(){
+		//TODO implement
+		return false;
+	}
+	
+	public boolean timerLargerThanGMax(){
+		//TODO implement
+		return false;
+	}
+	
+	public boolean timerLargerThanDMax(){
+		//TODO implement
+		return false;
+	}
+	
+	public Mode getMode(){
+		return this.mode;
 	}
 	
 	public final boolean startPausedPressed(){

@@ -26,8 +26,17 @@ public class Motor {
 		motor.rotate(-defaultAngle, true);
 	}
 	
+	public boolean isFinished(){
+		return !motor.isMoving();
+	}
+	
 	public boolean isMoving(){
 		return motor.isMoving();
+	}
+	
+	public boolean isJammed(){
+		//TODO implement
+		return false;
 	}
 	
 	public void stop(){
