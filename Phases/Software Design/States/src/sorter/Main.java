@@ -13,12 +13,15 @@ public class Main {
 	public ColorSensor colorSensor;
 	public GyroSensor gyroSensor;
 	public Statistics stats;
-	public boolean paused = true;
+	private boolean paused = true;
+	private boolean reset = false;
+	private boolean abort = false;
 	
 	private State currentState;
 	public Display display;
 	
-	public Main(){		
+	public Main(){
+		this.setupPeripherals();
 		currentState = new InitialState();
 		
 		while(true){
@@ -47,6 +50,18 @@ public class Main {
 	
 	public final boolean startPausedPressed(){
 		return (Button.getButtons() & Button.ID_ENTER) == Button.ID_ENTER;
+	}
+	
+	public boolean isPaused(){
+		return this.paused;
+	}
+	
+	public boolean isReset(){
+		return this.reset;
+	}
+	
+	public boolean isAbort(){
+		return this.abort;
 	}
 	
 	public static void main(String[] args){
