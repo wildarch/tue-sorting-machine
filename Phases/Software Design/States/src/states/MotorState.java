@@ -50,7 +50,7 @@ public abstract class MotorState extends State {
 					m.motor.isJammed()) {
 				m.peripheralReset();
 				//TODO change error the throw
-				return new AbortState(new AbortButtonError(), m);
+				return new AbortState(new FatalError("Took to long, wrong basket, jammed."){}, m);
 			}
 			
 			return this;

@@ -1,6 +1,7 @@
 package states;
 
 import error.AbortButtonError;
+import error.FatalError;
 import sorter.Main;
 import sorter.Mode;
 import sorter.Orientation;
@@ -19,7 +20,7 @@ public class StabilizeState extends State{
 		}
 		
 		if(m.timerLargerThanGMax()){
-			return new AbortState(new AbortButtonError(), m);
+			return new AbortState(new FatalError("Gyro not stable."){}, m);
 		}
 		
 		return this;
