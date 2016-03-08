@@ -21,7 +21,7 @@ public abstract class GyroState extends State {
 			if(orient != desiredOrientation){
 				//Surpress further warnings
 				desiredOrientation = orient;
-				return new WarningState(new WrongBasketWarning(), m, this);
+				return new WarningState(new WrongBasketWarning(), m, new ReadColorState());
 			}
 		}
 		else if(hit && orient == Orientation.Neutral){

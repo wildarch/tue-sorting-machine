@@ -7,6 +7,7 @@ import error.FatalError;
 public class AbortState extends State {
 	
 	public AbortState(FatalError error, Main m){
+		m.motor.stop();
 		isAbort = true;
 		m.display.drawFatal(error);
 	}
@@ -14,7 +15,6 @@ public class AbortState extends State {
 	@Override
 	public State nextState(Main m) {		
 		if(Button.DOWN.isDown()){
-			m.motor.stop();
 			return new PausedState();
 		}
 		return this;

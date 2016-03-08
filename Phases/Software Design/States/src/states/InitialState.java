@@ -7,8 +7,15 @@ public class InitialState extends State {
 
 	@Override
 	public State nextState(Main m) {
-		Sound.beep();
-		return new PausedState();
+		if(!m.motor.isMoving()){
+			m.motor.forward();
+		}
+		else if(m.touchSensor.isPressed()){
+			m.motor.stop();
+			m.motor.reset();
+			return new PausedState();
+		}
+		return this;
 	}
 
 }

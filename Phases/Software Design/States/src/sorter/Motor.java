@@ -10,7 +10,7 @@ public class Motor {
 	
 	public Motor(Port port, int angle, float speed){
 		motor = new EV3MediumRegulatedMotor(port);
-		motor.resetTachoCount();
+		reset();
 		
 		defaultAngle = angle;
 		
@@ -32,5 +32,15 @@ public class Motor {
 	
 	public void stop(){
 		motor.stop();
+		motor.setSpeed(speed);
+	}
+	
+	public void forward(){
+		motor.setSpeed(speed/3);
+		motor.forward();
+	}
+	
+	public void reset(){
+		motor.resetTachoCount();
 	}
 }

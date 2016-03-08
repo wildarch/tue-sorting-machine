@@ -1,0 +1,20 @@
+package states;
+import lejos.hardware.Sound;
+import sorter.Main;
+
+
+public class InitialState extends State {
+
+	@Override
+	public State nextState(Main m) {
+		if(!m.motor.isMoving()){
+			m.motor.forward();
+			return this;
+		}
+		else if(m.touchSensor.isPressed()){
+			m.motor.stop();
+			return new PausedState();
+		}
+	}
+
+}

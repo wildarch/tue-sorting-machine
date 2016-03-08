@@ -4,7 +4,6 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import states.AbortState;
 import states.InitialState;
-import states.PausedState;
 import states.State;
 import error.AbortButtonError;
 
@@ -12,6 +11,7 @@ public class Main {
 	public Motor motor;
 	public ColorSensor colorSensor;
 	public GyroSensor gyroSensor;
+	public TouchSensor touchSensor;
 	public Statistics stats;
 	private boolean paused = true;
 	private boolean reset = false;
@@ -23,6 +23,7 @@ public class Main {
 	public Main(){
 		this.setupPeripherals();
 		currentState = new InitialState();
+		//Say.hello();
 		
 		while(true){
 			if(Button.ESCAPE.isDown() && !currentState.isAbort()){
@@ -41,9 +42,11 @@ public class Main {
 	}
 
 	private void setupPeripherals(){
-		motor = new Motor(MotorPort.A, 120, 400);
+		motor = new Motor(MotorPort.A, 120, 200);
 		colorSensor = new ColorSensor(SensorPort.S1);
 		gyroSensor = new GyroSensor(SensorPort.S2, 20);
+		touchSensor = new TouchSensor(SensorPort.S3);
+		
 		display = new Display();
 		stats = new Statistics();
 	}
