@@ -11,6 +11,10 @@ public class ReadColorState extends State {
 			return new PausedState(m);
 		}
 		
+		if(m.isReset()){
+			return new InitialState();
+		}
+		
 		int color = m.colorSensor.readColor();
 		switch(color){
 			//read -> M=L

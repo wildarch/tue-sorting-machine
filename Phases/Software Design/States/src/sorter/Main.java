@@ -32,7 +32,7 @@ public class Main {
 		//Say.hello();
 		
 		while(true){
-			if(aButton.isDown() && !currentState.isAbort()){
+			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
 			else if(spButton.isDown()){

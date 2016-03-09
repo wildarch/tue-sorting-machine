@@ -2,11 +2,5 @@ package states;
 import sorter.Main;
 
 public abstract class State {
-	protected boolean isAbort = false;
-	
 	public abstract State run(Main m);
-	
-	public boolean isAbort(){
-		return isAbort;
-	}
 }

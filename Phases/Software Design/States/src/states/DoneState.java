@@ -7,7 +7,8 @@ public class DoneState extends State {
 	@Override
 	public State run(Main m) {
 		if(m.rButton.isDown()){
-			return new ReadColorState();
+			m.stats.reset();
+			return new InitialState();
 		}
 		return this;
 	}
