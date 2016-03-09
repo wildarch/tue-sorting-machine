@@ -3,6 +3,7 @@ package states;
 import sorter.Main;
 import sorter.Orientation;
 import error.WrongBasketWarning;
+import lejos.hardware.lcd.LCD;
 
 public abstract class GyroState extends State {
 	
