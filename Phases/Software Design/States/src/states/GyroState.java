@@ -14,7 +14,7 @@ public abstract class GyroState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State run(Main m) {
 		Orientation orient = m.gyroSensor.getOrientation();
 		if(!hit && orient != Orientation.Neutral){
 			hit = true;

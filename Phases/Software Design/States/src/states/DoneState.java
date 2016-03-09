@@ -5,8 +5,8 @@ import sorter.Main;
 public class DoneState extends State {
 
 	@Override
-	public State nextState(Main m) {
-		if(Button.DOWN.isDown()){
+	public State run(Main m) {
+		if(m.rButton.isDown()){
 			return new ReadColorState();
 		}
 		return this;

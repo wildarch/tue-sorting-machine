@@ -6,20 +6,20 @@ import sorter.Main;
 public class PausedState extends State {
 	boolean released = true;
 	
-	public PausedState(){
-		if(Button.ENTER.isDown()){
+	public PausedState(Main m){
+		if(m.spButton.isDown()){
 			released = false;
 		}
 	}
 
 	@Override
-	public State nextState(Main m) {
-		if(Button.ENTER.isDown() && released){
+	public State run(Main m) {
+		if(m.spButton.isDown() && released){
 			m.setPaused(false);
 			return new ReadColorState();
 			
 		}
-		else if(Button.ENTER.isUp()){
+		else if(m.spButton.isUp()){
 			released = true;
 		}
 		return this;

@@ -4,20 +4,36 @@ import sorter.Main;
 import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
-
 	@Override
-	public State nextState(Main m) {
+	public State run(Main m) {
+		//read -> paused
 		if(m.isPaused()){
-			return new PausedState();
+			return new PausedState(m);
 		}
-
+		
 		int color = m.colorSensor.readColor();
 		switch(color){
-		case Color.BLACK: m.stats.black++; return new MotorRightState();
-		case Color.WHITE: m.stats.white++; return new MotorLeftState();
-		case Color.NONE:  return new DoneState();
-		default:		  return new WarningState(new UnknownColorWarning(), m, new UnknownColorState());
+			//read -> M=L
+			case Color.BLACK: 
+				m.stats.black++;
+				//TODO start timer
+				return new MotorLeftState();
+				
+			//read -> M=R
+			case Color.WHITE: 
+				m.stats.white++; 
+				//TODO start timer
+				return new MotorRightState();
+				
+			//read -> done
+			case Color.NONE:
+				return new DoneState();
+				
+			//read -> warn (unknown disc) -> M=R
+			default:
+				m.stats.unknown++;
+				//TODO start timer
+				return new WarningState(new UnknownColorWarning(), m, new MotorRightState());
 		}
 	}
-
 }

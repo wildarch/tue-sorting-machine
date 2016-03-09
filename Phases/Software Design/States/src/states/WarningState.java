@@ -12,9 +12,7 @@ public class WarningState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State run(Main m) {
 		return nextState;
 	}
-	
-	
 }

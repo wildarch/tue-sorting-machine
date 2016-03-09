@@ -13,9 +13,9 @@ public class AbortState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {		
-		if(Button.DOWN.isDown()){
-			return new PausedState();
+	public State run(Main m) {		
+		if(m.rButton.isDown()){
+			return new PausedState(m);
 		}
 		return this;
 	}
