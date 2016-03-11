@@ -38,6 +38,9 @@ public class Main {
 			else if(spButton.isDown()){
 				paused = true;
 			}
+			else if(rButton.isDown()){
+				reset = true;
+			}
 			
 			State newState = currentState.run(this);
 			if(newState != currentState){
