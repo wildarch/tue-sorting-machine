@@ -2,6 +2,7 @@ package sorter;
 import lejos.hardware.Button;
 import lejos.hardware.Key;
 import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import states.AbortState;
 import states.ModeSelectionState;
@@ -9,13 +10,23 @@ import states.State;
 import error.AbortButtonError;
 
 public class Main {
+	private final Port motorPort = 			MotorPort.A;
+	private final Port colorSensorPort = 	SensorPort.S1;
+	private final Port gyroSensorPort = 	SensorPort.S2;
+	private final Port touchSensorPort = 	SensorPort.S3;
+	
+	private final int motorTurnStep = 		120;
+	private final int motorSpeed = 			2*motorTurnStep;
+	private final int gyroStableThreshold = 4;
+	
+	public final Key spButton = Button.ENTER;
+	public final Key aButton = Button.ESCAPE;
+	public final Key rButton = Button.DOWN;
+	
 	public final Motor motor;
 	public final ColorSensor colorSensor;
 	public final GyroSensor gyroSensor;
 	public final TouchSensor touchSensor;
-	public final Key spButton;
-	public final Key aButton;
-	public final Key rButton;
 	public final Statistics stats;
 	
 	private boolean paused = true;
@@ -27,13 +38,10 @@ public class Main {
 	
 	public Main(){
 		Say.wtf();
-		motor = new Motor(MotorPort.A, 120, 200);
-		colorSensor = new ColorSensor(SensorPort.S1);
-		gyroSensor = new GyroSensor(SensorPort.S2, 20);
-		touchSensor = new TouchSensor(SensorPort.S3);
-		spButton = Button.ENTER;
-		aButton = Button.ESCAPE;
-		rButton = Button.DOWN;
+		motor = new Motor(motorPort, motorTurnStep, motorSpeed);
+		colorSensor = new ColorSensor(colorSensorPort);
+		gyroSensor = new GyroSensor(gyroSensorPort, gyroStableThreshold);
+		touchSensor = new TouchSensor(touchSensorPort);
 		
 		display = new Display();
 		stats = new Statistics();
