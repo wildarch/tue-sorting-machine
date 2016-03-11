@@ -7017,3 +7017,43 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.infinitest.eclipse 1 0 2016-03-08 15:00:31.135
 !MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class]
+
+!ENTRY org.infinitest.eclipse 2 0 2016-03-11 09:44:33.423
+!MESSAGE Error determining JVM version. Using default version.
+
+!ENTRY org.infinitest.eclipse 2 0 2016-03-11 09:44:33.424
+!MESSAGE Cannot find any JVM. Using the one from JAVA_HOME.
+
+!ENTRY org.eclipse.ui.ide 4 4 2016-03-11 09:44:33.424
+!MESSAGE Problems occurred refreshing the selected resources.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2016-03-11 09:44:33.425
+!MESSAGE The project description file (.project) for 'States' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:44:33.426
+!MESSAGE Reloading core States
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:44:33.426
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/StabilizeState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Mode.class]
+
+!ENTRY org.infinitest.eclipse 2 0 2016-03-11 09:44:33.583
+!MESSAGE Error determining JVM version. Using default version.
+
+!ENTRY org.infinitest.eclipse 2 0 2016-03-11 09:44:33.583
+!MESSAGE Cannot find any JVM. Using the one from JAVA_HOME.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:44:33.585
+!MESSAGE Files removed. Reloading States
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:44:33.585
+!MESSAGE Reloading core States
+
+!ENTRY org.eclipse.core.resources 2 2 2016-03-11 09:45:02.844
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2016-03-11 09:45:02.844
+!MESSAGE The project description file (.project) for 'States' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:46:39.564
+!MESSAGE Reloading core States
+
+!ENTRY org.infinitest.eclipse 1 0 2016-03-11 09:46:39.565
+!MESSAGE States Files changed: [/home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/State.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/WrongBasketWarning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/Warning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/InitialState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Mode.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/GyroState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorRightState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/GyroLeftState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/PausedState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/ColorSensor.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/StabilizeState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/DoneState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/ReadColorState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Statistics.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/AbortState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/Error.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Say.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Orientation.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Main.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/GyroRightState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/WarningState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/states/MotorLeftState.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/TouchSensor.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/UnknownColorWarning.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/AbortButtonError.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Display.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/error/FatalError.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/GyroSensor.class, /home/daan/workspace/2IO70/Phases/Software Design/States/bin/sorter/Motor.class]

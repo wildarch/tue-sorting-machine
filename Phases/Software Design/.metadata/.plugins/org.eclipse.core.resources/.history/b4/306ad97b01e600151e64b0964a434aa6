@@ -1,0 +1,10 @@
+package sorter;
+
+public class Statistics {
+	public int black, white;
+	
+	public Statistics(int b, int w){
+			black = b;
+			white = w;
+	}
+}
