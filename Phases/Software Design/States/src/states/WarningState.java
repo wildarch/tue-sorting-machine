@@ -7,6 +7,7 @@ public class WarningState extends State {
 	State nextState;
 	
 	public WarningState(Warning w, Main m, State s){
+		//TODO say warning
 		m.display.drawWarning(w);
 		nextState = s;
 	}

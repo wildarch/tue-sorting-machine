@@ -19,6 +19,7 @@ public class ModeSelectionState extends State {
 		while(m.spButton.isDown()){
 			//Wait until the start/pause button is released
 		}
+		//TODO say mode is ...
 		return new InitialState();
 	}
 

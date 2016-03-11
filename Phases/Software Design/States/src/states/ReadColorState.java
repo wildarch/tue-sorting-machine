@@ -16,6 +16,7 @@ public class ReadColorState extends State {
 		}
 		
 		int color = m.colorSensor.readColor();
+		//TODO say color
 		switch(color){
 			//read -> M=L
 			case Color.BLACK: 

@@ -6,7 +6,7 @@ import sorter.Orientation;
 public abstract class MotorState extends State {
 	private boolean motorStarted = false;
 	private Orientation direction;
-	public MotorState(State s, Orientation o){
+	public MotorState(Orientation o){
 		direction = o;
 	}
 

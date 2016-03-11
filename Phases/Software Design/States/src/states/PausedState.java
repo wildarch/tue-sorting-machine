@@ -7,6 +7,7 @@ public class PausedState extends State {
 	boolean down = false;
 	
 	public PausedState(Main m){
+		//TODO say paused
 		if(m.spButton.isDown()){
 			released = false;
 		}

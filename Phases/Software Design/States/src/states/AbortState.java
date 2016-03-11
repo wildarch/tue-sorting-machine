@@ -8,6 +8,7 @@ public class AbortState extends State {
 	FatalError error;
 	
 	public AbortState(FatalError e, Main m){
+		//TODO say abort
 		m.motor.stop();
 		error = e;
 	}

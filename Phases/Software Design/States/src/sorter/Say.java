@@ -10,6 +10,16 @@ public class Say {
 	static File black = new File("/sounds/black.wav");
 	static File white = new File("/sounds/white.wav");
 	
+	/*
+	 * TODO:
+	 * aborted
+	 * done
+	 * mode is (fast, safe, incremental)
+	 * paused
+	 * color is (black, white, unknown)
+	 * warning
+	 */
+	
 	public static void wtf(){
 		Sound.playSample(wtf);
 	}

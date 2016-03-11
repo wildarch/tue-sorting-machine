@@ -37,6 +37,7 @@ public class Main {
 	public Display display;
 	
 	public Main(){
+		//TODO say hello
 		Say.wtf();
 		motor = new Motor(motorPort, motorTurnStep, motorSpeed);
 		colorSensor = new ColorSensor(colorSensorPort);
