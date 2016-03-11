@@ -5,9 +5,11 @@ import error.FatalError;
 
 public class AbortState extends State {
 	
-	public AbortState(FatalError error, Main m){
+	FatalError error;
+	
+	public AbortState(FatalError e, Main m){
 		m.motor.stop();
-		m.display.drawFatal(error);
+		error = e;
 	}
 
 	@Override
@@ -17,5 +19,10 @@ public class AbortState extends State {
 			return new PausedState(m);
 		}
 		return this;
+	}
+	
+	@Override
+	public void displayUpdate(Main m){
+		m.display.drawFatal(error);
 	}
 }

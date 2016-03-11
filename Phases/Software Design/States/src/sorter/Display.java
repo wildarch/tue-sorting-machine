@@ -21,7 +21,7 @@ public class Display {
     }
     
 	@SuppressWarnings("static-access")
-	public void update(State state, Statistics stats){
+	public void drawCount(State state, Statistics stats){
 		if(!isReady()) return;
 		String name = state.getClass().getSimpleName();
 		
@@ -51,7 +51,7 @@ public class Display {
 	}
 	
 	@SuppressWarnings("static-access")
-	private void draw(String title, Image img, String caption){
+	private void drawError(String title, Image img, String caption){
 		g.clear();
 		drawTitle(title);
 		g.drawImage(img, SW/2, SH/2, g.HCENTER|g.VCENTER);
@@ -165,7 +165,7 @@ public class Display {
 				(byte) 0xff, (byte) 0x3f, (byte) 0x00, (byte) 0x00, (byte) 0x00, 
 				(byte) 0x00, (byte) 0xfc, (byte) 0xff, (byte) 0xff, (byte) 0x1f, 
 				(byte) 0x00, (byte) 0x00, });
-		draw("Fatal error", fatalImage, fatal.getMessage());
+		drawError("Fatal error", fatalImage, fatal.getMessage());
 	}
 	
 	public void drawWarning(Warning warning){
@@ -273,6 +273,6 @@ public class Display {
 				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, 
 				(byte) 0x00, (byte) 0x00, });
 		displayReadyTime = System.currentTimeMillis() + warningWaitTime ;
-		draw("Warning", warnImage, warning.getMessage());
+		drawError("Warning", warnImage, warning.getMessage());
 	}
 }

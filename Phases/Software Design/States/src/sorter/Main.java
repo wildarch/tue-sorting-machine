@@ -9,17 +9,18 @@ import states.State;
 import error.AbortButtonError;
 
 public class Main {
+
 	public Motor motor;
 	public ColorSensor colorSensor;
 	public GyroSensor gyroSensor;
 	public TouchSensor touchSensor;
+	
 	public Statistics stats;
 	public Key spButton;
 	public Key aButton;
 	public Key rButton;
 	private boolean paused = true;
 	private boolean reset = false;
-	private boolean abort = false;
 	private Mode mode;
 	
 	private State currentState;
@@ -30,7 +31,9 @@ public class Main {
 		currentState = new InitialState();
 		setMode(Mode.FAST);
 		Say.hello();
-		
+	}
+	
+	private void run(){
 		while(true){
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
@@ -41,12 +44,11 @@ public class Main {
 			else if(rButton.isDown()){
 				reset = true;
 			}
-			
+			currentState.displayUpdate(this);
 			State newState = currentState.run(this);
 			if(newState != currentState){
 				System.out.println("State: "+newState.getClass().getSimpleName());
 			}
-			display.update(newState, stats);
 			currentState = newState;
 		}
 	}
@@ -80,12 +82,9 @@ public class Main {
 		this.paused = paused;
 	}
 	
-	public boolean isAbort(){
-		return this.abort;
-	}
-	
 	public static void main(String[] args){
-		new Main();
+		Main m = new Main();
+		m.run();
 	}
 
 	public Mode getMode() {
