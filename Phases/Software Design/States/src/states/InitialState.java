@@ -20,6 +20,7 @@ public class InitialState extends State {
 		//If SP then do transition
 		if(m.spButton.isDown()){
 			m.setReset(false);
+			m.setPaused(false);
 			return new ReadColorState();
 		}
 		
