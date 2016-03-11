@@ -29,7 +29,7 @@ public class Main {
 		this.setupPeripherals();
 		currentState = new InitialState();
 		setMode(Mode.FAST);
-		//Say.hello();
+		Say.hello();
 		
 		while(true){
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
@@ -44,8 +44,9 @@ public class Main {
 			
 			State newState = currentState.run(this);
 			if(newState != currentState){
-				display.update(newState, stats);
+				System.out.println("State: "+newState.getClass().getSimpleName());
 			}
+			display.update(newState, stats);
 			currentState = newState;
 		}
 	}

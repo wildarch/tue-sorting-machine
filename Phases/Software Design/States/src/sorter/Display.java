@@ -12,6 +12,9 @@ public class Display {
 	GraphicsLCD g = BrickFinder.getDefault().getGraphicsLCD();
     final int SW = g.getWidth();
     final int SH = g.getHeight();
+    
+    private long displayReadyTime;
+	private final long warningWaitTime = 3000;
 	
     public Display() {
     	g.setAutoRefresh(false);
@@ -19,6 +22,7 @@ public class Display {
     
 	@SuppressWarnings("static-access")
 	public void update(State state, Statistics stats){
+		if(!isReady()) return;
 		String name = state.getClass().getSimpleName();
 		
 		g.clear();
@@ -36,6 +40,10 @@ public class Display {
 		g.refresh();
 	}
 	
+	private boolean isReady() {
+		return System.currentTimeMillis() > displayReadyTime;
+	}
+
 	@SuppressWarnings("static-access")
 	private void drawTitle(String s){
 		g.setFont(Font.getDefaultFont());
@@ -264,6 +272,7 @@ public class Display {
 				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, 
 				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, 
 				(byte) 0x00, (byte) 0x00, });
+		displayReadyTime = System.currentTimeMillis() + warningWaitTime ;
 		draw("Warning", warnImage, warning.getMessage());
 	}
 }
