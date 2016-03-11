@@ -14,9 +14,12 @@ public class Display {
     final int SW = g.getWidth();
     final int SH = g.getHeight();
 	
+    public Display() {
+    	g.setAutoRefresh(false);
+    }
+    
 	@SuppressWarnings("static-access")
 	public void update(State state, Statistics stats){
-		if(!isReady()) return;
 		String name = state.getClass().getSimpleName();
 		
 		g.clear();
@@ -31,6 +34,7 @@ public class Display {
 		g.drawString("W", 2*SW/3, SH/2-10, g.BASELINE|g.HCENTER);
 		String w = String.valueOf(stats.white);
 		g.drawString(w, 2*SW/3, SH/2+30, g.BASELINE|g.HCENTER);
+		g.refresh();
 	}
 	
 	@SuppressWarnings("static-access")
@@ -46,6 +50,7 @@ public class Display {
 		g.drawImage(img, SW/2, SH/2, g.HCENTER|g.VCENTER);
 		g.setFont(Font.getSmallFont());
 		g.drawString(caption, SW/2, SH-5, g.BASELINE|g.HCENTER);
+		g.refresh();
 		
 	}
 	
@@ -261,9 +266,5 @@ public class Display {
 				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, 
 				(byte) 0x00, (byte) 0x00, });
 		draw("Warning", warnImage, warning.getMessage());
-	}
-
-	private boolean isReady() {
-		return LCD.getRefreshCompleteTime() < System.currentTimeMillis();
 	}
 }
