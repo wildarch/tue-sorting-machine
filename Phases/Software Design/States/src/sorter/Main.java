@@ -9,16 +9,15 @@ import states.State;
 import error.AbortButtonError;
 
 public class Main {
-
-	public Motor motor;
-	public ColorSensor colorSensor;
-	public GyroSensor gyroSensor;
-	public TouchSensor touchSensor;
+	public final Motor motor;
+	public final ColorSensor colorSensor;
+	public final GyroSensor gyroSensor;
+	public final TouchSensor touchSensor;
+	public final Key spButton;
+	public final Key aButton;
+	public final Key rButton;
+	public final Statistics stats;
 	
-	public Statistics stats;
-	public Key spButton;
-	public Key aButton;
-	public Key rButton;
 	private boolean paused = true;
 	private boolean reset = false;
 	private Mode mode;
@@ -27,7 +26,17 @@ public class Main {
 	public Display display;
 	
 	public Main(){
-		this.setupPeripherals();
+		motor = new Motor(MotorPort.A, 120, 200);
+		colorSensor = new ColorSensor(SensorPort.S1);
+		gyroSensor = new GyroSensor(SensorPort.S2, 20);
+		touchSensor = new TouchSensor(SensorPort.S3);
+		spButton = Button.ENTER;
+		aButton = Button.ESCAPE;
+		rButton = Button.DOWN;
+		
+		display = new Display();
+		stats = new Statistics();
+		
 		currentState = new InitialState();
 		setMode(Mode.FAST);
 		Say.hello();
@@ -51,19 +60,6 @@ public class Main {
 			}
 			currentState = newState;
 		}
-	}
-
-	private void setupPeripherals(){
-		motor = new Motor(MotorPort.A, 120, 200);
-		colorSensor = new ColorSensor(SensorPort.S1);
-		gyroSensor = new GyroSensor(SensorPort.S2, 20);
-		touchSensor = new TouchSensor(SensorPort.S3);
-		spButton = Button.ENTER;
-		aButton = Button.ESCAPE;
-		rButton = Button.DOWN;
-		
-		display = new Display();
-		stats = new Statistics();
 	}
 	
 	public boolean isPaused(){
