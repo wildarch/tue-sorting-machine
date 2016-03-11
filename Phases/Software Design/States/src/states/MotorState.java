@@ -11,7 +11,7 @@ public abstract class MotorState extends State {
 	}
 
 	@Override
-	public State run(Main m) {
+	public State nextState(Main m) {
 		if(!motorStarted){
 			motorStarted = true;
 			if(direction == Orientation.Right) 

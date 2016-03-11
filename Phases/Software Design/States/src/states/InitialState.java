@@ -6,7 +6,7 @@ public class InitialState extends State {
 	private boolean calibrationStarted = false;
 
 	@Override
-	public State run(Main m) {
+	public State nextState(Main m) {
 		//calibration
 		if(!calibrationStarted){
 			calibrationStarted = true;

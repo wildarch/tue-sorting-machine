@@ -4,10 +4,10 @@ import sorter.Main;
 public class DoneState extends State {
 
 	@Override
-	public State run(Main m) {
+	public State nextState(Main m) {
 		if(m.rButton.isDown()){
 			m.stats.reset();
-			return new InitialState();
+			return new ModeSelectionState();
 		}
 		return this;
 	}

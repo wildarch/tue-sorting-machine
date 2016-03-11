@@ -13,7 +13,7 @@ public class PausedState extends State {
 	}
 
 	@Override
-	public State run(Main m) {
+	public State nextState(Main m) {
 		if(m.spButton.isDown() && released){
 			down = true;
 		}

@@ -4,7 +4,7 @@ import lejos.hardware.Key;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import states.AbortState;
-import states.InitialState;
+import states.ModeSelectionState;
 import states.State;
 import error.AbortButtonError;
 
@@ -26,6 +26,7 @@ public class Main {
 	public Display display;
 	
 	public Main(){
+		Say.wtf();
 		motor = new Motor(MotorPort.A, 120, 200);
 		colorSensor = new ColorSensor(SensorPort.S1);
 		gyroSensor = new GyroSensor(SensorPort.S2, 20);
@@ -37,9 +38,8 @@ public class Main {
 		display = new Display();
 		stats = new Statistics();
 		
-		currentState = new InitialState();
+		currentState = new ModeSelectionState();
 		setMode(Mode.FAST);
-		Say.hello();
 	}
 	
 	private void run(){
@@ -54,7 +54,7 @@ public class Main {
 				reset = true;
 			}
 			currentState.displayUpdate(this);
-			State newState = currentState.run(this);
+			State newState = currentState.nextState(this);
 			if(newState != currentState){
 				System.out.println("State: "+newState.getClass().getSimpleName());
 			}

@@ -5,7 +5,7 @@ import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
 	@Override
-	public State run(Main m) {
+	public State nextState(Main m) {
 		//read -> paused
 		if(m.isPaused()){
 			return new PausedState(m);
