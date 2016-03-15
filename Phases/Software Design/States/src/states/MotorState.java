@@ -52,7 +52,7 @@ public abstract class MotorState extends State {
 				float angle = m.gyroSensor.getAngle();
 				Orientation orient = m.gyroSensor.getOrientation(angle);
 				if(orient != Orientation.Neutral && orient != direction){
-					return new AbortState(new WrongBasketError(angle), m)
+					return new AbortState(new WrongBasketError(angle), m);
 				}
 			}
 		}
