@@ -5,8 +5,8 @@ import sorter.DetectedColor;
 public class ColorEstimator {
 	public final static float noneGS = 		0f;
 	public final static float blackGS = 	0.04f;
-	public final static float unknownGS = 	0.54f;
-	public final static float whiteGS = 	0.88f;
+	public final static float unknownGS = 	0.31f;
+	public final static float whiteGS = 	0.58f;
 	
 	public final static float nbGS = avg(noneGS, blackGS);
 	public final static float buGS = avg(blackGS, unknownGS);
@@ -31,7 +31,7 @@ public class ColorEstimator {
 		float average = 0f;
 		float maxDelta = 0f;
 		switch(detect){
-			case NONE: 		average = noneGS; maxDelta = 0.11f; break;
+			case NONE: 		average = noneGS; maxDelta = 0.03f; break;
 			case BLACK: 	average = blackGS; 
 							if(sample < blackGS){
 								maxDelta = 0.10f;
