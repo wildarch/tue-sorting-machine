@@ -28,6 +28,7 @@ public class Main {
 	public final GyroSensor gyroSensor;
 	public final TouchSensor touchSensor;
 	public final Statistics stats;
+	public final Timer timer = new Timer();
 	
 	private boolean paused = true;
 	private boolean reset = false;
