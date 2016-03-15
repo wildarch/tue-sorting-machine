@@ -63,6 +63,7 @@ public class Display {
 	public void drawSuccessChance(float chance){
 		g.setFont(Font.getDefaultFont());
 		g.drawString("Success: "+(chance)*100 + "%", SW/2, SH-20, g.BASELINE|g.HCENTER, true);
+		g.refresh();
 	}
 	
 	private boolean isReady() {
