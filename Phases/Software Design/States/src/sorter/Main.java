@@ -58,6 +58,7 @@ public class Main {
 	
 	private void run(){
 		while(true){
+			System.out.println("Angle: "+gyroSensor.getAngle());
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
