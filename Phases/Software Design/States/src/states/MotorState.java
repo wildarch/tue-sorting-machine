@@ -33,8 +33,15 @@ public abstract class MotorState extends State {
 			}
 		}
 		
-		//TODO t>tavg --> to warn
-		//TODO SAFE, INC => t>tdmax OR G=L OR M=J --> to abort
+		if(m.timer.getTimeMS() > m.getTAvg()){
+			//TODO to warn
+		}
+
+		if((!(m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)) || m.timer.getTimeMS() > m.getTDMax()){
+			//TODO to abort
+		}
+				
+		//TODO G=L OR M=J --> to abort
 		
 		return this;
 	}
