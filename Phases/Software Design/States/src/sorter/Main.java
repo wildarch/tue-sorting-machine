@@ -34,6 +34,10 @@ public class Main {
 	private boolean reset = false;
 	private Mode mode;
 	
+	private long tavg;	//average time for disc to fall
+	private long tdmax;	//maximum allowed time for disc to fall
+	private long tgmax;	//maximum allowed time for gyro to stabilize
+	
 	private State currentState;
 	public Display display;
 	
@@ -101,4 +105,15 @@ public class Main {
 		this.mode = mode;
 	}
 	
+	public long getTAvg(){
+		return this.tavg;
+	}
+	
+	public long getTDMax(){
+		return this.tdmax;
+	}
+	
+	public long getTGMax(){
+		return this.tgmax;
+	}
 }
