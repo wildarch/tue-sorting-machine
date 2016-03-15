@@ -50,7 +50,7 @@ public abstract class MotorState extends State {
 			}
 			else if ((direction == Orientation.Right && m.gyroSensor.getOrientation() == Orientation.Left) ||
 					(direction == Orientation.Left && m.gyroSensor.getOrientation() == Orientation.Right)){
-				//return new AbortState(new WrongBasketError(), m);
+				return new AbortState(new WrongBasketError(), m);
 			}
 		}
 		
