@@ -19,11 +19,11 @@ public class Motor {
 	}
 	
 	public void turnLeft(){
-		motor.rotate(defaultAngle, true);
+		motor.rotate(-defaultAngle, true);
 	}
 	
 	public void turnRight(){
-		motor.rotate(-defaultAngle, true);
+		motor.rotate(defaultAngle, true);
 	}
 	
 	public boolean isMoving(){
