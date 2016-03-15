@@ -1,5 +1,6 @@
 package states;
 
+import lejos.utility.Delay;
 import sorter.Main;
 import sorter.Mode;
 import sorter.Orientation;
@@ -13,6 +14,8 @@ public class StabilizeState extends State {
 				return new PausedState(m);
 			}
 			else{
+				Delay.msDelay(20);
+				m.gyroSensor.reset();
 				return new ReadColorState();
 			}
 		}

@@ -17,7 +17,7 @@ public class Main {
 	
 	private final int motorTurnStep = 		120;
 	private final int motorSpeed = 			2*motorTurnStep;
-	private final int gyroStableThreshold = 4;
+	private final int gyroStableThreshold = 2;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
