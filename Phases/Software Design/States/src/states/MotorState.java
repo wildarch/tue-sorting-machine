@@ -1,4 +1,9 @@
 package states;
+import error.DiskNotArrivedError;
+import error.LongerThanAvgWarning;
+import error.MotorJammedError;
+import error.WrongBasketError;
+import error.WrongBasketWarning;
 import sorter.Main;
 import sorter.Mode;
 import sorter.Orientation;
@@ -28,13 +33,27 @@ public abstract class MotorState extends State {
 			}
 			//G=(current direction, either L or R) and (INCREMENTAL or SAFE mode).
 			else if(m.gyroSensor.getOrientation() == this.direction){
-				//TODO timer start
+				m.timer.start();
 				return new StabilizeState();
 			}
 		}
 		
-		//TODO t>tavg --> to warn
-		//TODO SAFE, INC => t>tdmax OR G=L OR M=J --> to abort
+		if(m.timer.getTimeMS() > m.getTAvg()){
+			return new WarningState(new LongerThanAvgWarning(), m, this);
+		}
+
+		if ((m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)){
+			if (m.timer.getTimeMS() > m.getTDMax()){
+				return new AbortState(new DiskNotArrivedError(), m);
+			}
+			else if (m.motor.isStalled()){
+				return new AbortState(new MotorJammedError(), m);
+			}
+			else if ((direction == Orientation.Right && m.gyroSensor.getOrientation() == Orientation.Left) ||
+					(direction == Orientation.Left && m.gyroSensor.getOrientation() == Orientation.Right)){
+				return new AbortState(new WrongBasketError(), m);
+			}
+		}
 		
 		return this;
 	}

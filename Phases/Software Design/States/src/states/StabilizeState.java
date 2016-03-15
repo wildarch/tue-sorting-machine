@@ -17,7 +17,9 @@ public class StabilizeState extends State {
 			}
 		}
 
-		//TODO t>tgmax --> abort
+		if(m.timer.getTimeMS() > m.getTGMax()){
+			//TODO to abort
+		}
 		
 		return this;
 	}

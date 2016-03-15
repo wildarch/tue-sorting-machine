@@ -28,10 +28,15 @@ public class Main {
 	public final GyroSensor gyroSensor;
 	public final TouchSensor touchSensor;
 	public final Statistics stats;
+	public final Timer timer = new Timer();
 	
 	private boolean paused = true;
 	private boolean reset = false;
 	private Mode mode;
+	
+	private long tavg = 100000;	//average time for disc to fall
+	private long tdmax = 100000;	//maximum allowed time for disc to fall
+	private long tgmax = 100000;	//maximum allowed time for gyro to stabilize
 	
 	private State currentState;
 	public Display display;
@@ -100,4 +105,15 @@ public class Main {
 		this.mode = mode;
 	}
 	
+	public long getTAvg(){
+		return this.tavg;
+	}
+	
+	public long getTDMax(){
+		return this.tdmax;
+	}
+	
+	public long getTGMax(){
+		return this.tgmax;
+	}
 }
