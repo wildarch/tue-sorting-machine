@@ -40,7 +40,7 @@ public class Motor {
 	}
 	
 	public void forward(){
-		motor.setSpeed(speed/3);
+		motor.setSpeed(100);
 		motor.forward();
 	}
 	
