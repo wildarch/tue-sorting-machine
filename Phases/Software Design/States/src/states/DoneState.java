@@ -1,5 +1,6 @@
 package states;
 import sorter.Main;
+import sorter.Statistics;
 
 public class DoneState extends State {
 	public DoneState(){
@@ -13,6 +14,12 @@ public class DoneState extends State {
 			return new ModeSelectionState();
 		}
 		return this;
+	}
+	
+	@Override
+	public void displayUpdate(Main m){
+		super.displayUpdate(m);
+		m.display.drawSuccessChance(m.stats.getChanceSuccess());
 	}
 	
 }

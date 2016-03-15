@@ -2,17 +2,24 @@ package sorter;
 
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.robotics.SampleProvider;
 
 public class ColorSensor {
 	private float[] sample = new float[1];
 	private EV3ColorSensor sensor;
+	private SampleProvider grayScaleProvider;
 	
 	public ColorSensor(Port port){
 		sensor = new EV3ColorSensor(port);
+		grayScaleProvider = sensor.getRedMode();
 	}
 	
-	public int readColor(){
-		sensor.fetchSample(sample, 0);
-		return (int) sample[0];
+	public float getGrayScale(){
+		grayScaleProvider.fetchSample(sample, 0);
+		return sample[0];
+	}
+	
+	public DetectedColor detectColor(float sample){
+		return ColorEstimator.getColor(sample);
 	}
 }

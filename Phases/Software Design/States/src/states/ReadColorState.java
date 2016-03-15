@@ -1,5 +1,7 @@
 package states;
 import lejos.robotics.Color;
+import sorter.ColorEstimator;
+import sorter.DetectedColor;
 import sorter.Main;
 import error.UnknownColorWarning;
 
@@ -12,26 +14,28 @@ public class ReadColorState extends State {
 		}
 		
 		if(m.isReset()){
-			return new InitialState();
+			return new ModeSelectionState();
 		}
 		
-		int color = m.colorSensor.readColor();
+		float grayScale = m.colorSensor.getGrayScale();
+		DetectedColor color = m.colorSensor.detectColor(grayScale);
+		m.stats.addWrongChance(ColorEstimator.getWrongChance(grayScale, color));
 		//TODO say color
 		switch(color){
 			//read -> M=L
-			case Color.BLACK: 
+			case BLACK: 
 				m.stats.black++;
 				//TODO start timer
 				return new MotorLeftState();
 				
 			//read -> M=R
-			case Color.WHITE: 
+			case WHITE: 
 				m.stats.white++; 
 				//TODO start timer
 				return new MotorRightState();
 				
 			//read -> done
-			case Color.NONE:
+			case NONE:
 				return new DoneState();
 				
 			//read -> warn (unknown disc) -> M=R
