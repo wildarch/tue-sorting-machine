@@ -46,12 +46,12 @@ public abstract class MotorState extends State {
 			if (m.timer.getTimeMS() > m.getTDMax()){
 				return new AbortState(new DiskNotArrivedError(), m);
 			}
-			else if ((direction == Orientation.Right && m.gyroSensor.getOrientation() == Orientation.Left)||
-					(direction == Orientation.Left && m.gyroSensor.getOrientation() == Orientation.Right)){
-				return new AbortState(new WrongBasketError(), m);
-			}
 			else if (m.motor.isStalled()){
 				return new AbortState(new MotorJammedError(), m);
+			}
+			else if ((direction == Orientation.Right && m.gyroSensor.getOrientation() == Orientation.Left) ||
+					(direction == Orientation.Left && m.gyroSensor.getOrientation() == Orientation.Right)){
+				return new AbortState(new WrongBasketError(), m);
 			}
 		}
 		
