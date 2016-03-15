@@ -48,9 +48,12 @@ public abstract class MotorState extends State {
 			else if (m.motor.isStalled()){
 				return new AbortState(new MotorJammedError(), m);
 			}
-			else if ((direction == Orientation.Right && m.gyroSensor.getOrientation() == Orientation.Left) ||
-					(direction == Orientation.Left && m.gyroSensor.getOrientation() == Orientation.Right)){
-				return new AbortState(new WrongBasketError(m.gyroSensor.getAngle()), m);
+			else {
+				float angle = m.gyroSensor.getAngle();
+				Orientation orient = m.gyroSensor.getOrientation(angle);
+				if(orient != Orientation.Neutral && orient != direction){
+					return new AbortState(new WrongBasketError(angle), m)
+				}
 			}
 		}
 		

@@ -23,6 +23,10 @@ public class GyroSensor {
 	
 	public Orientation getOrientation(){
 		float angle = getAngle();
+		return getOrientation(angle);
+	}
+	
+	public Orientation getOrientation(float angle){
 		if(angle > limitAngle){
 			return Orientation.Right;
 		}
