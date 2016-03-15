@@ -31,17 +31,17 @@ public class ColorEstimator {
 		float average = 0f;
 		float maxDelta = 0f;
 		switch(detect){
-			case NONE: 		average = noneGS; maxDelta = 0.03f; break;
+			case NONE: 		average = noneGS; maxDelta = 0.02f; break;
 			case BLACK: 	average = blackGS; 
 							if(sample < blackGS){
-								maxDelta = 0.10f;
+								maxDelta = 0.02f;
 							}
 							else {
-								maxDelta = 0.16f;
+								maxDelta = 0.135f;
 							}
 							break;
-			case UNKNOWN: 	average = unknownGS; maxDelta = 0.17f; break;
-			case WHITE: 	average = whiteGS; maxDelta = 0.17f; break;
+			case UNKNOWN: 	average = unknownGS; maxDelta = 0.135f; break;
+			case WHITE: 	average = whiteGS; maxDelta = 0.135f; break;
 		default:
 			break;
 		}
