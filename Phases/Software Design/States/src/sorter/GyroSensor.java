@@ -2,9 +2,11 @@ package sorter;
 
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3GyroSensor;
+import lejos.robotics.SampleProvider;
 
 public class GyroSensor {
 	private EV3GyroSensor gyro;
+	private SampleProvider provider;
 	private float limitAngle;
 	
 	private float[] sample = new float[1];
@@ -12,12 +14,13 @@ public class GyroSensor {
 	public GyroSensor(Port port, float limitAngle){
 		gyro = new EV3GyroSensor(port);
 		gyro.reset();
+		provider = gyro.getAngleMode();
 		
 		this.limitAngle = limitAngle;
 	}
 	
 	public float getAngle(){
-		gyro.fetchSample(sample, 0);
+		provider.fetchSample(sample, 0);
 		return sample[0];
 	}
 	
