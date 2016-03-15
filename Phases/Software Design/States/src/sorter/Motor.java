@@ -30,6 +30,10 @@ public class Motor {
 		return motor.isMoving();
 	}
 	
+	public boolean isStalled(){
+		return motor.isStalled();
+	}
+	
 	public void stop(){
 		motor.stop();
 		motor.setSpeed(speed);
