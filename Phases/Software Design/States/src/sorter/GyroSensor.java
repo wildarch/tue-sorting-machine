@@ -33,4 +33,8 @@ public class GyroSensor {
 			return Orientation.Neutral;
 		}
 	}
+	
+	public void reset(){
+		this.gyro.reset();
+	}
 }
