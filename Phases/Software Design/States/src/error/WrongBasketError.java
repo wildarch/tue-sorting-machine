@@ -2,8 +2,8 @@ package error;
 
 public class WrongBasketError extends FatalError {
 
-	public WrongBasketError() {
-		super("Disc went in wrong basket");
+	public WrongBasketError(float angle) {
+		super("Wrong basket, angle: "+angle);
 	}
 
 }
