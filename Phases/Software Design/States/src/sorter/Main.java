@@ -41,6 +41,8 @@ public class Main {
 	private State currentState;
 	public Display display;
 	
+	float gyroAngle = Float.MAX_VALUE;
+	
 	public Main(){
 		//TODO say hello
 		Say.wtf();
@@ -58,7 +60,11 @@ public class Main {
 	
 	private void run(){
 		while(true){
-			System.out.println("Angle: "+gyroSensor.getAngle());
+			float angle = gyroSensor.getAngle();
+			if(angle != gyroAngle){
+				gyroAngle = angle;
+				System.out.println("Angle: "+gyroAngle);
+			}
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 

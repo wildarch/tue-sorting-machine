@@ -14,8 +14,6 @@ public class StabilizeState extends State {
 				return new PausedState(m);
 			}
 			else{
-				Delay.msDelay(20);
-				m.gyroSensor.reset();
 				return new ReadColorState();
 			}
 		}
