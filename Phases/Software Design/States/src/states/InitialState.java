@@ -16,13 +16,7 @@ public class InitialState extends State {
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
-		}
-
-		//If SP then do transition
-		if(m.spButton.isDown()){
-			m.setReset(false);
-			m.setPaused(false);
-			return new ReadColorState();
+			return new PausedState(m);
 		}
 		
 		return this;
