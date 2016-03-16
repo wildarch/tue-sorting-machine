@@ -15,6 +15,8 @@ public class Motor {
 		motor = new EV3MediumRegulatedMotor(port);
 		reset();
 		defaultAngle = angle;
+		this.safeSpeed = safeSpeed;
+		this.fastSpeed = fastSpeed;
 	}
 	
 	public void setSpeed(Mode m){
