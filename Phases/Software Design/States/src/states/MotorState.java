@@ -10,6 +10,7 @@ import sorter.Orientation;
 public abstract class MotorState extends State {
 	private boolean motorStarted = false;
 	private Orientation direction;
+	private boolean hit = false;
 	public MotorState(Orientation o){
 		direction = o;
 	}
@@ -31,10 +32,14 @@ public abstract class MotorState extends State {
 				return new ReadColorState();
 			}
 			//G=(current direction, either L or R) and (INCREMENTAL or SAFE mode).
-			else if(m.gyroSensor.getOrientation() == this.direction){
+			else if(hit){
 				m.timer.start();
 				return new StabilizeState();
 			}
+		}
+		
+		if(m.gyroSensor.getOrientation() == this.direction){
+			hit = true;
 		}
 		
 		if(m.timer.getTimeMS() > m.getTAvg()){
@@ -51,7 +56,7 @@ public abstract class MotorState extends State {
 			else {
 				float angle = m.gyroSensor.getAngle();
 				Orientation orient = m.gyroSensor.getOrientation(angle);
-				if(orient != Orientation.Neutral && orient != direction){
+				if(orient != Orientation.Neutral && orient != direction && !hit){
 					return new AbortState(new WrongBasketError(angle), m);
 				}
 			}

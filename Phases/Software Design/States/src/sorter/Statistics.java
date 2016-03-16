@@ -15,7 +15,7 @@ public class Statistics {
 	
 	public void addWrongChance(float c){
 		wrongChances.add(c);
-		System.out.println("Wrong chance: "+c);
+		//System.out.println("Wrong chance: "+c);
 	}
 	
 	public float getChanceSuccess(){
