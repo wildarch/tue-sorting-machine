@@ -14,7 +14,7 @@ public class ReadColorState extends State {
 		}
 		
 		if(m.isReset()){
-			return new ModeSelectionState();
+			return new ModeSelectionState(m);
 		}
 		
 		float grayScale = m.colorSensor.getGrayScale();

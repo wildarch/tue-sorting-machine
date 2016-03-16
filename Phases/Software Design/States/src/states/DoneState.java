@@ -1,6 +1,5 @@
 package states;
 import sorter.Main;
-import sorter.Statistics;
 
 public class DoneState extends State {
 	public DoneState(){
@@ -9,9 +8,9 @@ public class DoneState extends State {
 
 	@Override
 	public State nextState(Main m) {
-		if(m.rButton.isDown()){
-			m.stats.reset();
-			return new ModeSelectionState();
+		if(m.isReset()){
+			m.setReset(false);
+			return new ModeSelectionState(m);
 		}
 		return this;
 	}

@@ -6,6 +6,10 @@ import sorter.Mode;
 
 public class ModeSelectionState extends State {
 
+	public ModeSelectionState(Main m) {
+		m.stats.reset();
+	}
+
 	@Override
 	public State nextState(Main m) {
 		m.display.drawModeSelect();

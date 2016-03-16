@@ -55,7 +55,7 @@ public class Main {
 		display = new Display();
 		stats = new Statistics();
 		
-		currentState = new ModeSelectionState();
+		currentState = new ModeSelectionState(this);
 		setMode(Mode.FAST);
 	}
 	
