@@ -16,6 +16,8 @@ public class InitialState extends State {
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
+			m.setPaused(false);
+			m.setReset(false);
 			return new PausedState(m);
 		}
 		
