@@ -1,4 +1,5 @@
 package sorter;
+import lejos.hardware.Battery;
 import lejos.hardware.Button;
 import lejos.hardware.Key;
 import lejos.hardware.port.MotorPort;
@@ -7,7 +8,9 @@ import lejos.hardware.port.SensorPort;
 import states.AbortState;
 import states.ModeSelectionState;
 import states.State;
+import states.WarningState;
 import error.AbortButtonError;
+import error.BatteryWarning;
 
 public class Main {
 	private final Port motorPort = 			MotorPort.A;
@@ -19,6 +22,7 @@ public class Main {
 	private final int motorSafeSpeed = 		3*motorTurnStep;
 	private final int motorFastSpeed = 		700;
 	private final int gyroStableThreshold = 15;
+	private final float batteryTreshold = 8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -67,6 +71,7 @@ public class Main {
 				gyroAngle = angle;
 				System.out.println("Angle: "+gyroAngle);
 			}*/
+			//check buttons
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
@@ -76,6 +81,12 @@ public class Main {
 			else if(rButton.isDown()){
 				reset = true;
 			}
+			
+			//check battery
+			if(Battery.getVoltage() < this.batteryTreshold){
+				currentState = new WarningState(new BatteryWarning(), this, currentState);
+			}
+			
 			currentState.displayUpdate(this);
 			State newState = currentState.nextState(this);
 			if(newState != currentState){
