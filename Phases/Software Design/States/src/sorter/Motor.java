@@ -6,16 +6,24 @@ import lejos.hardware.port.Port;
 public class Motor {
 	private EV3MediumRegulatedMotor motor;
 	private int defaultAngle;
+	private final float calibrationSpeed = 100;
+	private float safeSpeed;
+	private float fastSpeed;
 	private float speed;
 	
-	public Motor(Port port, int angle, float speed){
+	public Motor(Port port, int angle, int safeSpeed, int fastSpeed){
 		motor = new EV3MediumRegulatedMotor(port);
 		reset();
-		
 		defaultAngle = angle;
-		
-		this.speed = speed;
-		motor.setSpeed(speed);
+	}
+	
+	public void setSpeed(Mode m){
+		if(m == Mode.FAST){
+			speed = fastSpeed;
+		}
+		else {
+			speed = safeSpeed;
+		}
 	}
 	
 	public void turnLeft(){
@@ -36,11 +44,10 @@ public class Motor {
 	
 	public void stop(){
 		motor.stop();
-		motor.setSpeed(speed);
 	}
 	
-	public void forward(){
-		motor.setSpeed(100);
+	public void slowForward(){
+		motor.setSpeed(calibrationSpeed);
 		motor.forward();
 	}
 	

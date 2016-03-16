@@ -10,12 +10,13 @@ public class InitialState extends State {
 		//calibration
 		if(!calibrationStarted){
 			calibrationStarted = true;
-			m.motor.forward();
+			m.motor.slowForward();
 			m.gyroSensor.reset();
 		}
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
+			m.motor.setSpeed(m.getMode());
 			m.setPaused(false);
 			m.setReset(false);
 			return new PausedState(m);

@@ -16,7 +16,8 @@ public class Main {
 	private final Port touchSensorPort = 	SensorPort.S3;
 	
 	private final int motorTurnStep = 		120;
-	private final int motorSpeed = 			2*motorTurnStep;
+	private final int motorSafeSpeed = 		3*motorTurnStep;
+	private final int motorFastSpeed = 		700;
 	private final int gyroStableThreshold = 15;
 	
 	public final Key spButton = Button.ENTER;
@@ -46,7 +47,7 @@ public class Main {
 	public Main(){
 		//TODO say hello
 		Say.wtf();
-		motor = new Motor(motorPort, motorTurnStep, motorSpeed);
+		motor = new Motor(motorPort, motorTurnStep, motorSafeSpeed, motorFastSpeed);
 		colorSensor = new ColorSensor(colorSensorPort);
 		gyroSensor = new GyroSensor(gyroSensorPort, gyroStableThreshold);
 		touchSensor = new TouchSensor(touchSensorPort);
