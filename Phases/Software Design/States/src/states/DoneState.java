@@ -9,7 +9,7 @@ public class DoneState extends State {
 	@Override
 	public State nextState(Main m) {
 		if(m.isReset()){
-			m.setReset(false);
+			m.variableReset();
 			return new ModeSelectionState(m);
 		}
 		return this;

@@ -16,7 +16,7 @@ public class PausedState extends State {
 	@Override
 	public State nextState(Main m) {
 		if(m.isReset()){
-			m.setReset(false);
+			m.variableReset();
 			return new ModeSelectionState(m);
 		}
 		if(m.spButton.isDown() && released){

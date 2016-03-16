@@ -14,6 +14,7 @@ public class ReadColorState extends State {
 		}
 		
 		if(m.isReset()){
+			m.variableReset();
 			return new ModeSelectionState(m);
 		}
 		

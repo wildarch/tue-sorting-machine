@@ -85,6 +85,12 @@ public class Main {
 		}
 	}
 	
+	public void variableReset(){
+		this.reset = false;
+		this.paused = false;
+		this.stats.reset();
+	}
+	
 	public boolean isPaused(){
 		return this.paused;
 	}
