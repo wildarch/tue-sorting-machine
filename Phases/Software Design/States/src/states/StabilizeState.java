@@ -1,5 +1,6 @@
 package states;
 
+import error.GyroNotStabileError;
 import lejos.utility.Delay;
 import sorter.Main;
 import sorter.Mode;
@@ -19,7 +20,7 @@ public class StabilizeState extends State {
 		}
 
 		if(m.timer.getTimeMS() > m.getTGMax()){
-			//TODO to abort
+			return new AbortState(new GyroNotStabileError(), m);
 		}
 		
 		return this;
