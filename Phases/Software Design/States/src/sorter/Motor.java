@@ -26,6 +26,7 @@ public class Motor {
 		else {
 			speed = safeSpeed;
 		}
+		motor.setSpeed(speed);
 	}
 	
 	public void turnLeft(){
