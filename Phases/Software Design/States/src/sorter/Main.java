@@ -16,8 +16,8 @@ public class Main {
 	private final Port touchSensorPort = 	SensorPort.S3;
 	
 	private final int motorTurnStep = 		120;
-	private final int motorSafeSpeed = 		3*motorTurnStep;
-	private final int motorFastSpeed = 		700;
+	private final int motorSafeSpeed = 		motorTurnStep;
+	private final int motorFastSpeed = 		750;
 	private final int gyroStableThreshold = 15;
 	
 	public final Key spButton = Button.ENTER;
