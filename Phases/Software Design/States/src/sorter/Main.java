@@ -60,11 +60,12 @@ public class Main {
 	
 	private void run(){
 		while(true){
+			/*
 			float angle = gyroSensor.getAngle();
 			if(angle != gyroAngle){
 				gyroAngle = angle;
 				System.out.println("Angle: "+gyroAngle);
-			}
+			}*/
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
@@ -77,7 +78,7 @@ public class Main {
 			currentState.displayUpdate(this);
 			State newState = currentState.nextState(this);
 			if(newState != currentState){
-				System.out.println("State: "+newState.getClass().getSimpleName());
+				//System.out.println("State: "+newState.getClass().getSimpleName());
 			}
 			currentState = newState;
 		}
