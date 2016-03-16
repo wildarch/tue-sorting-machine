@@ -4,6 +4,7 @@ import sorter.Main;
 
 public class InitialState extends State {
 	private boolean calibrationStarted = false;
+	private boolean calibrationFinished = false;
 	private boolean pressed = false;
 
 	@Override
@@ -17,20 +18,21 @@ public class InitialState extends State {
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
+			this.calibrationFinished = true;
 //			m.setPaused(false);
 //			m.setReset(false);
 //			return new PausedState(m);
 		}
 		
 		
-		if(m.spButton.isDown()){
-			this.pressed = false;
+		if(this.calibrationFinished && m.spButton.isDown()){
+			this.pressed = true;
 		}
 		
 		if(this.pressed && m.spButton.isUp()){
 			m.setPaused(false);
 			m.setReset(false);
-			return new PausedState(m);
+			return new ReadColorState();
 		}
 		
 		return this;
