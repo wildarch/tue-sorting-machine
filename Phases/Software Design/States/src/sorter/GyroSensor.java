@@ -16,14 +16,13 @@ public class GyroSensor {
 	public GyroSensor(Port port, float limitAngle){
 		gyro = new EV3GyroSensor(port);
 		gyro.reset();
-		provider = gyro.getAngleMode();
-		filter = new OffsetCorrectionFilter(provider);
+		provider = gyro.getRateMode();
 		
 		this.limitAngle = limitAngle;
 	}
 	
 	public float getAngle(){
-		filter.fetchSample(sample, 0);
+		provider.fetchSample(sample, 0);
 		return sample[0];
 	}
 	
@@ -34,10 +33,10 @@ public class GyroSensor {
 	
 	public Orientation getOrientation(float angle){
 		if(angle > limitAngle){
-			return Orientation.Right;
+			return Orientation.Left;
 		}
 		else if(angle  < -limitAngle){
-			return Orientation.Left;
+			return Orientation.Right;
 		}
 		else {
 			return Orientation.Neutral;
