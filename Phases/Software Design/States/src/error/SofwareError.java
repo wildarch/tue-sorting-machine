@@ -7,6 +7,10 @@ public class SofwareError extends FatalError {
 
 	public SofwareError(AbstractMain abstractMain) {
 		super("Software Exception");
+	}
+	
+	@Override
+	public void say() {
 		Say.softwareException();
 	}
 
