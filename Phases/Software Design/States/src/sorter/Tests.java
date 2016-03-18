@@ -13,6 +13,10 @@ import org.junit.Test;
 
 import peripherals.DetectedColor;
 import peripherals.Orientation;
+import states.MotorLeftState;
+import states.MotorRightState;
+import states.ReadColorState;
+import states.State;
 
 public class Tests {
 
@@ -35,11 +39,13 @@ public class Tests {
 		spButton.setDown(true);
 		m.cycle();
 		spButton.setDown(false);
-		m.cycle();
-		//ReadColorState
 		color.setDetectColor(DetectedColor.WHITE);
 		m.cycle();
+		//ReadColorState
+		m.cycle();
 		//MotorRightState
+		assertTrue(m.currentState instanceof MotorRightState);
+		
 		gyro.setRateChange(1000);
 		m.cycle();
 		motor.stop();
@@ -48,12 +54,12 @@ public class Tests {
 		gyro.setRateChange(0);
 		m.cycle();
 		//ReadColorState
-		m.cycle();
-		
 		color.setDetectColor(DetectedColor.BLACK);
 		m.cycle();
-		//MotorRightState
-		gyro.setRateChange(1000);
+		m.cycle();
+		//MotorLeftState
+		assertTrue(m.currentState instanceof MotorLeftState);
+		gyro.setRateChange(-1000);
 		m.cycle();
 		motor.stop();
 		m.cycle();
@@ -61,6 +67,7 @@ public class Tests {
 		gyro.setRateChange(0);
 		m.cycle();
 		//ReadColorState
+		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
 	}
 
