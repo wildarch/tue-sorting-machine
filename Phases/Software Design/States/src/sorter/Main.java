@@ -41,9 +41,9 @@ public class Main {
 	private boolean batteryWarningGiven = false;
 	private Mode mode;
 	
-	private long tavg = 100000;	//average time for disc to fall
-	private long tdmax = 100000;	//maximum allowed time for disc to fall
-	private long tgmax = 100000;	//maximum allowed time for gyro to stabilize
+	private long tavg = 433;	//average time for disc to fall
+	private long tdmax = 470;	//maximum allowed time for disc to fall
+	private long tgmax = 60;	//maximum allowed time for gyro to stabilize
 	
 	private State currentState;
 	public Display display;

@@ -25,6 +25,10 @@ public class TimerApp{
 	private double average;
 	private long min = Long.MAX_VALUE;
 	private long max;
+	private long gavg;
+	private long gweight;
+	private long gmin;
+	private long gmax;
 
 	private Timer timer = new Timer();
 	
@@ -76,7 +80,9 @@ public class TimerApp{
 				}
 				
 				long t = timer.getTimeMS();
-				
+				timer.start();//measure gyro time
+				while(gyroSensor.getOrientation()!= Orientation.Neutral);//wait for gyro stable
+				long g = timer.getTimeMS();
 				average = (average*weight + t)/(weight+1);
 				weight++;
 				
@@ -85,6 +91,14 @@ public class TimerApp{
 				min = Math.min(min, t);
 				max = Math.max(max, t);
 				
+				gavg = (gavg*gweight + g)/(gweight+1);
+				gweight++;
+				
+				System.out.println("g: "+g);
+				
+				gmin = Math.min(gmin, g);
+				gmax = Math.max(gmax, g);
+				
 				Thread.sleep(1000);
 			}
 		}
@@ -92,6 +106,9 @@ public class TimerApp{
 		System.out.println("Average: " + average);
 		System.out.println("Min: " + min);
 		System.out.println("Max: " + max);
+		System.out.println("GAverage: " + gavg);
+		System.out.println("GMin: " + gmin);
+		System.out.println("GMax: " + gmax);
 	}
 	
 	public static void main(String[] args) throws InterruptedException{
