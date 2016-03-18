@@ -1,5 +1,6 @@
-package peripherals;
+package mock;
 
+import peripherals.Display;
 import sorter.Statistics;
 import states.State;
 import error.FatalError;

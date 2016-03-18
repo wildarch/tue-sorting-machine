@@ -1,20 +1,20 @@
 package states;
 
-import sorter.Main;
+import sorter.AbstractMain;
 import error.FatalError;
 
 public class AbortState extends State {
 	
 	FatalError error;
 	
-	public AbortState(FatalError e, Main m){
+	public AbortState(FatalError e, AbstractMain abstractMain){
 		//TODO say abort
-		m.motor.stop();
+		abstractMain.motor.stop();
 		error = e;
 	}
 
 	@Override
-	public State nextState(Main m) {		
+	public State nextState(AbstractMain m) {		
 		if(m.rButton.isDown()){
 			m.variableReset();
 			return new PausedState(m);
@@ -23,7 +23,7 @@ public class AbortState extends State {
 	}
 	
 	@Override
-	public void displayUpdate(Main m){
+	public void displayUpdate(AbstractMain m){
 		m.display.drawFatal(error);
 	}
 }

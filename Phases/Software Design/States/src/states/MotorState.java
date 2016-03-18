@@ -1,11 +1,11 @@
 package states;
 import peripherals.Orientation;
+import sorter.AbstractMain;
+import sorter.Mode;
 import error.DiskNotArrivedError;
 import error.LongerThanAvgWarning;
 import error.MotorJammedError;
 import error.WrongBasketError;
-import sorter.Main;
-import sorter.Mode;
 
 public abstract class MotorState extends State {
 	private boolean motorStarted = false;
@@ -16,7 +16,7 @@ public abstract class MotorState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		if(!motorStarted){
 			motorStarted = true;
 			if(direction == Orientation.Right) 

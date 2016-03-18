@@ -1,5 +1,5 @@
 package states;
-import sorter.Main;
+import sorter.AbstractMain;
 
 
 public class InitialState extends State {
@@ -8,7 +8,7 @@ public class InitialState extends State {
 	private boolean pressed = false;
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		//calibration
 		if(!calibrationStarted){
 			calibrationStarted = true;

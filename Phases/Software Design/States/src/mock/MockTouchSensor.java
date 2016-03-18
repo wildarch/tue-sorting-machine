@@ -1,4 +1,6 @@
-package peripherals;
+package mock;
+
+import peripherals.TouchSensor;
 
 public class MockTouchSensor implements TouchSensor {
 	private boolean pressed = false;

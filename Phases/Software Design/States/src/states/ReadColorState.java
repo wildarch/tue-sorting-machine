@@ -1,13 +1,12 @@
 package states;
 import peripherals.ColorEstimator;
 import peripherals.DetectedColor;
-import lejos.robotics.Color;
-import sorter.Main;
+import sorter.AbstractMain;
 import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		//read -> paused
 		if(m.isPaused()){
 			return new PausedState(m);

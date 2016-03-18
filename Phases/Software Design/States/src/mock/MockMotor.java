@@ -1,5 +1,6 @@
-package peripherals;
+package mock;
 
+import peripherals.Motor;
 import sorter.Mode;
 
 public class MockMotor implements Motor {

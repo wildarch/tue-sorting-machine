@@ -1,4 +1,7 @@
-package peripherals;
+package mock;
+
+import peripherals.GyroSensor;
+import peripherals.Orientation;
 
 public class MockGyroSensor implements GyroSensor {
 	private float rateChange = 0f;

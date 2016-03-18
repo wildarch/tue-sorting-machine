@@ -1,4 +1,7 @@
-package peripherals;
+package mock;
+
+import peripherals.ColorSensor;
+import peripherals.DetectedColor;
 
 public class MockColorSensor implements ColorSensor {
 	

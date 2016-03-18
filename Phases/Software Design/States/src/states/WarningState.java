@@ -1,19 +1,19 @@
 package states;
 
-import sorter.Main;
+import sorter.AbstractMain;
 import error.Warning;
 
 public class WarningState extends State {
 	State nextState;
 	
-	public WarningState(Warning w, Main m, State s){
+	public WarningState(Warning w, AbstractMain abstractMain, State s){
 		//TODO say warning
-		m.display.drawWarning(w);
+		abstractMain.display.drawWarning(w);
 		nextState = s;
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		return nextState;
 	}
 }
