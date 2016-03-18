@@ -1,6 +1,13 @@
 package sorter;
 
+import error.AbortButtonError;
+import error.BatteryWarning;
+import error.PeripheralConnectionLostError;
+import error.SofwareError;
+import lejos.hardware.DeviceException;
 import lejos.hardware.Key;
+import lejos.hardware.device.DeviceIdentifier;
+import lejos.hardware.port.SensorPort;
 import peripherals.Battery;
 import peripherals.ColorSensor;
 import peripherals.Display;
@@ -10,9 +17,6 @@ import peripherals.TouchSensor;
 import states.AbortState;
 import states.State;
 import states.WarningState;
-import error.AbortButtonError;
-import error.BatteryWarning;
-import error.SofwareError;
 
 public abstract class AbstractMain {
 	public static final int MOTOR_TURN_STEP = 		120;
@@ -72,8 +76,14 @@ public abstract class AbstractMain {
 	public void run(){
 		try {
 			while(true){
+				testPeripherals();
 				cycle();
 			}
+		}
+		catch(DeviceException e) {
+			currentState = new AbortState(new PeripheralConnectionLostError(), this);
+			currentState.displayUpdate(this);
+			run();
 		}
 		catch(Exception e){
 			currentState = new AbortState(new SofwareError(this), this);
@@ -83,6 +93,7 @@ public abstract class AbstractMain {
 	}
 	
 	public void cycle(){
+		
 		//check buttons
 		if(aButton.isDown() && !(currentState instanceof AbortState)){
 			currentState = new AbortState(new AbortButtonError(), this);
@@ -102,6 +113,19 @@ public abstract class AbstractMain {
 		currentState.displayUpdate(this);
 		State newState = currentState.nextState(this);
 		currentState = newState;
+	}
+	
+	public void testPeripherals() throws DeviceException {
+		try {
+			System.out.println("TEST START");
+			DeviceIdentifier d = new DeviceIdentifier(SensorPort.S1);
+			d.getDeviceType();
+			d.close();
+			System.out.println("TEST PASSED");
+		} catch(Exception e) {
+			System.out.println("TEST FAILED");
+			throw new DeviceException();
+		}
 	}
 	
 	public void variableReset(){
