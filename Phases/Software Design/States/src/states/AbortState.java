@@ -17,7 +17,7 @@ public class AbortState extends State {
 	public State nextState(AbstractMain m) {		
 		if(m.rButton.isDown()){
 			m.variableReset();
-			return new PausedState(m);
+			return new ModeSelectionState(m);
 		}
 		return this;
 	}
