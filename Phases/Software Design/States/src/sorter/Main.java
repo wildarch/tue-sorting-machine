@@ -13,16 +13,16 @@ import error.AbortButtonError;
 import error.BatteryWarning;
 
 public class Main {
-	public static final Port MOTORPORT = 			MotorPort.A;
-	public static final Port COLORSENSORPORT = 	SensorPort.S1;
-	public static final Port GYROSENSORPORT = 	SensorPort.S2;
-	public static final Port TOUCHSENSORPORT = 	SensorPort.S3;
+	public static final Port MOTOR_PORT = 			MotorPort.A;
+	public static final Port COLOR_SENSOR_PORT = 	SensorPort.S1;
+	public static final Port GYRO_SENSOR_PORT = 	SensorPort.S2;
+	public static final Port TOUCH_SENSOR_PORT = 	SensorPort.S3;
 	
-	public static final int MOTORTURNSTEP = 		120;
-	public static final int MOTORSAFESPEED = 		MOTORTURNSTEP;
-	public static final int MOTORFASTSPEED = 		750;
-	public static final int GYROSTABLETRESHOLD = 15;
-	public static final float BATTERYTRESHOLD = 8.5f;
+	public static final int MOTOR_TURN_STEP = 		120;
+	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
+	public static final int MOTOR_FAST_SPEED = 		750;
+	public static final int GYRO_STABLE_TRESHOLD = 15;
+	public static final float BATTERY_TRESHOLD = 8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -51,10 +51,10 @@ public class Main {
 	public Main(){
 		//TODO say hello
 		Say.wtf();
-		motor = new Motor(MOTORPORT, MOTORTURNSTEP, MOTORSAFESPEED, MOTORFASTSPEED);
-		colorSensor = new ColorSensor(COLORSENSORPORT);
-		gyroSensor = new GyroSensor(GYROSENSORPORT, GYROSTABLETRESHOLD);
-		touchSensor = new TouchSensor(TOUCHSENSORPORT);
+		motor = new Motor(MOTOR_PORT, MOTOR_TURN_STEP, MOTOR_SAFE_SPEED, MOTOR_FAST_SPEED);
+		colorSensor = new ColorSensor(COLOR_SENSOR_PORT);
+		gyroSensor = new GyroSensor(GYRO_SENSOR_PORT, GYRO_STABLE_TRESHOLD);
+		touchSensor = new TouchSensor(TOUCH_SENSOR_PORT);
 		
 		display = new Display();
 		stats = new Statistics();
@@ -83,7 +83,7 @@ public class Main {
 			}
 			
 			//check battery
-			if(Battery.getVoltage() < this.BATTERYTRESHOLD){
+			if(Battery.getVoltage() < this.BATTERY_TRESHOLD){
 				currentState = new WarningState(new BatteryWarning(), this, currentState);
 			}
 			

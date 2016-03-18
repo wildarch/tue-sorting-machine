@@ -26,11 +26,11 @@ public class InitialState extends State {
 		}
 		
 		
-		if(this.calibrationFinished && m.SPBUTTON.isDown()){
+		if(this.calibrationFinished && m.spButton.isDown()){
 			this.pressed = true;
 		}
 		
-		if(this.pressed && m.SPBUTTON.isUp()){
+		if(this.pressed && m.spButton.isUp()){
 			m.setPaused(false);
 			m.setReset(false);
 			return new ReadColorState();
