@@ -12,7 +12,7 @@ public class ModeSelectionState extends State {
 
 	@Override
 	public State nextState(Main m) {
-		m.display.drawModeSelect();
+		while(!m.display.drawModeSelect()) {}
 		int button = Button.waitForAnyPress();
 		switch(button){
 			case Button.ID_LEFT: m.setMode(Mode.FAST); break;

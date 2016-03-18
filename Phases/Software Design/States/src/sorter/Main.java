@@ -37,6 +37,7 @@ public class Main {
 	
 	private boolean paused = true;
 	private boolean reset = false;
+	private boolean batteryWarningGiven = false;
 	private Mode mode;
 	
 	private long tavg = 100000;	//average time for disc to fall
@@ -83,7 +84,8 @@ public class Main {
 			}
 			
 			//check battery
-			if(Battery.getVoltage() < this.BATTERY_TRESHOLD){
+			if(Battery.getVoltage() < this.BATTERY_TRESHOLD && !batteryWarningGiven){
+				batteryWarningGiven = true;
 				currentState = new WarningState(new BatteryWarning(), this, currentState);
 			}
 			

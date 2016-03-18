@@ -15,7 +15,7 @@ public class Display {
     final int SH = g.getHeight();
     
     private long displayReadyTime;
-	private final long warningWaitTime = 3000;
+	private final long warningWaitTime = 5000;
 	
     public Display() {
     	g.setAutoRefresh(false);
@@ -43,7 +43,8 @@ public class Display {
 	}
 	
 	@SuppressWarnings("static-access")
-	public void drawModeSelect(){
+	public boolean drawModeSelect(){
+		if(!isReady()) return false;
 		g.clear();
 		
 		drawTitle("Choose mode:");
@@ -58,6 +59,7 @@ public class Display {
 		g.drawString("Safe", SW/2, SH-10, g.BASELINE|g.HCENTER);
 		
 		g.refresh();
+		return true;
 	}
 	
 	public void drawSuccessChance(float chance){
