@@ -1,7 +1,7 @@
 package states;
+import peripherals.ColorEstimator;
+import peripherals.DetectedColor;
 import lejos.robotics.Color;
-import sorter.ColorEstimator;
-import sorter.DetectedColor;
 import sorter.Main;
 import error.UnknownColorWarning;
 

@@ -1,10 +1,12 @@
-package sorter;
+package peripherals;
 
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.Font;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.hardware.lcd.Image;
+import sorter.Images;
+import sorter.Statistics;
 import states.State;
 import error.FatalError;
 import error.Warning;

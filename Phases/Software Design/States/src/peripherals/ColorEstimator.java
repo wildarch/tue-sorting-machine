@@ -1,6 +1,6 @@
-package sorter;
+package peripherals;
 
-import sorter.DetectedColor;
+import peripherals.DetectedColor;
 
 public class ColorEstimator {
 	public final static float noneGS = 		0f;

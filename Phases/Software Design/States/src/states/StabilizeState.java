@@ -1,10 +1,10 @@
 package states;
 
+import peripherals.Orientation;
 import error.GyroNotStabileError;
 import lejos.utility.Delay;
 import sorter.Main;
 import sorter.Mode;
-import sorter.Orientation;
 
 public class StabilizeState extends State {
 

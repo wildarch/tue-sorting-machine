@@ -1,4 +1,13 @@
 package sorter;
+import peripherals.ColorSensor;
+import peripherals.GyroSensor;
+import peripherals.Motor;
+import peripherals.RealColorSensor;
+import peripherals.Display;
+import peripherals.RealGyroSensor;
+import peripherals.RealMotor;
+import peripherals.RealTouchSensor;
+import peripherals.TouchSensor;
 import lejos.hardware.Battery;
 import lejos.hardware.Button;
 import lejos.hardware.Key;
@@ -51,10 +60,10 @@ public class Main {
 	public Main(){
 		//TODO say hello
 		Say.wtf();
-		motor = new Motor(motorPort, motorTurnStep, motorSafeSpeed, motorFastSpeed);
-		colorSensor = new ColorSensor(colorSensorPort);
-		gyroSensor = new GyroSensor(gyroSensorPort, gyroStableThreshold);
-		touchSensor = new TouchSensor(touchSensorPort);
+		motor = new RealMotor(motorPort, motorTurnStep, motorSafeSpeed, motorFastSpeed);
+		colorSensor = new RealColorSensor(colorSensorPort);
+		gyroSensor = new RealGyroSensor(gyroSensorPort, gyroStableThreshold);
+		touchSensor = new RealTouchSensor(touchSensorPort);
 		
 		display = new Display();
 		stats = new Statistics();

@@ -1,15 +1,15 @@
-package sorter;
+package peripherals;
 
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
 
-public class ColorSensor {
+public class RealColorSensor implements ColorSensor {
 	private float[] sample = new float[1];
 	private EV3ColorSensor sensor;
 	private SampleProvider grayScaleProvider;
 	
-	public ColorSensor(Port port){
+	public RealColorSensor(Port port){
 		sensor = new EV3ColorSensor(port);
 		grayScaleProvider = sensor.getRedMode();
 	}
