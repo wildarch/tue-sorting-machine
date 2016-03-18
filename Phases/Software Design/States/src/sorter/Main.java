@@ -11,6 +11,7 @@ import states.State;
 import states.WarningState;
 import error.AbortButtonError;
 import error.BatteryWarning;
+import error.SofwareError;
 
 public class Main {
 	public static final Port MOTOR_PORT = 			MotorPort.A;
@@ -22,7 +23,7 @@ public class Main {
 	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
 	public static final int MOTOR_FAST_SPEED = 		750;
 	public static final int GYRO_STABLE_TRESHOLD = 15;
-	public static final float BATTERY_TRESHOLD = 8.5f;
+	public static final float BATTERY_TRESHOLD = 7.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -37,6 +38,7 @@ public class Main {
 	
 	private boolean paused = true;
 	private boolean reset = false;
+	private boolean batteryWarningGiven = false;
 	private Mode mode;
 	
 	private long tavg = 100000;	//average time for disc to fall
@@ -63,36 +65,41 @@ public class Main {
 		setMode(Mode.FAST);
 	}
 	
-	private void run(){
-		while(true){
-			/*
-			float angle = gyroSensor.getAngle();
-			if(angle != gyroAngle){
-				gyroAngle = angle;
-				System.out.println("Angle: "+gyroAngle);
-			}*/
-			//check buttons
-			if(aButton.isDown() && !(currentState instanceof AbortState)){
-				currentState = new AbortState(new AbortButtonError(), this);
-			} 
-			else if(spButton.isDown()){
-				paused = true;
-			}
-			else if(rButton.isDown()){
-				reset = true;
-			}
+	public void run(){
+		try{
+			while(true){
+				/*
+				float angle = gyroSensor.getAngle();
+				if(angle != gyroAngle){
+					gyroAngle = angle;
+					System.out.println("Angle: "+gyroAngle);
+				}*/
+				//check buttons
+				if(aButton.isDown() && !(currentState instanceof AbortState)){
+					currentState = new AbortState(new AbortButtonError(), this);
+				} 
+				else if(spButton.isDown()){
+					paused = true;
+				}
+				else if(rButton.isDown()){
+					reset = true;
+				}
 			
-			//check battery
-			if(Battery.getVoltage() < this.BATTERY_TRESHOLD){
-				currentState = new WarningState(new BatteryWarning(), this, currentState);
-			}
+				//check battery
+				if(Battery.getVoltage() < this.BATTERY_TRESHOLD && !batteryWarningGiven){
+					batteryWarningGiven = true;
+					currentState = new WarningState(new BatteryWarning(), this, currentState);
+				}
 			
-			currentState.displayUpdate(this);
-			State newState = currentState.nextState(this);
-			if(newState != currentState){
-				//System.out.println("State: "+newState.getClass().getSimpleName());
+				currentState.displayUpdate(this);
+				State newState = currentState.nextState(this);
+				if(newState != currentState){
+					//System.out.println("State: "+newState.getClass().getSimpleName());
+				}
+				currentState = newState;
 			}
-			currentState = newState;
+		}catch(Exception e) {
+			currentState = new AbortState(new SofwareError(this), this);
 		}
 	}
 	
