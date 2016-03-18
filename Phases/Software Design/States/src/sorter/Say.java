@@ -37,7 +37,12 @@ public class Say {
 		}
 		
 		public synchronized void play(File sound){
-			this.waiting = sound;
+			if(this.current == null){
+				this.current = sound;
+			}
+			else{
+				this.waiting = sound;
+			}
 		}
 		
 		private synchronized void finished(){
@@ -62,6 +67,15 @@ public class Say {
 		}
 		
 		thread.play(new File(sound.getAbsolutePath()));
+	}
+	
+	private static void stop(){
+		thread.requestStop();
+	}
+	
+	public static void waitForStop() throws InterruptedException{
+		stop();
+		thread.join();
 	}
 	
 	/*
