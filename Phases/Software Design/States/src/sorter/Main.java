@@ -54,7 +54,7 @@ public class Main {
 		motor = new Motor(MOTORPORT, MOTORTURNSTEP, MOTORSAFESPEED, MOTORFASTSPEED);
 		colorSensor = new ColorSensor(COLORSENSORPORT);
 		gyroSensor = new GyroSensor(GYROSENSORPORT, GYROSTABLETRESHOLD);
-		touchSensor = new TouchSensor(touchSensorPort);
+		touchSensor = new TouchSensor(TOUCHSENSORPORT);
 		
 		display = new Display();
 		stats = new Statistics();
@@ -75,7 +75,7 @@ public class Main {
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
-			else if(SPBUTTON.isDown()){
+			else if(spButton.isDown()){
 				paused = true;
 			}
 			else if(rButton.isDown()){
