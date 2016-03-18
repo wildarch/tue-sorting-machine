@@ -6,4 +6,10 @@ public class BatteryWarning extends Warning {
 		super("Battery power too low.");
 	}
 
+	@Override
+	public void say() {
+		// TODO say
+		
+	}
+
 }
