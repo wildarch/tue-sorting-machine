@@ -10,4 +10,6 @@ public abstract class Error {
 	public String getMessage(){
 		return message;
 	}
+	
+	public abstract void say();
 }

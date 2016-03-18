@@ -7,6 +7,6 @@ public class GyroNotStabileError extends FatalError {
 
 	@Override
 	public void say(){
-		Say.
+		//TODO Say.
 	}
 }

@@ -6,6 +6,6 @@ public class DiskNotArrivedError extends FatalError {
 	}
 	
 	public void say(){
-		Say.
+		//TODO Say.
 	}
 }
