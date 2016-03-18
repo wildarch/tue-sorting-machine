@@ -1,9 +1,15 @@
 package sorter;
 import peripherals.ColorSensor;
+import peripherals.Display;
 import peripherals.GyroSensor;
+import peripherals.MockColorSensor;
+import peripherals.MockDisplay;
+import peripherals.MockGyroSensor;
+import peripherals.MockMotor;
+import peripherals.MockTouchSensor;
 import peripherals.Motor;
 import peripherals.RealColorSensor;
-import peripherals.Display;
+import peripherals.RealDisplay;
 import peripherals.RealGyroSensor;
 import peripherals.RealMotor;
 import peripherals.RealTouchSensor;
@@ -30,8 +36,8 @@ public class Main {
 	public static final int MOTOR_TURN_STEP = 		120;
 	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
 	public static final int MOTOR_FAST_SPEED = 		750;
-	public static final int GYRO_STABLE_TRESHOLD = 15;
-	public static final float BATTERY_TRESHOLD = 8.5f;
+	public static final int GYRO_STABLE_TRESHOLD = 	15;
+	public static final float BATTERY_TRESHOLD = 	8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -57,15 +63,25 @@ public class Main {
 	
 	float gyroAngle = Float.MAX_VALUE;
 	
-	public Main(){
+	public Main(boolean mocked){
 		//TODO say hello
 		Say.wtf();
-		motor = new RealMotor(MOTOR_PORT, MOTOR_TURN_STEP, MOTOR_SAFE_SPEED, MOTOR_FAST_SPEED);
-		colorSensor = new RealColorSensor(COLOR_SENSOR_PORT);
-		gyroSensor = new RealGyroSensor(GYRO_SENSOR_PORT, GYRO_STABLE_TRESHOLD);
-		touchSensor = new RealTouchSensor(TOUCH_SENSOR_PORT);
+		if(!mocked){
+			motor = new RealMotor(MOTOR_PORT, MOTOR_TURN_STEP, MOTOR_SAFE_SPEED, MOTOR_FAST_SPEED);
+			colorSensor = new RealColorSensor(COLOR_SENSOR_PORT);
+			gyroSensor = new RealGyroSensor(GYRO_SENSOR_PORT, GYRO_STABLE_TRESHOLD);
+			touchSensor = new RealTouchSensor(TOUCH_SENSOR_PORT);
+			display = new RealDisplay();
+		}
+		else {
+			motor = new MockMotor();
+			colorSensor = new MockColorSensor();
+			gyroSensor = new MockGyroSensor();
+			touchSensor = new MockTouchSensor();
+			display = new MockDisplay();
+		}
 		
-		display = new Display();
+		
 		stats = new Statistics();
 		
 		currentState = new ModeSelectionState(this);
@@ -126,11 +142,6 @@ public class Main {
 	public void setPaused(boolean paused){
 		this.paused = paused;
 	}
-	
-	public static void main(String[] args){
-		Main m = new Main();
-		m.run();
-	}
 
 	public Mode getMode() {
 		return mode;
@@ -150,5 +161,10 @@ public class Main {
 	
 	public long getTGMax(){
 		return this.tgmax;
+	}
+	
+	public static void main(String[] args){
+		Main m = new Main(false);
+		m.run();
 	}
 }
