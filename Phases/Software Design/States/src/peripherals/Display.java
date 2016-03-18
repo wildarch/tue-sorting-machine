@@ -16,4 +16,6 @@ public interface Display {
 	public void drawFatal(FatalError fatal);
 	
 	public void drawWarning(Warning warning);
+	
+	public void drawTime(long t);
 }
