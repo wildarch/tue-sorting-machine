@@ -13,10 +13,10 @@ import error.AbortButtonError;
 import error.BatteryWarning;
 
 public class Main {
-	private final Port motorPort = 			MotorPort.A;
-	private final Port colorSensorPort = 	SensorPort.S1;
-	private final Port gyroSensorPort = 	SensorPort.S2;
-	private final Port touchSensorPort = 	SensorPort.S3;
+	public static final Port motorPort = 			MotorPort.A;
+	public static final Port colorSensorPort = 	SensorPort.S1;
+	public static final Port gyroSensorPort = 	SensorPort.S2;
+	public static final Port touchSensorPort = 	SensorPort.S3;
 	
 	public static final int motorTurnStep = 		120;
 	public static final int motorSafeSpeed = 		motorTurnStep;
