@@ -22,7 +22,7 @@ public class Main {
 	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
 	public static final int MOTOR_FAST_SPEED = 		750;
 	public static final int GYRO_STABLE_TRESHOLD = 15;
-	public static final float BATTERY_TRESHOLD = 8.5f;
+	public static final float BATTERY_TRESHOLD = 7.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
