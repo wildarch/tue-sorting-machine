@@ -3,10 +3,10 @@ package sorter;
 import sorter.DetectedColor;
 
 public class ColorEstimator {
-	public final static float noneGS = 		0.085f;
-	public final static float blackGS = 	0.18f;
-	public final static float unknownGS = 	0.60f;
-	public final static float whiteGS = 	0.75f;
+	public final static float noneGS = 		0.10f;
+	public final static float blackGS = 	0.13f;
+	public final static float whiteGS = 	0.60f;
+	public final static float unknownGS = 	avg(blackGS, whiteGS);
 	
 	public final static float nbGS = avg(noneGS, blackGS);
 	public final static float buGS = avg(blackGS, unknownGS);
