@@ -18,11 +18,11 @@ public class Main {
 	private final Port gyroSensorPort = 	SensorPort.S2;
 	private final Port touchSensorPort = 	SensorPort.S3;
 	
-	private final int motorTurnStep = 		120;
-	private final int motorSafeSpeed = 		motorTurnStep;
-	private final int motorFastSpeed = 		750;
-	private final int gyroStableThreshold = 15;
-	private final float batteryTreshold = 8.5f;
+	public static final int motorTurnStep = 		120;
+	public static final int motorSafeSpeed = 		motorTurnStep;
+	public static final int motorFastSpeed = 		750;
+	public static final int gyroStableThreshold = 15;
+	public static final float batteryTreshold = 8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
