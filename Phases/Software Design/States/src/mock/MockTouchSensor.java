@@ -6,7 +6,6 @@ public class MockTouchSensor implements TouchSensor {
 	private boolean pressed = false;
 
 	public boolean isPressed() {
-		// TODO Auto-generated method stub
 		return pressed;
 	}
 	

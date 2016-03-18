@@ -9,7 +9,6 @@ public class MockColorSensor implements ColorSensor {
 	private DetectedColor detectedColor = DetectedColor.NONE;
 
 	public float getGrayScale() {
-		// TODO Auto-generated method stub
 		return grayScale;
 	}
 	
@@ -18,7 +17,6 @@ public class MockColorSensor implements ColorSensor {
 	}
 
 	public DetectedColor detectColor(float sample) {
-		// TODO Auto-generated method stub
 		return detectedColor;
 	}
 	
