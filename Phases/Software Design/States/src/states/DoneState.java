@@ -1,9 +1,11 @@
 package states;
+import lejos.hardware.Button;
 import sorter.Main;
 
 public class DoneState extends State {
 	public DoneState(){
-		//TODO say done, show more stats. Flash green LEDs
+		//TODO say done, show more stats.
+		Button.LEDPattern(7);
 	}
 
 	@Override
