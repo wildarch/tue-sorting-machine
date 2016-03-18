@@ -33,6 +33,7 @@ public class InitialState extends State {
 		if(this.pressed && m.spButton.isUp()){
 			m.setPaused(false);
 			m.setReset(false);
+			m.totalTimer.start();
 			return new ReadColorState();
 		}
 		

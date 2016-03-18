@@ -21,6 +21,8 @@ public class DoneState extends State {
 	public void displayUpdate(Main m){
 		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
+		long t = m.totalTimer.getTimeMS();
+		//TODO say total sort time, is stored in t
 	}
 	
 }

@@ -2,12 +2,20 @@ package sorter;
 
 public class Timer {
 	private long ms;
+	private long paused;
 	
 	/**
-	 * Starts the timer.
+	 * Starts the timer, or continues it when it was paused.
 	 */
 	public void start(){
-		ms = System.currentTimeMillis();
+		if(paused > 0){
+			ms = System.currentTimeMillis() - paused;
+		}
+		else{
+			ms = System.currentTimeMillis();
+		}
+		
+		paused = 0;
 	}
 	
 	/**
@@ -16,5 +24,19 @@ public class Timer {
 	 */
 	public long getTimeMS(){
 		return System.currentTimeMillis() - ms;
+	}
+	
+	/**
+	 * Paused the timer.
+	 */
+	public void pause(){
+		paused = getTimeMS();
+	}
+	
+	/**
+	 * Reset the timer to 0.
+	 */
+	public void reset(){
+		paused = 0;
 	}
 }

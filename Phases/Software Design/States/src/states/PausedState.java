@@ -24,6 +24,7 @@ public class PausedState extends State {
 		}
 		else if (m.spButton.isUp() && down){
 			m.setPaused(false);
+			m.totalTimer.start();
 			return new ReadColorState();
 		}
 		else if(m.spButton.isUp()){

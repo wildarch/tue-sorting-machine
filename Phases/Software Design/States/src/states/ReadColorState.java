@@ -10,6 +10,7 @@ public class ReadColorState extends State {
 	public State nextState(Main m) {
 		//read -> paused
 		if(m.isPaused()){
+			m.totalTimer.pause();
 			return new PausedState(m);
 		}
 		

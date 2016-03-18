@@ -35,6 +35,7 @@ public class Main {
 	public final TouchSensor touchSensor;
 	public final Statistics stats;
 	public final Timer timer = new Timer();
+	public final Timer totalTimer = new Timer();
 	
 	private boolean paused = true;
 	private boolean reset = false;
@@ -107,6 +108,7 @@ public class Main {
 		this.reset = false;
 		this.paused = false;
 		this.stats.reset();
+		this.totalTimer.reset();
 	}
 	
 	public boolean isPaused(){
