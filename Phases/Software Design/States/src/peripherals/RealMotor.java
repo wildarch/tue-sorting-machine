@@ -1,8 +1,8 @@
 package peripherals;
 
-import sorter.Mode;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.Port;
+import sorter.Mode;
 
 public class RealMotor implements Motor {
 	private EV3MediumRegulatedMotor motor;

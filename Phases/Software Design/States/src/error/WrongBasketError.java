@@ -1,6 +1,7 @@
 package error;
 
 import peripherals.Orientation;
+import sorter.Say;
 
 public class WrongBasketError extends FatalError {
 
@@ -9,4 +10,8 @@ public class WrongBasketError extends FatalError {
 		System.out.println("Wrong basket, angle: "+angle + " direction: " + direction + " orientation:" + orientation);
 	}
 
+	@Override
+	public void say(){
+		Say.wrongBasket();
+	}
 }

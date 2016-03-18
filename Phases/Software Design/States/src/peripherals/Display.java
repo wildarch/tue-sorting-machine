@@ -1,10 +1,9 @@
 package peripherals;
 
-import error.FatalError;
-import error.Warning;
-import lejos.hardware.lcd.Image;
 import sorter.Statistics;
 import states.State;
+import error.FatalError;
+import error.Warning;
 
 public interface Display {
 	public void drawCount(State state, Statistics stats);
@@ -16,4 +15,6 @@ public interface Display {
 	public void drawFatal(FatalError fatal);
 	
 	public void drawWarning(Warning warning);
+	
+	public void drawTime(long t);
 }

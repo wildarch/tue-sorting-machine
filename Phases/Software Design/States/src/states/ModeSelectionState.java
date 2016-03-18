@@ -1,6 +1,7 @@
 package states;
 
 import lejos.hardware.Button;
+import lejos.hardware.Sound;
 import sorter.AbstractMain;
 import sorter.Mode;
 
@@ -18,6 +19,7 @@ public class ModeSelectionState extends State {
 			case Button.ID_LEFT: m.setMode(Mode.FAST); break;
 			case Button.ID_ENTER: m.setMode(Mode.SAFE); break;
 			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); break;
+			case Button.ID_DOWN: Sound.beepSequence(); System.exit(0); break;
 		}
 		//System.out.println("Mode: "+m.getMode());
 		while(m.spButton.isDown()){

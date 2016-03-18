@@ -8,17 +8,14 @@ public class MockButton implements Key {
 	boolean isDown = false;
 
 	public int getId() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public boolean isDown() {
-		// TODO Auto-generated method stub
 		return isDown;
 	}
 
 	public boolean isUp() {
-		// TODO Auto-generated method stub
 		return !isDown;
 	}
 	
@@ -26,28 +23,15 @@ public class MockButton implements Key {
 		isDown = b;
 	}
 
-	public void waitForPress() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void waitForPress() {}
 
-	public void waitForPressAndRelease() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void waitForPressAndRelease() {}
 
-	public void addKeyListener(KeyListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addKeyListener(KeyListener listener) {}
 
-	public void simulateEvent(int event) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void simulateEvent(int event) {}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

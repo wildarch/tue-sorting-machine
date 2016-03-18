@@ -4,7 +4,7 @@ import sorter.AbstractMain;
 
 public class DoneState extends State {
 	public DoneState(){
-		//TODO say done, show more stats.
+		//TODO say done
 		Button.LEDPattern(7);
 	}
 
@@ -22,7 +22,7 @@ public class DoneState extends State {
 		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
 		long t = m.totalTimer.getTimeMS();
-		//TODO say total sort time, is stored in t
+		m.display.drawTime(t);
 	}
 	
 }

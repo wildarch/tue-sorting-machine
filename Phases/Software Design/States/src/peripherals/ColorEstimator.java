@@ -1,6 +1,5 @@
 package peripherals;
 
-import peripherals.DetectedColor;
 
 public class ColorEstimator {
 	public final static float noneGS = 		0.10f;

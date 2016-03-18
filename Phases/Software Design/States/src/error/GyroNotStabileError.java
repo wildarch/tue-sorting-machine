@@ -5,4 +5,8 @@ public class GyroNotStabileError extends FatalError {
 		super("Gyroscope does not stabilize.");
 	}
 
+	@Override
+	public void say(){
+		Say.
+	}
 }
