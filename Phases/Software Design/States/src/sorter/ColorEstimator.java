@@ -4,7 +4,7 @@ import sorter.DetectedColor;
 
 public class ColorEstimator {
 	public final static float noneGS = 		0f;
-	public final static float blackGS = 	0.04f;
+	public final static float blackGS = 	0.045f;
 	public final static float unknownGS = 	0.31f;
 	public final static float whiteGS = 	0.58f;
 	

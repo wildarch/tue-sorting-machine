@@ -23,6 +23,8 @@ public class TimerApp{
 	private GyroSensor gyroSensor = new GyroSensor(Main.GYRO_SENSOR_PORT, Main.GYRO_STABLE_TRESHOLD);
 	private int weight;
 	private double average;
+	private long min = Long.MAX_VALUE;
+	private long max;
 
 	private Timer timer = new Timer();
 	
@@ -33,8 +35,10 @@ public class TimerApp{
 			//read color
 			float grayScale = colorSensor.getGrayScale();
 			DetectedColor color = colorSensor.detectColor(grayScale);
-			switch(color){				
+			System.out.println(grayScale);
+			switch(color){
 				case NONE:
+					System.out.println("No disc");
 					discPresent = false;
 					break;
 					
@@ -42,8 +46,9 @@ public class TimerApp{
 					motor.turnLeft();
 					break;
 					
+					default:
+						System.out.println("Unknown");
 				case WHITE:
-				default:
 					motor.turnRight();
 					break;
 			}
@@ -77,11 +82,16 @@ public class TimerApp{
 				
 				System.out.println("t: "+t);
 				
+				min = Math.min(min, t);
+				max = Math.max(max, t);
+				
 				Thread.sleep(1000);
 			}
 		}
 		
-		System.out.format("Average: %d", average);
+		System.out.println("Average: " + average);
+		System.out.println("Min: " + min);
+		System.out.println("Max: " + max);
 	}
 	
 	public static void main(String[] args) throws InterruptedException{

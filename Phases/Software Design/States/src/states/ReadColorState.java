@@ -32,7 +32,7 @@ public class ReadColorState extends State {
 				
 			//read -> M=R
 			case WHITE: 
-				m.stats.white++; 
+				m.stats.white++;
 				m.timer.start();
 				return new MotorRightState();
 				
