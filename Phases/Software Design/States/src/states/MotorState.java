@@ -45,13 +45,14 @@ public abstract class MotorState extends State {
 		if(m.timer.getTimeMS() > m.getTAvg()){
 			return new WarningState(new LongerThanAvgWarning(), m, this);
 		}
-
+		
+		if (m.motor.isStalled()){
+			return new AbortState(new MotorJammedError(), m);
+		}
+		
 		if ((m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)){
 			if (m.timer.getTimeMS() > m.getTDMax()){
 				return new AbortState(new DiskNotArrivedError(), m);
-			}
-			else if (m.motor.isStalled()){
-				return new AbortState(new MotorJammedError(), m);
 			}
 			else {
 				float angle = m.gyroSensor.getAngle();
