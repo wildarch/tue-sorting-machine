@@ -18,60 +18,106 @@ public class Say {
 	static File softEx = new File("/sounds/Fatal - software exception.wav");
 	static File wrongBasket = new File("/sounds/Fatal - wrong basket.wav");
 	static File unkownColor = new File("/sounds/Warning - unkown color.wav");
+	
+	private static class SThread extends Thread{
+		private volatile boolean running;
+		private File waiting;
+		private File current;
+		
+		public void run(){
+			running = true;
+			
+			while(running){
+				if(this.current != null){
+					Sound.playSample(this.current);
+				}
+				
+				finished();
+			}
+		}
+		
+		public synchronized void play(File sound){
+			this.waiting = sound;
+		}
+		
+		private synchronized void finished(){
+			this.current = this.waiting;
+			this.waiting = null;
+		}
+		
+		public void requestStop(){
+			this.running = false;
+		}
+		
+		public boolean isRunning(){
+			return this.running;
+		}
+	}
+	
+	private static SThread thread = new SThread();
+	
+	private static void play(File sound){
+		if(!thread.isRunning()){
+			thread.start();
+		}
+		
+		thread.play(new File(sound.getAbsolutePath()));
+	}
+	
 	/*
 	 * TODO:
 	 * mode is (fast, safe, incremental)
 	 * paused
 	 */
 	public static void unkownColor(){
-		Sound.playSample(unkownColor);
+		play(unkownColor);
 	}
 	
 	public static void wrongBasket(){
-		Sound.playSample(wrongBasket);
+		play(wrongBasket);
 	}
 	
 	public static void softwareException(){
-		Sound.playSample(softEx);
+		play(softEx);
 	}
 	
 	public static void motorJammed(){
-		Sound.playSample(motorJammed);
+		play(motorJammed);
 	}
 	
 	public static void batteryLow(){
-		Sound.playSample(lowBattery);
+		play(lowBattery);
 	}
 	
 	public static void connectionLost(){
-		Sound.playSample(connectionLost);
+		play(connectionLost);
 	}
 	
 	public static void abortButton(){
-		Sound.playSample(abortButton);
+		play(abortButton);
 	}
 	
 	public static void calibrating(){
-		Sound.playSample(calibrating);
+		play(calibrating);
 	}
 	
 	public static void done(){
-		Sound.playSample(done);
+		play(done);
 	}
 	
 	public static void wtf(){
-		Sound.playSample(wtf);
+		play(wtf);
 	}
 	
 	public static void hello(){
-		Sound.playSample(hello);
+		play(hello);
 	}
 	
 	public static void white(){
-		Sound.playSample(white);
+		play(white);
 	}
 	
 	public static void black(){
-		Sound.playSample(black);
+		play(black);
 	}
 }
