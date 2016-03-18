@@ -1,4 +1,4 @@
-package sorter;
+package peripherals;
 
 public enum DetectedColor {
 	NONE,

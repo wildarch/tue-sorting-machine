@@ -1,9 +1,10 @@
-package sorter;
+package peripherals;
 
+import sorter.Mode;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.Port;
 
-public class Motor {
+public class RealMotor implements Motor {
 	private EV3MediumRegulatedMotor motor;
 	private int defaultAngle;
 	private final float calibrationSpeed = 100;
@@ -11,7 +12,7 @@ public class Motor {
 	private float fastSpeed;
 	private float speed;
 	
-	public Motor(Port port, int angle, int safeSpeed, int fastSpeed){
+	public RealMotor(Port port, int angle, int safeSpeed, int fastSpeed){
 		motor = new EV3MediumRegulatedMotor(port);
 		reset();
 		defaultAngle = angle;

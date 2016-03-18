@@ -1,19 +1,17 @@
-package sorter;
+package peripherals;
 
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.robotics.SampleProvider;
-import lejos.robotics.filter.OffsetCorrectionFilter;
 
-public class GyroSensor {
+public class RealGyroSensor implements GyroSensor {
 	private EV3GyroSensor gyro;
 	private SampleProvider provider;
-	private OffsetCorrectionFilter filter;
 	private float limitAngle;
 	
 	private float[] sample = new float[1];
 	
-	public GyroSensor(Port port, float limitAngle){
+	public RealGyroSensor(Port port, float limitAngle){
 		gyro = new EV3GyroSensor(port);
 		gyro.reset();
 		provider = gyro.getRateMode();
@@ -21,13 +19,13 @@ public class GyroSensor {
 		this.limitAngle = limitAngle;
 	}
 	
-	public float getAngle(){
+	public float getRateChange(){
 		provider.fetchSample(sample, 0);
 		return sample[0];
 	}
 	
 	public Orientation getOrientation(){
-		float angle = getAngle();
+		float angle = getRateChange();
 		return getOrientation(angle);
 	}
 	

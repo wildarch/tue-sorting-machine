@@ -1,17 +1,17 @@
 package states;
 
 import lejos.hardware.Button;
-import sorter.Main;
+import sorter.AbstractMain;
 import sorter.Mode;
 
 public class ModeSelectionState extends State {
 
-	public ModeSelectionState(Main m) {
+	public ModeSelectionState(AbstractMain m) {
 		m.stats.reset();
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		while(!m.display.drawModeSelect()) {}
 		int button = Button.waitForAnyPress();
 		switch(button){

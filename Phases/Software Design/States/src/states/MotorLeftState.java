@@ -1,6 +1,6 @@
 package states;
 
-import sorter.Orientation;
+import peripherals.Orientation;
 
 public class MotorLeftState extends MotorState {
 	public MotorLeftState(){

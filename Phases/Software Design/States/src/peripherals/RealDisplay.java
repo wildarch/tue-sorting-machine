@@ -1,15 +1,17 @@
-package sorter;
+package peripherals;
 
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.Font;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.hardware.lcd.Image;
+import sorter.Images;
+import sorter.Statistics;
 import states.State;
 import error.FatalError;
 import error.Warning;
 
-public class Display {
+public class RealDisplay implements Display {
 	GraphicsLCD g = BrickFinder.getDefault().getGraphicsLCD();
     final int SW = g.getWidth();
     final int SH = g.getHeight();
@@ -17,7 +19,7 @@ public class Display {
     private long displayReadyTime;
 	private final long warningWaitTime = 5000;
 	
-    public Display() {
+    public RealDisplay() {
     	g.setAutoRefresh(false);
     }
     

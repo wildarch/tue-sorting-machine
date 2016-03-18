@@ -1,26 +1,20 @@
 package apps;
 
-import error.UnknownColorWarning;
-import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.Port;
-import lejos.hardware.port.SensorPort;
-import sorter.ColorEstimator;
-import sorter.ColorSensor;
-import sorter.DetectedColor;
-import sorter.GyroSensor;
+import peripherals.ColorSensor;
+import peripherals.DetectedColor;
+import peripherals.GyroSensor;
+import peripherals.Motor;
+import peripherals.Orientation;
+import peripherals.RealColorSensor;
+import peripherals.RealGyroSensor;
+import peripherals.RealMotor;
 import sorter.Main;
-import sorter.Motor;
-import sorter.Orientation;
 import sorter.Timer;
-import states.DoneState;
-import states.MotorLeftState;
-import states.MotorRightState;
-import states.WarningState;
 
 public class TimerApp{
-	private ColorSensor colorSensor = new ColorSensor(Main.COLOR_SENSOR_PORT);
-	private Motor motor = new Motor(Main.MOTOR_PORT, Main.MOTOR_TURN_STEP, Main.MOTOR_SAFE_SPEED, Main.MOTOR_FAST_SPEED);
-	private GyroSensor gyroSensor = new GyroSensor(Main.GYRO_SENSOR_PORT, Main.GYRO_STABLE_TRESHOLD);
+	private ColorSensor colorSensor = new RealColorSensor(Main.COLOR_SENSOR_PORT);
+	private Motor motor = new RealMotor(Main.MOTOR_PORT, Main.MOTOR_TURN_STEP, Main.MOTOR_SAFE_SPEED, Main.MOTOR_FAST_SPEED);
+	private GyroSensor gyroSensor = new RealGyroSensor(Main.GYRO_SENSOR_PORT, Main.GYRO_STABLE_TRESHOLD);
 	private int weight;
 	private double average;
 	private long min = Long.MAX_VALUE;
@@ -29,6 +23,8 @@ public class TimerApp{
 	private long gweight;
 	private long gmin;
 	private long gmax;
+	
+	
 
 	private Timer timer = new Timer();
 	

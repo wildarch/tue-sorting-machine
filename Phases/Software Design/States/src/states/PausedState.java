@@ -1,12 +1,12 @@
 package states;
-import sorter.Main;
+import sorter.AbstractMain;
 
 
 public class PausedState extends State {
 	boolean released = true;
 	boolean down = false;
 	
-	public PausedState(Main m){
+	public PausedState(AbstractMain m){
 		//TODO say paused
 		if(m.spButton.isDown()){
 			released = false;
@@ -14,7 +14,7 @@ public class PausedState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		if(m.isReset()){
 			m.variableReset();
 			return new ModeSelectionState(m);

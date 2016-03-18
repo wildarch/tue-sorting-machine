@@ -1,6 +1,6 @@
 package states;
 import lejos.hardware.Button;
-import sorter.Main;
+import sorter.AbstractMain;
 
 public class DoneState extends State {
 	public DoneState(){
@@ -9,7 +9,7 @@ public class DoneState extends State {
 	}
 
 	@Override
-	public State nextState(Main m) {
+	public State nextState(AbstractMain m) {
 		if(m.isReset()){
 			m.variableReset();
 			return new ModeSelectionState(m);
@@ -18,7 +18,7 @@ public class DoneState extends State {
 	}
 	
 	@Override
-	public void displayUpdate(Main m){
+	public void displayUpdate(AbstractMain m){
 		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
 		long t = m.totalTimer.getTimeMS();

@@ -1,6 +1,6 @@
 package error;
 
-import sorter.Orientation;
+import peripherals.Orientation;
 
 public class WrongBasketError extends FatalError {
 

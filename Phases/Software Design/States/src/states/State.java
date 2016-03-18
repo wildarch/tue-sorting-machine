@@ -1,10 +1,10 @@
 package states;
-import sorter.Main;
+import sorter.AbstractMain;
 
 public abstract class State {
-	public abstract State nextState(Main m);
+	public abstract State nextState(AbstractMain abstractMain);
 	
-	public void displayUpdate(Main m){
-		m.display.drawCount(this, m.stats);
+	public void displayUpdate(AbstractMain abstractMain){
+		abstractMain.display.drawCount(this, abstractMain.stats);
 	}
 }
