@@ -11,6 +11,8 @@ public abstract class MotorState extends State {
 	private boolean motorStarted = false;
 	private Orientation direction;
 	private boolean hit = false;
+	private boolean avgWarningGiven = false;
+	
 	public MotorState(Orientation o){
 		direction = o;
 	}
@@ -42,7 +44,8 @@ public abstract class MotorState extends State {
 			hit = true;
 		}
 		
-		if(m.timer.getTimeMS() > m.getTAvg()){
+		if(m.timer.getTimeMS() > m.getTAvg() && !avgWarningGiven){
+			avgWarningGiven = true;
 			return new WarningState(new LongerThanAvgWarning(), m, this);
 		}
 		
