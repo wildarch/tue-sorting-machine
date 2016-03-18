@@ -99,8 +99,11 @@ public class Main {
 				}
 				currentState = newState;
 			}
+
 		}catch(Exception e) {
 			currentState = new AbortState(new SofwareError(this), this);
+			currentState.displayUpdate(this);
+			run();
 		}
 	}
 	
