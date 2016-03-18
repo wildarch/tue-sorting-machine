@@ -105,6 +105,8 @@ public class TimerApp{
 		System.out.println("GAverage: " + gavg);
 		System.out.println("GMin: " + gmin);
 		System.out.println("GMax: " + gmax);
+		
+		while(true);
 	}
 	
 	public static void main(String[] args) throws InterruptedException{

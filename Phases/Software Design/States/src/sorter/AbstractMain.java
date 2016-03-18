@@ -39,8 +39,8 @@ public abstract class AbstractMain {
 	private boolean reset = false;
 	private Mode mode;
 	
-	private long tavg = 433;	//average time for disc to fall
-	private long tdmax = 470;	//maximum allowed time for disc to fall
+	private long tavg = 426;	//average time for disc to fall
+	private long tdmax = 430;	//maximum allowed time for disc to fall
 	private long tgmax = 60;	//maximum allowed time for gyro to stabilize
 	
 	public State currentState;
