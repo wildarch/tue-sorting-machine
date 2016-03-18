@@ -106,7 +106,7 @@ public abstract class AbstractMain {
 		}
 		
 		//check battery
-		if(battery.getVoltage() < this.BATTERY_TRESHOLD){
+		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
 			currentState = new WarningState(new BatteryWarning(), this, currentState);
 		}
 		

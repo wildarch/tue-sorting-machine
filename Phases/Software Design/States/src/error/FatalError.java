@@ -6,4 +6,5 @@ public abstract class FatalError extends Error {
 		super(m);
 	}
 
+	public abstract void say();
 }

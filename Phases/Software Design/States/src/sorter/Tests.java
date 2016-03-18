@@ -1,7 +1,6 @@
 package sorter;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 import mock.MockButton;
 import mock.MockColorSensor;
 import mock.MockGyroSensor;
@@ -12,20 +11,15 @@ import mock.MockTouchSensor;
 import org.junit.Test;
 
 import peripherals.DetectedColor;
-import peripherals.Orientation;
 import states.MotorLeftState;
 import states.MotorRightState;
 import states.ReadColorState;
-import states.State;
 
 public class Tests {
 
 	@Test
 	public void test() {
 		MockButton spButton = MockMain.spButton;
-		MockButton aButton = MockMain.aButton;
-		MockButton rButton = MockMain.rButton;
-		
 		MockMotor motor = MockMain.motor;
 		MockTouchSensor touch = MockMain.touch;
 		MockColorSensor color = MockMain.color;
