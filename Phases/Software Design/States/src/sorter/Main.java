@@ -22,16 +22,16 @@ import error.AbortButtonError;
 import error.BatteryWarning;
 
 public class Main {
-	public static final Port motorPort = 			MotorPort.A;
-	public static final Port colorSensorPort = 	SensorPort.S1;
-	public static final Port gyroSensorPort = 	SensorPort.S2;
-	public static final Port touchSensorPort = 	SensorPort.S3;
+	public static final Port MOTOR_PORT = 			MotorPort.A;
+	public static final Port COLOR_SENSOR_PORT = 	SensorPort.S1;
+	public static final Port GYRO_SENSOR_PORT = 	SensorPort.S2;
+	public static final Port TOUCH_SENSOR_PORT = 	SensorPort.S3;
 	
-	public static final int motorTurnStep = 		120;
-	public static final int motorSafeSpeed = 		motorTurnStep;
-	public static final int motorFastSpeed = 		750;
-	public static final int gyroStableThreshold = 15;
-	public static final float batteryTreshold = 8.5f;
+	public static final int MOTOR_TURN_STEP = 		120;
+	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
+	public static final int MOTOR_FAST_SPEED = 		750;
+	public static final int GYRO_STABLE_TRESHOLD = 15;
+	public static final float BATTERY_TRESHOLD = 8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -60,10 +60,10 @@ public class Main {
 	public Main(){
 		//TODO say hello
 		Say.wtf();
-		motor = new RealMotor(motorPort, motorTurnStep, motorSafeSpeed, motorFastSpeed);
-		colorSensor = new RealColorSensor(colorSensorPort);
-		gyroSensor = new RealGyroSensor(gyroSensorPort, gyroStableThreshold);
-		touchSensor = new RealTouchSensor(touchSensorPort);
+		motor = new RealMotor(MOTOR_PORT, MOTOR_TURN_STEP, MOTOR_SAFE_SPEED, MOTOR_FAST_SPEED);
+		colorSensor = new RealColorSensor(COLOR_SENSOR_PORT);
+		gyroSensor = new RealGyroSensor(GYRO_SENSOR_PORT, GYRO_STABLE_TRESHOLD);
+		touchSensor = new RealTouchSensor(TOUCH_SENSOR_PORT);
 		
 		display = new Display();
 		stats = new Statistics();
@@ -92,7 +92,7 @@ public class Main {
 			}
 			
 			//check battery
-			if(Battery.getVoltage() < this.batteryTreshold){
+			if(Battery.getVoltage() < this.BATTERY_TRESHOLD){
 				currentState = new WarningState(new BatteryWarning(), this, currentState);
 			}
 			
