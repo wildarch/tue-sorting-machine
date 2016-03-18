@@ -1,19 +1,18 @@
 package sorter;
 
-import error.AbortButtonError;
-import error.BatteryWarning;
-import error.SofwareError;
 import lejos.hardware.Key;
+import peripherals.Battery;
 import peripherals.ColorSensor;
 import peripherals.Display;
 import peripherals.GyroSensor;
 import peripherals.Motor;
 import peripherals.TouchSensor;
 import states.AbortState;
-import states.ModeSelectionState;
 import states.State;
 import states.WarningState;
-import peripherals.Battery;;
+import error.AbortButtonError;
+import error.BatteryWarning;
+import error.SofwareError;
 
 public abstract class AbstractMain {
 	public static final int MOTOR_TURN_STEP = 		120;
@@ -96,7 +95,7 @@ public abstract class AbstractMain {
 		}
 		
 		//check battery
-		if(battery.getVoltage() < this.BATTERY_TRESHOLD){
+		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
 			currentState = new WarningState(new BatteryWarning(), this, currentState);
 		}
 		

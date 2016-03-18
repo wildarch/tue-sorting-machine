@@ -64,12 +64,14 @@ public class RealDisplay implements Display {
 		return true;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void drawSuccessChance(float chance){
 		g.setFont(Font.getDefaultFont());
 		g.drawString("Success: "+(chance)*100 + "%", SW/2, SH-20, g.BASELINE|g.HCENTER, true);
 		g.refresh();
 	}
 	
+	@SuppressWarnings("static-access")
 	public void drawTime(long t){
 		g.setFont(Font.getDefaultFont());
 		g.drawString("Time: " + t/1000 + "s", SW/2, SH-30, g.BASELINE|g.HCENTER, true);
