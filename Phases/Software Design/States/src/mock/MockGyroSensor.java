@@ -5,7 +5,11 @@ import peripherals.Orientation;
 
 public class MockGyroSensor implements GyroSensor {
 	private float rateChange = 0f;
-	private Orientation orient = Orientation.Neutral;
+	private float limitAngle;
+	
+	public MockGyroSensor(float l){
+		limitAngle = l;
+	}
 
 	public float getRateChange() {
 		// TODO Auto-generated method stub
@@ -15,23 +19,25 @@ public class MockGyroSensor implements GyroSensor {
 	public void setRateChange(float c){
 		rateChange = c;
 	}
+	
+	public Orientation getOrientation(float angle){
+		if(angle > limitAngle){
+			return Orientation.Right;
+		}
+		else if(angle  < -limitAngle){
+			return Orientation.Left;
+		}
+		else {
+			return Orientation.Neutral;
+		}
+	}
 
 	public Orientation getOrientation() {
 		// TODO Auto-generated method stub
-		return orient;
-	}
-	
-	public void setOrientation(Orientation o){
-		orient = o;
-	}
-
-	public Orientation getOrientation(float angle) {
-		// TODO Auto-generated method stub
-		return orient;
+		return getOrientation(rateChange);
 	}
 
 	public void reset() {
-		orient = Orientation.Neutral;
 		rateChange = 0f;
 	}
 

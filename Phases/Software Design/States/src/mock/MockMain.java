@@ -11,7 +11,7 @@ public class MockMain extends AbstractMain {
 	public static MockButton rButton = new MockButton();
 	
 	public static MockMotor motor = new MockMotor();
-	public static MockGyroSensor gyro = new MockGyroSensor();
+	public static MockGyroSensor gyro = new MockGyroSensor(AbstractMain.GYRO_STABLE_TRESHOLD);
 	public static MockColorSensor color = new MockColorSensor();
 	public static MockTouchSensor touch = new MockTouchSensor();
 	public static MockDisplay display = new MockDisplay();
