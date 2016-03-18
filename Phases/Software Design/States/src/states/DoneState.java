@@ -1,6 +1,7 @@
 package states;
 import lejos.hardware.Button;
 import sorter.AbstractMain;
+import sorter.Main;
 
 public class DoneState extends State {
 	public DoneState(){
@@ -22,7 +23,7 @@ public class DoneState extends State {
 		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
 		long t = m.totalTimer.getTimeMS();
-		//TODO say total sort time, is stored in t
+		m.display.drawTime(t);
 	}
 	
 }
