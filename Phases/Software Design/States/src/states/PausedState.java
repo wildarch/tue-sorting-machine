@@ -8,7 +8,7 @@ public class PausedState extends State {
 	
 	public PausedState(Main m){
 		//TODO say paused
-		if(m.spButton.isDown()){
+		if(m.SPBUTTON.isDown()){
 			released = false;
 		}
 	}
@@ -19,14 +19,14 @@ public class PausedState extends State {
 			m.variableReset();
 			return new ModeSelectionState(m);
 		}
-		if(m.spButton.isDown() && released){
+		if(m.SPBUTTON.isDown() && released){
 			down = true;
 		}
-		else if (m.spButton.isUp() && down){
+		else if (m.SPBUTTON.isUp() && down){
 			m.setPaused(false);
 			return new ReadColorState();
 		}
-		else if(m.spButton.isUp()){
+		else if(m.SPBUTTON.isUp()){
 			released = true;
 		}
 		return this;

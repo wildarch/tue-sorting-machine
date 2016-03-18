@@ -13,16 +13,16 @@ import error.AbortButtonError;
 import error.BatteryWarning;
 
 public class Main {
-	public static final Port motorPort = 			MotorPort.A;
-	public static final Port colorSensorPort = 	SensorPort.S1;
-	public static final Port gyroSensorPort = 	SensorPort.S2;
-	public static final Port touchSensorPort = 	SensorPort.S3;
+	public static final Port MOTORPORT = 			MotorPort.A;
+	public static final Port COLORSENSORPORT = 	SensorPort.S1;
+	public static final Port GYROSENSORPORT = 	SensorPort.S2;
+	public static final Port TOUCHSENSORPORT = 	SensorPort.S3;
 	
-	public static final int motorTurnStep = 		120;
-	public static final int motorSafeSpeed = 		motorTurnStep;
-	public static final int motorFastSpeed = 		750;
-	public static final int gyroStableThreshold = 15;
-	public static final float batteryTreshold = 8.5f;
+	public static final int MOTORTURNSTEP = 		120;
+	public static final int MOTORSAFESPEED = 		MOTORTURNSTEP;
+	public static final int MOTORFASTSPEED = 		750;
+	public static final int GYROSTABLETRESHOLD = 15;
+	public static final float BATTERYTRESHOLD = 8.5f;
 	
 	public final Key spButton = Button.ENTER;
 	public final Key aButton = Button.ESCAPE;
@@ -51,9 +51,9 @@ public class Main {
 	public Main(){
 		//TODO say hello
 		Say.wtf();
-		motor = new Motor(motorPort, motorTurnStep, motorSafeSpeed, motorFastSpeed);
-		colorSensor = new ColorSensor(colorSensorPort);
-		gyroSensor = new GyroSensor(gyroSensorPort, gyroStableThreshold);
+		motor = new Motor(MOTORPORT, MOTORTURNSTEP, MOTORSAFESPEED, MOTORFASTSPEED);
+		colorSensor = new ColorSensor(COLORSENSORPORT);
+		gyroSensor = new GyroSensor(GYROSENSORPORT, GYROSTABLETRESHOLD);
 		touchSensor = new TouchSensor(touchSensorPort);
 		
 		display = new Display();
@@ -75,7 +75,7 @@ public class Main {
 			if(aButton.isDown() && !(currentState instanceof AbortState)){
 				currentState = new AbortState(new AbortButtonError(), this);
 			} 
-			else if(spButton.isDown()){
+			else if(SPBUTTON.isDown()){
 				paused = true;
 			}
 			else if(rButton.isDown()){
@@ -83,7 +83,7 @@ public class Main {
 			}
 			
 			//check battery
-			if(Battery.getVoltage() < this.batteryTreshold){
+			if(Battery.getVoltage() < this.BATTERYTRESHOLD){
 				currentState = new WarningState(new BatteryWarning(), this, currentState);
 			}
 			

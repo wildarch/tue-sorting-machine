@@ -20,7 +20,7 @@ public class ModeSelectionState extends State {
 			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); break;
 		}
 		//System.out.println("Mode: "+m.getMode());
-		while(m.spButton.isDown()){
+		while(m.SPBUTTON.isDown()){
 			//Wait until the start/pause button is released
 		}
 		//TODO say mode is ...
