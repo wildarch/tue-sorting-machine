@@ -27,14 +27,12 @@ public class ReadColorState extends State {
 			//read -> M=L
 			case BLACK: 
 				m.stats.black++;
-				m.timer.start();
-				return new MotorLeftState();
+				return new MotorLeftState(m);
 				
 			//read -> M=R
 			case WHITE: 
 				m.stats.white++;
-				m.timer.start();
-				return new MotorRightState();
+				return new MotorRightState(m);
 				
 			//read -> done
 			case NONE:
@@ -43,8 +41,7 @@ public class ReadColorState extends State {
 			//read -> warn (unknown disc) -> M=R
 			default:
 				m.stats.unknown++;
-				m.timer.start();
-				return new WarningState(new UnknownColorWarning(), m, new MotorRightState());
+				return new WarningState(new UnknownColorWarning(), m, new MotorRightState(m));
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package states;
 import peripherals.Orientation;
 import sorter.AbstractMain;
+import sorter.Main;
 import sorter.Mode;
 import error.DiskNotArrivedError;
 import error.LongerThanAvgWarning;
@@ -13,8 +14,9 @@ public abstract class MotorState extends State {
 	private boolean hit = false;
 	private boolean avgWarningGiven = false;
 	
-	public MotorState(Orientation o){
+	public MotorState(Orientation o, AbstractMain m){
 		direction = o;
+		m.timer.start();
 	}
 
 	@Override
@@ -44,7 +46,8 @@ public abstract class MotorState extends State {
 			hit = true;
 		}
 		
-		if(m.timer.getTimeMS() > m.getTAvg() && !avgWarningGiven){
+		if((m.getMode() == Mode.INCREMENTAL || m.getMode() == Mode.SAFE) && 
+				m.timer.getTimeMS() > m.getTAvg() && !avgWarningGiven){
 			avgWarningGiven = true;
 			return new WarningState(new LongerThanAvgWarning(), m, this);
 		}

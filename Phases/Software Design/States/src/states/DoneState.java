@@ -3,6 +3,8 @@ import lejos.hardware.Button;
 import sorter.AbstractMain;
 
 public class DoneState extends State {
+	private long time = 0;
+	
 	public DoneState(){
 		//TODO say done
 		Button.LEDPattern(7);
@@ -10,6 +12,7 @@ public class DoneState extends State {
 
 	@Override
 	public State nextState(AbstractMain m) {
+		long t = m.totalTimer.getTimeMS();
 		if(m.isReset()){
 			m.variableReset();
 			return new ModeSelectionState(m);
@@ -21,8 +24,7 @@ public class DoneState extends State {
 	public void displayUpdate(AbstractMain m){
 		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
-		long t = m.totalTimer.getTimeMS();
-		m.display.drawTime(t);
+		m.display.drawTime(time);
 	}
 	
 }
