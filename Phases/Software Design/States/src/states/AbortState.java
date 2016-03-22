@@ -1,5 +1,6 @@
 package states;
 
+import lejos.hardware.Button;
 import sorter.AbstractMain;
 import error.FatalError;
 
@@ -17,6 +18,12 @@ public class AbortState extends State {
 	public State nextState(AbstractMain m) {		
 		if(m.rButton.isDown()){
 			m.variableReset();
+			try {
+				Button.LEDPattern(1);
+			}
+			catch(Exception e){
+				//No prob.
+			}
 			return new ModeSelectionState(m);
 		}
 		return this;
