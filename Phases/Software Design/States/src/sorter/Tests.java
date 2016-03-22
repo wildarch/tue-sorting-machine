@@ -21,6 +21,9 @@ public class Tests {
 
 	@Test
 	public void test() {
+		
+		System.out.println("---Direction test??---");
+		
 		MockButton spButton = MockMain.spButton;
 		MockMotor motor = MockMain.motor;
 		MockTouchSensor touch = MockMain.touch;
@@ -66,7 +69,7 @@ public class Tests {
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
-		System.out.println("---Test successfull---");
+		System.out.println("---Direction test?? finished---");
 	}
 	
 	@Test
@@ -163,5 +166,24 @@ public class Tests {
 		assertTrue(m.currentState instanceof AbortState);
 		
 		System.out.println("---Not basket test finished---");
+	}
+	
+	@Test
+	public void testWrongInput() {
+		
+		System.out.println("---Wrong Input test---");
+		
+		AbstractMain m = new MockMain();
+		MockColorSensor color = MockMain.color;
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		color.setDetectColor(DetectedColor.UNKNOWN);
+		m.cycle();
+		assertTrue(m.currentState instanceof WarningState);		
+		
+		System.out.println("---Wrong Input test---");
+		
 	}
 }
