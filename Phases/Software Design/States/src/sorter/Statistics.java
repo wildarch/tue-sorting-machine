@@ -22,8 +22,8 @@ public class Statistics {
 		float chance = 1f;
 		for(Float f : wrongChances){
 			chance *= f;
-			chance = 1 - chance;
 		}
+		chance = 1 - chance;
 		return chance;
 	}
 }
