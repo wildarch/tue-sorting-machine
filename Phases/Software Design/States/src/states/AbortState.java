@@ -21,7 +21,7 @@ public class AbortState extends State {
 			try {
 				Button.LEDPattern(1);
 			}
-			catch(Exception e){
+			catch(NoClassDefFoundError e){
 				//No prob.
 			}
 			return new ModeSelectionState(m);
