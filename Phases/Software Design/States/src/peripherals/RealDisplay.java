@@ -69,6 +69,7 @@ public class RealDisplay implements Display {
 		if(!isReady()) return;
 		g.setFont(Font.getDefaultFont());
 		g.drawString("Success: "+(chance)*100 + "%", SW/2, SH-20, g.BASELINE|g.HCENTER, true);
+		g.refresh();
 	}
 	
 	@SuppressWarnings("static-access")
@@ -76,6 +77,7 @@ public class RealDisplay implements Display {
 		if(!isReady()) return;
 		g.setFont(Font.getDefaultFont());
 		g.drawString("Time: " + t + "ms", SW/2, SH-30, g.BASELINE|g.HCENTER, true);
+		g.refresh();
 	}
 	
 	private boolean isReady() {
