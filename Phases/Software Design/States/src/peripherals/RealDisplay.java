@@ -76,7 +76,7 @@ public class RealDisplay implements Display {
 	public void drawTime(long t){
 		if(!isReady()) return;
 		g.setFont(Font.getDefaultFont());
-		g.drawString("Time: " + t/1000 + "s", SW/2, SH-30, g.BASELINE|g.HCENTER, true);
+		g.drawString("Time: " + t + "ms", SW/2, SH-30, g.BASELINE|g.HCENTER, true);
 		g.refresh();
 	}
 	
