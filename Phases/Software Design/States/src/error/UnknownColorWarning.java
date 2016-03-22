@@ -8,8 +8,7 @@ public class UnknownColorWarning extends Warning {
 
 	@Override
 	public void say() {
-		// TODO Auto-generated method stub
-		
+		//TODO say unkown color
 	}
 
 }

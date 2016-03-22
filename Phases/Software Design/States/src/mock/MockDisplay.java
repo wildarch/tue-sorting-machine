@@ -34,8 +34,6 @@ public class MockDisplay implements Display {
 		
 	}
 
-	public void drawTime(long t) {
-		// TODO Auto-generated method stub
-	}
+	public void drawTime(long t) {}
 
 }
