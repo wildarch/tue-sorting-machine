@@ -1,5 +1,6 @@
 package states;
 import sorter.AbstractMain;
+import sorter.Say;
 
 
 public class InitialState extends State {
@@ -11,6 +12,7 @@ public class InitialState extends State {
 	public State nextState(AbstractMain m) {
 		//calibration
 		if(!calibrationStarted){
+			Say.calibrating();
 			calibrationStarted = true;
 			m.gyroSensor.calibrate();
 			m.motor.slowForward();
