@@ -21,7 +21,7 @@ public class Say {
 	private static File fastMode = new File("/sounds/fast mode.wav");
 	private static File safeMode = new File("/sounds/safe mode.wav");
 	private static File incrementalMode = new File("/sounds/incremental mode.wav");
-	private static File pausedMode = new File("/sounds/paused.wav");
+	private static File paused = new File("/sounds/paused.wav");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
