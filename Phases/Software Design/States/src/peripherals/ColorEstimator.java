@@ -30,17 +30,23 @@ public class ColorEstimator {
 		float average = 0f;
 		float maxDelta = 0f;
 		switch(detect){
-			case NONE: 		average = noneGS; maxDelta = 0.02f; break;
+			case NONE: 		average = noneGS; maxDelta = Math.abs(nbGS - noneGS); break;
 			case BLACK: 	average = blackGS; 
 							if(sample < blackGS){
-								maxDelta = 0.02f;
+								maxDelta = Math.abs(blackGS - nbGS);
 							}
 							else {
-								maxDelta = 0.135f;
+								maxDelta = Math.abs(buGS - blackGS);
 							}
 							break;
-			case UNKNOWN: 	average = unknownGS; maxDelta = 0.135f; break;
-			case WHITE: 	average = whiteGS; maxDelta = 0.135f; break;
+			case UNKNOWN: 	average = unknownGS;
+							if(sample < unknownGS){
+								maxDelta = Math.abs(unknownGS - buGS); break;
+							}
+							else {
+								maxDelta = Math.abs(uwGS - unknownGS); break;
+							}
+			case WHITE: 	average = whiteGS; maxDelta = Math.abs(whiteGS - uwGS); break;
 		default:
 			break;
 		}

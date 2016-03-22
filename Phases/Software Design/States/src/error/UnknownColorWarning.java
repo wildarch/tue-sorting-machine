@@ -1,5 +1,7 @@
 package error;
 
+import sorter.Say;
+
 public class UnknownColorWarning extends Warning {
 
 	public UnknownColorWarning() {
@@ -8,6 +10,7 @@ public class UnknownColorWarning extends Warning {
 
 	@Override
 	public void say() {
+		Say.wtf();
 	}
 
 }

@@ -1,5 +1,7 @@
 package error;
 
+import sorter.Say;
+
 public class BatteryWarning extends Warning {
 
 	public BatteryWarning() {
@@ -8,8 +10,7 @@ public class BatteryWarning extends Warning {
 
 	@Override
 	public void say() {
-		// TODO say
-		
+		Say.batteryLow();		
 	}
 
 }

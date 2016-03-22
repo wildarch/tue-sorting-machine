@@ -30,8 +30,7 @@ public class Main extends AbstractMain {
 				new Statistics(),
 				new RealBattery()
 				);
-		//TODO say hello
-		Say.wtf();
+		Say.hello();
 		
 		currentState = new ModeSelectionState(this);
 		setMode(Mode.FAST);

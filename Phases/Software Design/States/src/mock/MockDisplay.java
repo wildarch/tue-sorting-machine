@@ -34,7 +34,6 @@ public class MockDisplay implements Display {
 		
 	}
 
-	public void drawTime(long t) {
-	}
+	public void drawTime(long t) {}
 
 }
