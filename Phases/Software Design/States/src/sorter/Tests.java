@@ -1,19 +1,21 @@
 package sorter;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import mock.MockButton;
 import mock.MockColorSensor;
 import mock.MockGyroSensor;
 import mock.MockMain;
 import mock.MockMotor;
 import mock.MockTouchSensor;
-
-import org.junit.Test;
-
 import peripherals.DetectedColor;
+import states.AbortState;
 import states.MotorLeftState;
 import states.MotorRightState;
 import states.ReadColorState;
+import states.WarningState;
 
 public class Tests {
 
@@ -88,5 +90,59 @@ public class Tests {
 		m.cycle();
 		System.out.println("---Reset test finished---");
 	}
+	
+	@Test
+	public void testMotorJammed() {
+		
+		System.out.println("---Motor jammed test---");
+		
+		AbstractMain m = new MockMain();
+		MockMotor motor = MockMain.motor;
 
+		m.setMode(Mode.FAST);
+		m.currentState = new MotorLeftState(m);			
+		m.cycle();
+		motor.setStalled(true);
+		m.cycle();	
+		assertTrue(m.currentState instanceof AbortState);
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new MotorLeftState(m);			
+		m.cycle();
+		motor.setStalled(true);
+		m.cycle();	
+		assertTrue(m.currentState instanceof AbortState);
+		
+		m.setMode(Mode.INCREMENTAL);
+		m.currentState = new MotorLeftState(m);			
+		m.cycle();
+		motor.setStalled(true);
+		m.cycle();	
+		assertTrue(m.currentState instanceof AbortState);
+		
+		System.out.println("---Motor jammed test finished---");
+	}
+	
+	@Test
+	public void testWrongBasket() {
+		
+		System.out.println("---Wrong basket test---");
+		
+		AbstractMain m = new MockMain();
+		MockGyroSensor gyro = MockMain.gyro;
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new MotorLeftState(m); // Indicates disc should fall left
+		gyro.setRateChange(100);				// Indicates disc fell right
+		m.cycle();
+	    assertTrue(m.currentState instanceof WarningState);
+	    
+	    m.setMode(Mode.INCREMENTAL);
+		m.currentState = new MotorLeftState(m); // Indicates disc should fall left
+		gyro.setRateChange(100);				// Indicates disc fell right
+		m.cycle();
+	    assertTrue(m.currentState instanceof WarningState);
+	    
+	    System.out.println("---Wrong basket test finished---");
+	}
 }
