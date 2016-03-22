@@ -3,6 +3,7 @@ package peripherals;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.robotics.SampleProvider;
+import lejos.utility.Delay;
 
 public class RealGyroSensor implements GyroSensor {
 	private EV3GyroSensor gyro;
@@ -50,5 +51,7 @@ public class RealGyroSensor implements GyroSensor {
 		SampleProvider angleAndRateProvider = gyro.getAngleAndRateMode();
 		angleAndRateProvider.fetchSample(sample, 0);
 		getRateChange();
+		//Wait 4 seconds until the gyro is stable again
+		Delay.msDelay(4000);
 	}
 }

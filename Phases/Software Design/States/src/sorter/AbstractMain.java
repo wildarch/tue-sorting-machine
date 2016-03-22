@@ -42,9 +42,9 @@ public abstract class AbstractMain {
 	private boolean reset = false;
 	private Mode mode;
 	
-	private long tavg = 1300;	//average time for disc to fall
-	private long tdmax = 2000;	//maximum allowed time for disc to fall
-	private long tgmax = 10000;	//maximum allowed time for gyro to stabilize
+	private long tavg = 2000;	//average time for disc to fall
+	private long tdmax = 5000;	//maximum allowed time for disc to fall
+	private long tgmax = 2000;	//maximum allowed time for gyro to stabilize
 	
 	public State currentState;
 	public Display display;
@@ -103,7 +103,7 @@ public abstract class AbstractMain {
 		}
 		else if(rButton.isDown()){
 			reset = true;
-		
+		}
 		//check battery
 		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
 			currentState = new WarningState(new BatteryWarning(), this, currentState);
