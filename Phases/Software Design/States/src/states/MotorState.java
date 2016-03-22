@@ -6,7 +6,7 @@ import sorter.Mode;
 import error.DiskNotArrivedError;
 import error.LongerThanAvgWarning;
 import error.MotorJammedError;
-import error.WrongBasketError;
+import error.WrongBasketWarning;
 
 public abstract class MotorState extends State {
 	private boolean motorStarted = false;
@@ -64,7 +64,7 @@ public abstract class MotorState extends State {
 				float angle = m.gyroSensor.getRateChange();
 				Orientation orient = m.gyroSensor.getOrientation(angle);
 				if(orient != Orientation.Neutral && orient != direction && !hit){
-					return new AbortState(new WrongBasketError(angle,direction,orient), m);
+					return new WarningState(new WrongBasketWarning(angle,direction,orient), m, this);
 				}
 			}
 		}

@@ -76,7 +76,7 @@ public abstract class AbstractMain {
 	public void run(){
 		try {
 			while(true){
-				testPeripherals();
+				//testPeripherals();
 				cycle();
 			}
 		}
@@ -122,9 +122,9 @@ public abstract class AbstractMain {
 			d.getDeviceType();
 			d.close();
 			System.out.println("TEST PASSED");
+			throw new DeviceException();
 		} catch(Exception e) {
 			System.out.println("TEST FAILED");
-			throw new DeviceException();
 		}
 	}
 	

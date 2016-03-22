@@ -3,9 +3,9 @@ package error;
 import peripherals.Orientation;
 import sorter.Say;
 
-public class WrongBasketError extends FatalError {
+public class WrongBasketWarning extends Warning {
 
-	public WrongBasketError(float angle, Orientation direction,Orientation orientation) {
+	public WrongBasketWarning(float angle, Orientation direction,Orientation orientation) {
 		super("Wrong basket, angle: " + angle + "," + direction + "," + orientation);
 		System.out.println("Wrong basket, angle: "+angle + " direction: " + direction + " orientation:" + orientation);
 	}
