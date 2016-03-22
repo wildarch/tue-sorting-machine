@@ -145,4 +145,23 @@ public class Tests {
 	    
 	    System.out.println("---Wrong basket test finished---");
 	}
+	
+	@Test
+	public void testNoBasket() throws InterruptedException {
+		
+		System.out.println("---No basket test---");
+		
+		AbstractMain m = new MockMain();
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new MotorLeftState(m);
+		m.cycle(); // Start timer
+		Thread.sleep(m.getTDMax()+1); // Wait for the minimal Disk time
+		m.cycle(); // Go to warning state for Deviates From Average warning
+		m.cycle(); // Return from warning state
+		m.cycle(); // Go to abort state for Does Not Reach Basket fatal error
+		assertTrue(m.currentState instanceof AbortState);
+		
+		System.out.println("---Not basket test finished---");
+	}
 }
