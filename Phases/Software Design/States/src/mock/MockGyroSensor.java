@@ -12,7 +12,6 @@ public class MockGyroSensor implements GyroSensor {
 	}
 
 	public float getRateChange() {
-		// TODO Auto-generated method stub
 		return rateChange;
 	}
 	
@@ -33,7 +32,6 @@ public class MockGyroSensor implements GyroSensor {
 	}
 
 	public Orientation getOrientation() {
-		// TODO Auto-generated method stub
 		return getOrientation(rateChange);
 	}
 
