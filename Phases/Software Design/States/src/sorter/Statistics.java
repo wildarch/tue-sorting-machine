@@ -2,8 +2,6 @@ package sorter;
 
 import java.util.ArrayList;
 
-import org.junit.experimental.theories.Theories;
-
 public class Statistics {
 	public int black;
 	public int white;

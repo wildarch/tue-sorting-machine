@@ -1,5 +1,6 @@
 package states;
 import sorter.AbstractMain;
+import sorter.Mode;
 import sorter.Say;
 
 
@@ -8,7 +9,8 @@ public class PausedState extends State {
 	boolean down = false;
 	
 	public PausedState(AbstractMain m){
-		Say.paused();
+		if(m.getMode() != Mode.INCREMENTAL)
+			Say.paused();
 		if(m.spButton.isDown()){
 			released = false;
 		}
