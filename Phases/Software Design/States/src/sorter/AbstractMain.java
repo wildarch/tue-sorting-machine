@@ -104,7 +104,6 @@ public abstract class AbstractMain {
 		else if(rButton.isDown()){
 			reset = true;
 		}
-		
 		//check battery
 		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
 			currentState = new WarningState(new BatteryWarning(), this, currentState);

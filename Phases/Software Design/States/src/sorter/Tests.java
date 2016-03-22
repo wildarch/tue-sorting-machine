@@ -21,6 +21,9 @@ public class Tests {
 
 	@Test
 	public void test() {
+		
+		System.out.println("---Direction test??---");
+		
 		MockButton spButton = MockMain.spButton;
 		MockMotor motor = MockMain.motor;
 		MockTouchSensor touch = MockMain.touch;
@@ -66,7 +69,7 @@ public class Tests {
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
-		System.out.println("---Test successfull---");
+		System.out.println("---Direction test?? finished---");
 	}
 	
 	@Test
@@ -144,5 +147,43 @@ public class Tests {
 	    assertTrue(m.currentState instanceof WarningState);
 	    
 	    System.out.println("---Wrong basket test finished---");
+	}
+	
+	@Test
+	public void testNoBasket() throws InterruptedException {
+		
+		System.out.println("---No basket test---");
+		
+		AbstractMain m = new MockMain();
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new MotorLeftState(m);
+		m.cycle(); // Start timer
+		Thread.sleep(m.getTDMax()+1); // Wait for the minimal Disk time
+		m.cycle(); // Go to warning state for Deviates From Average warning
+		m.cycle(); // Return from warning state
+		m.cycle(); // Go to abort state for Does Not Reach Basket fatal error
+		assertTrue(m.currentState instanceof AbortState);
+		
+		System.out.println("---Not basket test finished---");
+	}
+	
+	@Test
+	public void testWrongInput() {
+		
+		System.out.println("---Wrong Input test---");
+		
+		AbstractMain m = new MockMain();
+		MockColorSensor color = MockMain.color;
+		
+		m.setMode(Mode.SAFE);
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		color.setDetectColor(DetectedColor.UNKNOWN);
+		m.cycle();
+		assertTrue(m.currentState instanceof WarningState);		
+		
+		System.out.println("---Wrong Input test---");
+		
 	}
 }

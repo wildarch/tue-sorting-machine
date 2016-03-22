@@ -39,9 +39,6 @@ public class MockGyroSensor implements GyroSensor {
 		rateChange = 0f;
 	}
 
-	public void calibrate() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void calibrate() {}
 
 }
