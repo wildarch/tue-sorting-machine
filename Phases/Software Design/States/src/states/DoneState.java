@@ -14,7 +14,7 @@ public class DoneState extends State {
 	@Override
 	public State nextState(AbstractMain m) {
 		if (time == 0){
-			time = m.timer.getTimeMS();
+			time = m.totalTimer.getTimeMS();
 		}
 		
 		if(m.isReset() || m.rButton.isDown()){
