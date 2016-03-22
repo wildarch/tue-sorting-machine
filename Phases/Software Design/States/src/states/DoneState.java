@@ -1,12 +1,13 @@
 package states;
 import lejos.hardware.Button;
 import sorter.AbstractMain;
+import sorter.Say;
 
 public class DoneState extends State {
 	private long time = 0;
 	
 	public DoneState(){
-		//TODO say done
+		Say.done();
 		Button.LEDPattern(7);
 	}
 

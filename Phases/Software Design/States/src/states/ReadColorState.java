@@ -2,6 +2,7 @@ package states;
 import peripherals.ColorEstimator;
 import peripherals.DetectedColor;
 import sorter.AbstractMain;
+import sorter.Say;
 import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
@@ -22,15 +23,16 @@ public class ReadColorState extends State {
 		//System.out.println("GrayScale: "+grayScale);
 		DetectedColor color = m.colorSensor.detectColor(grayScale);
 		m.stats.addWrongChance(ColorEstimator.getWrongChance(grayScale, color));
-		//TODO say color
 		switch(color){
 			//read -> M=L
-			case BLACK: 
+			case BLACK:
+				Say.black();
 				m.stats.black++;
 				return new MotorLeftState(m);
 				
 			//read -> M=R
-			case WHITE: 
+			case WHITE:
+				Say.white();
 				m.stats.white++;
 				return new MotorRightState(m);
 				
