@@ -4,6 +4,7 @@ import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import sorter.AbstractMain;
 import sorter.Mode;
+import sorter.Say;
 
 public class ModeSelectionState extends State {
 
@@ -16,16 +17,16 @@ public class ModeSelectionState extends State {
 		while(!m.display.drawModeSelect()) {}
 		int button = Button.waitForAnyPress();
 		switch(button){
-			case Button.ID_LEFT: m.setMode(Mode.FAST); break;
-			case Button.ID_ENTER: m.setMode(Mode.SAFE); break;
-			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); break;
+			case Button.ID_LEFT: m.setMode(Mode.FAST); Say.fast(); break;
+			case Button.ID_ENTER: m.setMode(Mode.SAFE); Say.safe(); break;
+			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); Say.incremental(); break;
 			case Button.ID_DOWN: Sound.beepSequence(); System.exit(0); break;
 		}
 		//System.out.println("Mode: "+m.getMode());
 		while(m.spButton.isDown()){
 			//Wait until the start/pause button is released
 		}
-		//TODO say mode is ...
+
 		return new InitialState();
 	}
 

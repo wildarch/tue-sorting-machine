@@ -1,5 +1,6 @@
 package states;
 import sorter.AbstractMain;
+import sorter.Say;
 
 
 public class PausedState extends State {
@@ -7,7 +8,7 @@ public class PausedState extends State {
 	boolean down = false;
 	
 	public PausedState(AbstractMain m){
-		//TODO say paused
+		Say.paused();
 		if(m.spButton.isDown()){
 			released = false;
 		}

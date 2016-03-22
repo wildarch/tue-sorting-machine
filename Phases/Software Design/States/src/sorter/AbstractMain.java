@@ -21,8 +21,8 @@ import states.WarningState;
 public abstract class AbstractMain {
 	public static final int MOTOR_TURN_STEP = 		120;
 	public static final int MOTOR_SAFE_SPEED = 		MOTOR_TURN_STEP;
-	public static final int MOTOR_FAST_SPEED = 		750;
-	public static final int GYRO_STABLE_TRESHOLD = 	15;
+	public static final int MOTOR_FAST_SPEED = 		900;
+	public static final int GYRO_STABLE_TRESHOLD = 	10;
 	public static final float BATTERY_TRESHOLD = 	7.5f;
 	
 	public final Key spButton;

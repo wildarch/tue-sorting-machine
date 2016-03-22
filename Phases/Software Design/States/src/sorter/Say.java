@@ -18,6 +18,13 @@ public class Say {
 	static File softEx = new File("/sounds/Fatal - software exception.wav");
 	static File wrongBasket = new File("/sounds/Fatal - wrong basket.wav");
 	static File unkownColor = new File("/sounds/Warning - unkown color.wav");
+	static File fastMode = new File("/sounds/Fast mode.wav");
+	static File paused = new File("/sounds/Paused.wav");
+	static File timeDev = new File("/sounds/Time deviates.wav");
+	static File safeMode = new File("/sounds/Safe mode.wav");
+	static File stepMode = new File("/sounds/Incremental mode.wav");
+	static File discNotArrive = new File("/sounds/Fatal - disc not arrived.wav");
+	static File gyroNotStab = new File("/sounds/Gyro not stabilize.wav");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
@@ -78,11 +85,34 @@ public class Say {
 		thread.join();
 	}
 	
-	/*
-	 * TODO:
-	 * mode is (fast, safe, incremental)
-	 * paused
-	 */
+	public static void fast(){
+		play(fastMode);
+	}
+	
+	public static void paused(){
+		play(paused);
+	}
+	
+	public static void timeDev(){
+		play(timeDev);
+	}
+	
+	public static void safe(){
+		play(safeMode);
+	}
+	
+	public static void incremental(){
+		play(stepMode);
+	}
+	
+	public static void discNotArrived(){
+		play(discNotArrive);
+	}
+	
+	public static void gyroNotStab(){
+		play(gyroNotStab);
+	}
+	
 	public static void unkownColor(){
 		play(unkownColor);
 	}
