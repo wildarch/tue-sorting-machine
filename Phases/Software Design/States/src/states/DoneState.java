@@ -9,12 +9,12 @@ public class DoneState extends State {
 	public DoneState(){
 		Say.done();
 		Button.LEDPattern(7);
-	}
+	} 
 
 	@Override
 	public State nextState(AbstractMain m) {
 		long t = m.totalTimer.getTimeMS();
-		if(m.isReset()){
+		if(m.isReset() || m.rButton.isDown()){
 			m.variableReset();
 			return new ModeSelectionState(m);
 		}

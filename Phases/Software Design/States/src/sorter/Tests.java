@@ -64,5 +64,17 @@ public class Tests {
 		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
 	}
+	
+	@Test
+	public void testReset(){
+		MockButton spButton = MockMain.spButton;
+		MockMotor motor = MockMain.motor;
+		MockTouchSensor touch = MockMain.touch;
+		MockColorSensor color = MockMain.color;
+		MockGyroSensor gyro = MockMain.gyro;
+		
+		AbstractMain m = new MockMain();
+		m.setMode(Mode.SAFE);
+	}
 
 }
