@@ -13,7 +13,10 @@ public class DoneState extends State {
 
 	@Override
 	public State nextState(AbstractMain m) {
-		long t = m.totalTimer.getTimeMS();
+		if (time == 0){
+			time = m.timer.getTimeMS();
+		}
+		
 		if(m.isReset() || m.rButton.isDown()){
 			m.variableReset();
 			return new ModeSelectionState(m);
