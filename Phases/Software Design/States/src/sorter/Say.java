@@ -9,7 +9,7 @@ public class Say {
 	static File wtf = new File("/sounds/wtf.wav");
 	static File black = new File("/sounds/black.wav");
 	static File white = new File("/sounds/white.wav");
-	static File done = new File("/sounds/done.wav");
+	static File done = new File("/sounds/Done.wav");
 	static File calibrating = new File("/sounds/Calibrating motor.wav");
 	static File abortButton = new File("/sounds/Fatal - abort button.wav");
 	static File connectionLost = new File("/sounds/Fatal - connection lost.wav");
