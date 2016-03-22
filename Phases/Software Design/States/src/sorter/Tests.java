@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import lejos.hardware.Battery;
+import mock.MockBattery;
 import mock.MockButton;
 import mock.MockColorSensor;
 import mock.MockGyroSensor;
@@ -106,7 +108,7 @@ public class Tests {
 		m.currentState = new MotorLeftState(m);			
 		m.cycle();
 		motor.setStalled(true);
-		m.cycle();	
+		m.cycle();
 		assertTrue(m.currentState instanceof AbortState);
 		
 		m.setMode(Mode.SAFE);
@@ -184,6 +186,23 @@ public class Tests {
 		assertTrue(m.currentState instanceof WarningState);		
 		
 		System.out.println("---Wrong Input test---");
+	}
+	
+	@Test
+	public void testBatteryLow() {
+		
+		System.out.println("---Battery Low test---");
+		System.out.println(MockMain.battery.getVoltage());
+		
+		AbstractMain m = new MockMain();
+		MockBattery battery = MockMain.battery;
+		battery.setVoltage(AbstractMain.BATTERY_TRESHOLD - 1);
+		m.cycle();
+		battery.setVoltage(9f);
+		
+		// Read the console
+		
+		System.out.println("---Battery Low test finished---");  
 		
 	}
 }
