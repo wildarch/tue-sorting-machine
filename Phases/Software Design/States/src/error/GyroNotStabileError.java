@@ -1,5 +1,7 @@
 package error;
 
+import sorter.Say;
+
 public class GyroNotStabileError extends FatalError {
 	public GyroNotStabileError() {
 		super("Gyroscope does not stabilize.");
@@ -7,6 +9,6 @@ public class GyroNotStabileError extends FatalError {
 
 	@Override
 	public void say(){
-		//TODO Say.
+		Say.gyroNotStab();
 	}
 }

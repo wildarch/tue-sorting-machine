@@ -1,9 +1,10 @@
 package states;
+import error.UnknownColorWarning;
 import peripherals.ColorEstimator;
 import peripherals.DetectedColor;
 import sorter.AbstractMain;
+import sorter.Mode;
 import sorter.Say;
-import error.UnknownColorWarning;
 
 public class ReadColorState extends State {
 	@Override
@@ -26,13 +27,15 @@ public class ReadColorState extends State {
 		switch(color){
 			//read -> M=L
 			case BLACK:
-				Say.black();
+				if(!(m.getMode() == Mode.FAST))
+					Say.black();
 				m.stats.black++;
 				return new MotorLeftState(m);
 				
 			//read -> M=R
 			case WHITE:
-				Say.white();
+				if(!(m.getMode() == Mode.FAST))
+					Say.white();
 				m.stats.white++;
 				return new MotorRightState(m);
 				
