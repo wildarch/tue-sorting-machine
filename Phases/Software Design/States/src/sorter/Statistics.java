@@ -21,7 +21,8 @@ public class Statistics {
 	public float getChanceSuccess(){
 		float chance = 1f;
 		for(Float f : wrongChances){
-			chance *= (1-f);
+			chance *= f;
+			chance = 1 - chance;
 		}
 		return chance;
 	}
