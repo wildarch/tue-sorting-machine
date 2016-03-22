@@ -37,7 +37,7 @@ public class Say {
 			while(running){
 				if(this.current != null){
 					try {
-						Sound.playSample(this.current);
+						Sound.playSample(this.current, 100);
 					}
 					catch(NoClassDefFoundError e){
 						//For testing, This is OK
