@@ -44,4 +44,11 @@ public class RealGyroSensor implements GyroSensor {
 	public void reset(){
 		this.gyro.reset();
 	}
+
+	public void calibrate() {
+		float[] sample = new float[2];
+		SampleProvider angleAndRateProvider = gyro.getAngleAndRateMode();
+		angleAndRateProvider.fetchSample(sample, 0);
+		getRateChange();
+	}
 }
