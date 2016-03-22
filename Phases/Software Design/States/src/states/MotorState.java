@@ -16,7 +16,6 @@ public abstract class MotorState extends State {
 	
 	public MotorState(Orientation o, AbstractMain m){
 		direction = o;
-		m.timer.start();
 	}
 
 	@Override
@@ -27,6 +26,8 @@ public abstract class MotorState extends State {
 				m.motor.turnRight();
 			else 
 				m.motor.turnLeft();
+			
+			m.timer.start();
 		}
 		
 		//M=F
@@ -49,7 +50,8 @@ public abstract class MotorState extends State {
 		if((m.getMode() == Mode.INCREMENTAL || m.getMode() == Mode.SAFE) && 
 				m.timer.getTimeMS() > m.getTAvg() && !avgWarningGiven){
 			avgWarningGiven = true;
-			return new WarningState(new LongerThanAvgWarning(), m, this);
+			System.out.println(m.timer.getTimeMS());
+			//return new WarningState(new LongerThanAvgWarning(), m, this);
 		}
 		
 		if (m.motor.isStalled()){
@@ -58,7 +60,8 @@ public abstract class MotorState extends State {
 		
 		if ((m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)){
 			if (m.timer.getTimeMS() > m.getTDMax()){
-				return new AbortState(new DiskNotArrivedError(), m);
+				System.out.println(m.timer.getTimeMS());
+				//return new AbortState(new DiskNotArrivedError(), m);
 			}
 			else {
 				float angle = m.gyroSensor.getRateChange();

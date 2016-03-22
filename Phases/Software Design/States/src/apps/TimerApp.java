@@ -11,6 +11,11 @@ import peripherals.RealMotor;
 import sorter.Main;
 import sorter.Timer;
 
+/**
+ * @warning DOES NOT WORK CORRECTLY
+ * @author stefan
+ *
+ */
 public class TimerApp{
 	private ColorSensor colorSensor = new RealColorSensor(Main.COLOR_SENSOR_PORT);
 	private Motor motor = new RealMotor(Main.MOTOR_PORT, Main.MOTOR_TURN_STEP, Main.MOTOR_SAFE_SPEED, Main.MOTOR_FAST_SPEED);
@@ -36,6 +41,7 @@ public class TimerApp{
 			float grayScale = colorSensor.getGrayScale();
 			DetectedColor color = colorSensor.detectColor(grayScale);
 			System.out.println(grayScale);
+			timer.start();
 			switch(color){
 				case NONE:
 					System.out.println("No disc");
@@ -54,7 +60,6 @@ public class TimerApp{
 			}
 			
 			if(discPresent){
-				timer.start();
 				boolean touchedGyro = false;
 				
 				//wait for gyro
