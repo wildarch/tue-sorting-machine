@@ -8,4 +8,6 @@ public interface GyroSensor {
 	public Orientation getOrientation(float angle);
 	
 	public void reset();
+	
+	public void calibrate();
 }
