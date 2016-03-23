@@ -25,6 +25,7 @@ public class Say {
 	static File stepMode = new File("/sounds/Incremental mode.wav");
 	static File discNotArrive = new File("/sounds/Fatal - disc not arrived.wav");
 	static File gyroNotStab = new File("/sounds/Gyro not stabilize.wav");
+	static File ready = new File("/sounds/Ready.wav");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
@@ -88,6 +89,10 @@ public class Say {
 	public static void waitForStop() throws InterruptedException{
 		stop();
 		thread.join();
+	}
+	
+	public static void ready() {
+		play(ready);
 	}
 	
 	public static void fast(){

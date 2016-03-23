@@ -20,6 +20,7 @@ public class InitialState extends State {
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
+			Say.ready();
 			m.motor.setSpeed(m.getMode());
 			this.calibrationFinished = true;
 //			m.setPaused(false);
