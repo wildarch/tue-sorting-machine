@@ -7,6 +7,7 @@ public class InitialState extends State {
 	private boolean calibrationStarted = false;
 	private boolean calibrationFinished = false;
 	private boolean pressed = false;
+	private boolean readySaid = false;
 
 	@Override
 	public State nextState(AbstractMain m) {
@@ -20,7 +21,10 @@ public class InitialState extends State {
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
 			m.motor.reset();
-			Say.ready();
+			if(!readySaid){
+				Say.ready();
+				readySaid = true;
+			}
 			m.motor.setSpeed(m.getMode());
 			this.calibrationFinished = true;
 //			m.setPaused(false);
