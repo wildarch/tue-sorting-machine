@@ -15,11 +15,19 @@ public class RealColorSensor implements ColorSensor {
 	}
 	
 	public float getGrayScale(){
-		grayScaleProvider.fetchSample(sample, 0);
-		return sample[0];
+		float avg = 0;
+		for (int i = 0; i < 10; i++){
+			grayScaleProvider.fetchSample(sample, 0);
+			avg = avg * i + sample[0];
+			avg/=i+1;
+		}
+
+		return avg;
 	}
 	
 	public DetectedColor detectColor(float sample){
-		return ColorEstimator.getColor(sample);
+		//System.out.println(sample);
+		return CloudtEstimator.getColor(sample);
+		//return ColorEstimator.getColor(sample);
 	}
 }

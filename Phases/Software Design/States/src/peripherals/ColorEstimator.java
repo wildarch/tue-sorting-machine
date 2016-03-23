@@ -3,7 +3,7 @@ package peripherals;
 
 public class ColorEstimator {
 	public final static float noneGS = 		0.11f;
-	public final static float blackGS = 	0.14f;
+	public final static float blackGS = 	0.155f;
 	public final static float whiteGS = 	0.60f;
 	public final static float unknownGS = 	avg(blackGS, whiteGS);
 	

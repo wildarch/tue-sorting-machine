@@ -1,4 +1,5 @@
 package states;
+import lejos.hardware.Sound;
 import peripherals.Orientation;
 import sorter.AbstractMain;
 import sorter.Main;
@@ -45,6 +46,7 @@ public abstract class MotorState extends State {
 		
 		if(m.gyroSensor.getOrientation() == this.direction){
 			hit = true;
+			Sound.beep();
 		}
 		
 		if((m.getMode() == Mode.INCREMENTAL || m.getMode() == Mode.SAFE) && 
@@ -68,7 +70,7 @@ public abstract class MotorState extends State {
 				Orientation orient = m.gyroSensor.getOrientation(angle);
 				//System.out.println(angle);*/
 				if(orient != Orientation.Neutral && orient != direction && !hit){
-					//return new WarningState(new WrongBasketWarning(), m, this);
+					return new WarningState(new WrongBasketWarning(), m, this);
 				}
 			}
 		}
