@@ -78,7 +78,7 @@ public class RealDisplay implements Display {
 		int seconds = (int)t/1000;
 		long miliseconds = t - seconds * 1000; 
 		g.setFont(Font.getDefaultFont());
-		g.drawString("Time: " + seconds + "." + miliseconds + "ms", SW/2, SH-25, g.BASELINE|g.HCENTER, true);
+		g.drawString("Time: " + seconds + "." + miliseconds + "s", SW/2, SH-25, g.BASELINE|g.HCENTER, true);
 		g.refresh();
 	}
 	
