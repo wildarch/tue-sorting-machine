@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import lejos.hardware.Battery;
 import mock.MockBattery;
 import mock.MockButton;
 import mock.MockColorSensor;
@@ -22,7 +21,7 @@ import states.WarningState;
 public class Tests {
 
 	@Test
-	public void test() {
+	public void test() throws InterruptedException {
 		
 		System.out.println("---Direction test??---");
 		
@@ -54,19 +53,21 @@ public class Tests {
 		m.cycle();
 		//StabilizeState
 		gyro.setRateChange(0);
+		Thread.sleep(1001); // Wait MIN_TIMER
 		m.cycle();
 		//ReadColorState
 		color.setDetectColor(DetectedColor.BLACK);
 		m.cycle();
 		m.cycle();
 		//MotorLeftState
-		//assertTrue(m.currentState instanceof MotorLeftState);
+		assertTrue(m.currentState instanceof MotorLeftState);
 		gyro.setRateChange(-1000);
 		m.cycle();
 		motor.stop();
 		m.cycle();
 		//StabilizeState
 		gyro.setRateChange(0);
+		Thread.sleep(1001); // Wait MIN_TIMER
 		m.cycle();
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
@@ -148,6 +149,8 @@ public class Tests {
 		m.cycle();
 	    assertTrue(m.currentState instanceof WarningState);
 	    
+	    gyro.setRateChange(0);
+	    
 	    System.out.println("---Wrong basket test finished---");
 	}
 	
@@ -185,7 +188,7 @@ public class Tests {
 		m.cycle();
 		assertTrue(m.currentState instanceof WarningState);		
 		
-		System.out.println("---Wrong Input test---");
+		System.out.println("---Wrong Input test finished---");
 	}
 	
 	@Test
