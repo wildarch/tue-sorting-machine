@@ -21,8 +21,13 @@ import states.WarningState;
 public class Tests {
 
 	@Test
+<<<<<<< HEAD
 	public void test() {
 		if(true) return;
+=======
+	public void test() throws InterruptedException {
+		
+>>>>>>> 526ddb206e3b3697e61712cc2ce8656f1c02fb66
 		System.out.println("---Direction test??---");
 		
 		MockButton spButton = MockMain.spButton;
@@ -53,19 +58,21 @@ public class Tests {
 		m.cycle();
 		//StabilizeState
 		gyro.setRateChange(0);
+		Thread.sleep(1001); // Wait MIN_TIMER
 		m.cycle();
 		//ReadColorState
 		color.setDetectColor(DetectedColor.BLACK);
 		m.cycle();
 		m.cycle();
 		//MotorLeftState
-		//assertTrue(m.currentState instanceof MotorLeftState);
+		assertTrue(m.currentState instanceof MotorLeftState);
 		gyro.setRateChange(-1000);
 		m.cycle();
 		motor.stop();
 		m.cycle();
 		//StabilizeState
 		gyro.setRateChange(0);
+		Thread.sleep(1001); // Wait MIN_TIMER
 		m.cycle();
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
@@ -147,6 +154,8 @@ public class Tests {
 		m.cycle();
 	    assertTrue(m.currentState instanceof WarningState);
 	    
+	    gyro.setRateChange(0);
+	    
 	    System.out.println("---Wrong basket test finished---");
 	}
 	
@@ -184,7 +193,7 @@ public class Tests {
 		m.cycle();
 		assertTrue(m.currentState instanceof WarningState);		
 		
-		System.out.println("---Wrong Input test---");
+		System.out.println("---Wrong Input test finished---");
 	}
 	
 	@Test
