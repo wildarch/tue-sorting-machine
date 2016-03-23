@@ -1,7 +1,6 @@
 package peripherals;
 
 import sorter.AbstractMain;
-import sorter.Main;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.Port;

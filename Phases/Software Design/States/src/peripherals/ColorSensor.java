@@ -1,7 +1,6 @@
 package peripherals;
 
 import sorter.AbstractMain;
-import sorter.Main;
 
 public interface ColorSensor {
 	public float getGrayScale();

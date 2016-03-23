@@ -1,8 +1,5 @@
 package error;
 
-import peripherals.Orientation;
-import sorter.Say;
-
 public class WrongBasketWarning extends Warning {
 
 	public WrongBasketWarning() {

@@ -2,7 +2,6 @@ package states;
 import lejos.hardware.Sound;
 import peripherals.Orientation;
 import sorter.AbstractMain;
-import sorter.Main;
 import sorter.Mode;
 import error.DiskNotArrivedError;
 import error.LongerThanAvgWarning;

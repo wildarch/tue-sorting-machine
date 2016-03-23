@@ -7,6 +7,7 @@ public class LongerThanAvgWarning extends Warning {
 		super("The time to reach the basket deviates from average.");
 	}
 	
+	@Override
 	public void say(){
 		Say.timeDev();
 	}

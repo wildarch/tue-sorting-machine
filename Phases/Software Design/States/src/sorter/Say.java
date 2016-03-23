@@ -32,6 +32,7 @@ public class Say {
 		private File waiting;
 		private File current;
 		
+		@Override
 		public void run(){
 			running = true;
 			

@@ -7,6 +7,7 @@ public class DiskNotArrivedError extends FatalError {
 		super("Disk did not arrive in the basket.");
 	}
 	
+	@Override
 	public void say(){
 		Say.discNotArrived();
 	}
