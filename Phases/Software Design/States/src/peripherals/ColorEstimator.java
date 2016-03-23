@@ -2,14 +2,21 @@ package peripherals;
 
 
 public class ColorEstimator {
-	public final static float noneGS = 		0.11f;
-	public final static float blackGS = 	0.14f;
-	public final static float whiteGS = 	0.60f;
-	public final static float unknownGS = 	avg(blackGS, whiteGS);
+	public static float noneGS = 	0.11f;
+	public static float blackGS = 	0.14f;
+	public static float whiteGS = 	0.60f;
+	public static float unknownGS = 	avg(blackGS, whiteGS);
 	
-	public final static float nbGS = avg(noneGS, blackGS);
-	public final static float buGS = avg(blackGS, unknownGS);
-	public final static float uwGS = avg(unknownGS, whiteGS);
+	public static float nbGS = avg(noneGS, blackGS);
+	public static float buGS = avg(blackGS, unknownGS);
+	public static float uwGS = avg(unknownGS, whiteGS);
+	
+	public static void calibrate(){
+		unknownGS = avg(blackGS, whiteGS);
+		nbGS = 		avg(noneGS, blackGS);
+		buGS = 		avg(blackGS, unknownGS);
+		uwGS = 		avg(unknownGS, whiteGS);
+	}
 	
 	public static DetectedColor getColor(float sample){
 		if(sample < nbGS){

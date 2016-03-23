@@ -21,6 +21,7 @@ public class ModeSelectionState extends State {
 			case Button.ID_ENTER: m.setMode(Mode.SAFE); Say.safe(); break;
 			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); Say.incremental(); break;
 			case Button.ID_DOWN: Sound.beepSequence(); System.exit(0); break;
+			case Button.ID_UP: Sound.beepSequenceUp(); m.colorSensor.calibrationSequence(m); return this;
 		}
 		//System.out.println("Mode: "+m.getMode());
 		while(m.spButton.isDown()){

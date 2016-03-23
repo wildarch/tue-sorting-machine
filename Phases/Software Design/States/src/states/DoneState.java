@@ -26,9 +26,9 @@ public class DoneState extends State {
 	
 	@Override
 	public void displayUpdate(AbstractMain m){
+		super.displayUpdate(m);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
 		m.display.drawTime(time);
-		super.displayUpdate(m);
 	}
 	
 }
