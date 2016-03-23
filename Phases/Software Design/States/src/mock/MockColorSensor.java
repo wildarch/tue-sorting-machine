@@ -2,6 +2,7 @@ package mock;
 
 import peripherals.ColorSensor;
 import peripherals.DetectedColor;
+import sorter.AbstractMain;
 
 public class MockColorSensor implements ColorSensor {
 	
@@ -22,6 +23,10 @@ public class MockColorSensor implements ColorSensor {
 	
 	public void setDetectColor(DetectedColor c){
 		detectedColor = c;
+	}
+
+	public void calibrationSequence(AbstractMain m) {
+		System.out.println("Calibration sequence");
 	}
 
 }
