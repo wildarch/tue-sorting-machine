@@ -7,9 +7,9 @@ public class DoneState extends State {
 	private long time = 0;
 	
 	public DoneState(){
-		Say.done();
-		Button.LEDPattern(7);
+		//Say.done();
 		Say.dumpert();
+		Button.LEDPattern(7);
 	} 
 
 	@Override

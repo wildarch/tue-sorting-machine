@@ -1,5 +1,6 @@
 package states;
 import sorter.AbstractMain;
+import sorter.Mode;
 import sorter.Say;
 
 
@@ -15,7 +16,9 @@ public class InitialState extends State {
 		if(!calibrationStarted){
 			Say.calibrating();
 			calibrationStarted = true;
-			m.gyroSensor.calibrate();
+			if(m.getMode() != Mode.FAST){
+				m.gyroSensor.calibrate();
+			}
 			m.motor.slowForward();
 		}
 		else if(m.touchSensor.isPressed()){

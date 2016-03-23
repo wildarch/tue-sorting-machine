@@ -21,13 +21,7 @@ import states.WarningState;
 public class Tests {
 
 	@Test
-<<<<<<< HEAD
-	public void test() {
-		if(true) return;
-=======
 	public void test() throws InterruptedException {
-		
->>>>>>> 526ddb206e3b3697e61712cc2ce8656f1c02fb66
 		System.out.println("---Direction test??---");
 		
 		MockButton spButton = MockMain.spButton;

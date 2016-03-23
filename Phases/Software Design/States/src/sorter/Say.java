@@ -26,7 +26,7 @@ public class Say {
 	static File discNotArrive = new File("/sounds/Fatal - disc not arrived.wav");
 	static File gyroNotStab = new File("/sounds/Gyro not stabilize.wav");
 	static File ready = new File("/sounds/Ready.wav");
-	static File dumpert = new File("/sounds/Dumpert");
+	static File dumpert = new File("/sounds/Dumpert.wav");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
@@ -40,7 +40,10 @@ public class Say {
 			while(running){
 				if(this.current != null){
 					try {
-						Sound.playSample(this.current, 100);
+						int ret = Sound.playSample(this.current, 100);
+						if(ret < 0){
+							current = null;
+						}
 					}
 					catch(NoClassDefFoundError e){
 						//For testing, This is OK

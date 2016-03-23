@@ -31,7 +31,7 @@ public abstract class MotorState extends State {
 		}
 		
 		//M=F
-		if(!m.motor.isMoving()){
+		if(!m.motor.isMoving() && !m.motor.isStalled()){
 			//FAST mode
 			if(m.getMode() == Mode.FAST){
 				return new ReadColorState();

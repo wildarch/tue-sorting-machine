@@ -1,9 +1,5 @@
 package sorter;
 
-import error.AbortButtonError;
-import error.BatteryWarning;
-import error.PeripheralConnectionLostError;
-import error.SofwareError;
 import lejos.hardware.DeviceException;
 import lejos.hardware.Key;
 import lejos.hardware.device.DeviceIdentifier;
@@ -15,8 +11,15 @@ import peripherals.GyroSensor;
 import peripherals.Motor;
 import peripherals.TouchSensor;
 import states.AbortState;
+import states.MotorLeftState;
+import states.MotorRightState;
+import states.ReadColorState;
 import states.State;
 import states.WarningState;
+import error.AbortButtonError;
+import error.BatteryWarning;
+import error.PeripheralConnectionLostError;
+import error.SofwareError;
 
 public abstract class AbstractMain {
 	public static final int MOTOR_TURN_STEP = 		120;
@@ -38,8 +41,8 @@ public abstract class AbstractMain {
 	public final Timer timer = new Timer();
 	public final Timer totalTimer = new Timer();
 	
-	private boolean paused = true;
-	private boolean reset = false;
+	private volatile boolean paused = true;
+	private volatile boolean reset = false;
 	private Mode mode;
 	
 	private long tavg = 2000;	//average time for disc to fall
@@ -93,16 +96,18 @@ public abstract class AbstractMain {
 	}
 	
 	public void cycle(){
-		
 		//check buttons
 		if(aButton.isDown() && !(currentState instanceof AbortState)){
 			currentState = new AbortState(new AbortButtonError(), this);
 		} 
 		else if(spButton.isDown()){
-			paused = true;
+			setPaused(true);
+			System.out.println("Paused is set to true");
 		}
 		else if(rButton.isDown()){
-			reset = true;
+			setReset(true);
+			display.setDisplayReadyTime(System.currentTimeMillis());
+			System.out.println("Reset is set to true");
 		}
 		//check battery
 		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
@@ -110,6 +115,7 @@ public abstract class AbstractMain {
 		}
 		
 		currentState.displayUpdate(this);
+		
 		State newState = currentState.nextState(this);
 		currentState = newState;
 	}

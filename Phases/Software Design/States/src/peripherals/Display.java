@@ -17,4 +17,6 @@ public interface Display {
 	public void drawWarning(Warning warning);
 	
 	public void drawTime(long t);
+
+	public void setDisplayReadyTime(long t);
 }

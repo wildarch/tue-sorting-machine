@@ -18,7 +18,6 @@ public class RealMotor implements Motor {
 		defaultAngle = angle;
 		this.safeSpeed = safeSpeed;
 		this.fastSpeed = fastSpeed;
-		motor.setStallThreshold(1, 1);
 	}
 	
 	public void setSpeed(Mode m){

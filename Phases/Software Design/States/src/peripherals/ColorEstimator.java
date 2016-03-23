@@ -2,9 +2,9 @@ package peripherals;
 
 
 public class ColorEstimator {
-	public static float noneGS = 	0.082f;
-	public static float blackGS = 	0.151f;
-	public static float whiteGS = 	0.617f;
+	public static float noneGS = 	0.06f;
+	public static float blackGS = 	0.12f;
+	public static float whiteGS = 	0.57f;
 	public static float unknownGS = 	avg(blackGS, whiteGS);
 	
 	public static float nbGS = avg(noneGS, blackGS);

@@ -110,7 +110,11 @@ public class RealDisplay implements Display {
 	
 	public void drawWarning(Warning warning){
 		Button.LEDPattern(6);
-		displayReadyTime = System.currentTimeMillis() + warningWaitTime ;
+		setDisplayReadyTime(System.currentTimeMillis() + warningWaitTime);
 		drawError("Warning", Images.warnImage, warning.getMessage());
+	}
+	
+	public void setDisplayReadyTime(long t){
+		this.displayReadyTime = t;
 	}
 }
