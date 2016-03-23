@@ -45,12 +45,6 @@ public abstract class MotorState extends State {
 		
 		if(m.gyroSensor.getOrientation() == this.direction){
 			hit = true;
-			try {
-				Sound.beep();
-			}
-			catch (NoClassDefFoundError e){
-				
-			}
 		}
 		
 		if((m.getMode() == Mode.INCREMENTAL || m.getMode() == Mode.SAFE) && 

@@ -12,8 +12,6 @@ public class PausedState extends State {
 	public PausedState(AbstractMain m){
 		if(m.getMode() != Mode.INCREMENTAL)
 			Say.paused();
-		else
-			Sound.beep();
 		if(m.spButton.isDown()){
 			released = false;
 		}
