@@ -16,14 +16,16 @@ import states.AbortState;
 import states.MotorLeftState;
 import states.MotorRightState;
 import states.ReadColorState;
+import states.StabilizeState;
 import states.WarningState;
 
 public class Tests {
 
+	// 
 	@Test
-	public void test() throws InterruptedException {
+	public void testDirection() throws InterruptedException {
 		
-		System.out.println("---Direction test??---");
+		System.out.println("---Direction test---");
 		
 		MockButton spButton = MockMain.spButton;
 		MockMotor motor = MockMain.motor;
@@ -72,7 +74,7 @@ public class Tests {
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
-		System.out.println("---Direction test?? finished---");
+		System.out.println("---Direction test finished---");
 	}
 	
 	@Test
@@ -97,6 +99,7 @@ public class Tests {
 		System.out.println("---Reset test finished---");
 	}
 	
+	// Motor jammed error
 	@Test
 	public void testMotorJammed() {
 		
@@ -129,6 +132,7 @@ public class Tests {
 		System.out.println("---Motor jammed test finished---");
 	}
 	
+	// Wrong basket error
 	@Test
 	public void testWrongBasket() {
 		
@@ -154,6 +158,7 @@ public class Tests {
 	    System.out.println("---Wrong basket test finished---");
 	}
 	
+	// Does not arrive in basket
 	@Test
 	public void testNoBasket() throws InterruptedException {
 		
@@ -173,6 +178,7 @@ public class Tests {
 		System.out.println("---Not basket test finished---");
 	}
 	
+	// Wrong input error
 	@Test
 	public void testWrongInput() {
 		
@@ -191,11 +197,11 @@ public class Tests {
 		System.out.println("---Wrong Input test finished---");
 	}
 	
+	// Battery low warning
 	@Test
 	public void testBatteryLow() {
 		
 		System.out.println("---Battery Low test---");
-		System.out.println(MockMain.battery.getVoltage());
 		
 		AbstractMain m = new MockMain();
 		MockBattery battery = MockMain.battery;
@@ -208,4 +214,57 @@ public class Tests {
 		System.out.println("---Battery Low test finished---");  
 		
 	}
+	
+	// Deviates from average warning
+	@Test
+	public void testDeviatesFromAverage() throws InterruptedException {
+		 System.out.println("---Deviates from average test---");
+		 
+		 AbstractMain m = new MockMain();
+		 m.setMode(Mode.SAFE);
+		 m.currentState = new MotorLeftState(m);
+		 
+		 m.cycle(); // Start timer
+		 Thread.sleep(m.getTAvg() + 1); // Wait for the average time
+		 m.cycle();
+		 assertTrue(m.currentState instanceof WarningState);
+		 
+		 System.out.println("---Deviates from average test finished---");
+	}
+	
+	// Abort by user
+	@Test
+	public void testAbort() {
+		
+		System.out.println("---Abort by user test---");
+		
+		AbstractMain m = new MockMain();
+		MockButton button = MockMain.aButton;
+		button.setDown(true);
+		m.cycle();
+		button.setDown(false);
+		assertTrue(m.currentState instanceof AbortState);
+		
+		System.out.println("---Abort by user test finished---");
+		
+	}
+	
+	// Gyroscope does not stabilize
+	@Test
+	public void testGyroDoesNotStabilize() throws InterruptedException {
+		
+		System.out.println("---Gyro stabilization test---");
+		
+		AbstractMain m = new MockMain();
+		m.currentState = new StabilizeState();
+		m.cycle();
+		Thread.sleep(m.getTGMax()+1);
+		m.cycle();
+		
+		assertTrue(m.currentState instanceof AbortState);
+		
+		System.out.println("---Gyro stabilization test finished---");
+	}
+	
+	
 }
