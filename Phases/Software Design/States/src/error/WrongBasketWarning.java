@@ -11,6 +11,5 @@ public class WrongBasketWarning extends Warning {
 
 	@Override
 	public void say(){
-		Say.wrongBasket();
 	}
 }
