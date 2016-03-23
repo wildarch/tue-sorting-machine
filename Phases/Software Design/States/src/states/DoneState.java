@@ -9,6 +9,7 @@ public class DoneState extends State {
 	public DoneState(){
 		Say.done();
 		Button.LEDPattern(7);
+		Say.dumpert();
 	} 
 
 	@Override

@@ -26,6 +26,7 @@ public class Say {
 	static File discNotArrive = new File("/sounds/Fatal - disc not arrived.wav");
 	static File gyroNotStab = new File("/sounds/Gyro not stabilize.wav");
 	static File ready = new File("/sounds/Ready.wav");
+	static File dumpert = new File("/sounds/Dumpert");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
@@ -85,10 +86,14 @@ public class Say {
 	private static void stop(){
 		thread.requestStop();
 	}
-	
+
 	public static void waitForStop() throws InterruptedException{
 		stop();
 		thread.join();
+	}
+	
+	public static void dumpert(){
+		play(dumpert);
 	}
 	
 	public static void ready() {
