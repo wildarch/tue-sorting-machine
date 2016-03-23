@@ -46,13 +46,17 @@ public abstract class MotorState extends State {
 		
 		if(m.gyroSensor.getOrientation() == this.direction){
 			hit = true;
-			Sound.beep();
+			try {
+				Sound.beep();
+			}
+			catch (NoClassDefFoundError e){
+				
+			}
 		}
 		
 		if((m.getMode() == Mode.INCREMENTAL || m.getMode() == Mode.SAFE) && 
 				m.timer.getTimeMS() > m.getTAvg() && !avgWarningGiven){
 			avgWarningGiven = true;
-			//System.out.println(m.timer.getTimeMS());
 			return new WarningState(new LongerThanAvgWarning(), m, this);
 		}
 		
@@ -62,7 +66,6 @@ public abstract class MotorState extends State {
 		
 		if ((m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)){
 			if (m.timer.getTimeMS() > m.getTDMax()){
-				//System.out.println(m.timer.getTimeMS());
 				return new AbortState(new DiskNotArrivedError(), m);
 			}
 			else {
