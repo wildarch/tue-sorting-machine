@@ -2,6 +2,7 @@ package peripherals;
 
 import sorter.AbstractMain;
 import sorter.Main;
+import lejos.hardware.Sound;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
@@ -41,5 +42,6 @@ public class RealColorSensor implements ColorSensor {
 		System.out.println("white:"+white);
 		System.out.println("none:"+none);
 		//TODO say calibration done
+		Sound.beepSequence();
 	}
 }
