@@ -13,6 +13,9 @@ import mock.MockMotor;
 import mock.MockTouchSensor;
 import peripherals.DetectedColor;
 import states.AbortState;
+import states.DoneState;
+import states.InitialState;
+import states.ModeSelectionState;
 import states.MotorLeftState;
 import states.MotorRightState;
 import states.ReadColorState;
@@ -21,11 +24,10 @@ import states.WarningState;
 
 public class Tests {
 
-	// 
 	@Test
-	public void testDirection() throws InterruptedException {
+	public void testSortingProcess() throws InterruptedException {
 		
-		System.out.println("---Direction test---");
+		System.out.println("---testSortingProcess start---");
 		
 		MockButton spButton = MockMain.spButton;
 		MockMotor motor = MockMain.motor;
@@ -74,36 +76,103 @@ public class Tests {
 		//ReadColorState
 		assertTrue(m.currentState instanceof ReadColorState);
 		m.cycle();
-		System.out.println("---Direction test finished---");
+		System.out.println("---testSortingProcess   end---");
+	}
+	
+	@Test
+	public void testColorSensor() {
+		
+		System.out.println("---testColorSensor start---");
+		
+		AbstractMain m = new MockMain();
+		MockColorSensor color = MockMain.color;
+		
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		m.setReset(false);
+		color.setDetectColor(DetectedColor.BLACK);
+		m.cycle();
+		assertTrue(m.currentState instanceof MotorLeftState);
+		
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		m.setReset(false);
+		color.setDetectColor(DetectedColor.WHITE);
+		m.cycle();
+		assertTrue(m.currentState instanceof MotorRightState);
+		
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		m.setReset(false);
+		color.setDetectColor(DetectedColor.NONE);
+		m.cycle();
+		assertTrue(m.currentState instanceof DoneState);
+		
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		m.setReset(false);
+		color.setDetectColor(DetectedColor.UNKNOWN);
+		m.cycle();
+		assertTrue(m.currentState instanceof WarningState);
+		
+		System.out.println("---testColorSensor   end---");
+	}
+	
+	@Test
+	public void testMotorCalibration() {
+		
+		System.out.println("---testMotorCalibration start---");
+		
+		AbstractMain m = new MockMain();
+		MockButton spbutton = MockMain.spButton;
+		MockMotor motor = MockMain.motor;
+		MockTouchSensor touch = MockMain.touch;
+		
+		m.currentState = new InitialState();
+		spbutton.setDown(false);
+		touch.setPressed(false);
+		m.cycle();
+		
+		assertTrue(motor.isMoving());
+		
+		touch.setPressed(true);
+		m.cycle();
+		touch.setPressed(false);
+		
+		assertTrue(m.currentState instanceof InitialState);
+		
+		spbutton.setDown(true);
+		m.cycle();
+		spbutton.setDown(false);
+		m.cycle();
+		
+		assertTrue(m.currentState instanceof ReadColorState);
+		
+		System.out.println("---testMotorCalibration   end---");
 	}
 	
 	@Test
 	public void testReset(){
-		System.out.println("---Reset test---");
-		MockButton spButton = MockMain.spButton;
-		MockTouchSensor touch = MockMain.touch;
-		MockColorSensor color = MockMain.color;
+		System.out.println("---testReset start---");
+		MockButton rButton = MockMain.rButton;
+		
 		AbstractMain m = new MockMain();
-		m.setMode(Mode.SAFE);
+		m.currentState = new ReadColorState();
+		m.setPaused(false);
+		rButton.setDown(true);
 		m.cycle();
-		touch.setPressed(true);
-		m.cycle();
-		spButton.setDown(true);
-		m.cycle();
-		spButton.setDown(false);
-		color.setDetectColor(DetectedColor.WHITE);
-		m.cycle();
-		//ReadColorState
-		assertTrue(m.currentState instanceof ReadColorState);
-		m.cycle();
-		System.out.println("---Reset test finished---");
+		rButton.setDown(false);
+		
+		assertTrue(m.currentState instanceof ModeSelectionState);
+		
+		System.out.println("---testReset   end---");
 	}
 	
 	// Motor jammed error
 	@Test
 	public void testMotorJammed() {
 		
-		System.out.println("---Motor jammed test---");
+		System.out.println("---testMotorJammed start---");
 		
 		AbstractMain m = new MockMain();
 		MockMotor motor = MockMain.motor;
@@ -129,14 +198,14 @@ public class Tests {
 		m.cycle();	
 		assertTrue(m.currentState instanceof AbortState);
 		
-		System.out.println("---Motor jammed test finished---");
+		System.out.println("---testMotorJammed   end---");
 	}
 	
 	// Wrong basket error
 	@Test
 	public void testWrongBasket() {
 		
-		System.out.println("---Wrong basket test---");
+		System.out.println("---testWrongBasket start---");
 		
 		AbstractMain m = new MockMain();
 		MockGyroSensor gyro = MockMain.gyro;
@@ -155,14 +224,14 @@ public class Tests {
 	    
 	    gyro.setRateChange(0);
 	    
-	    System.out.println("---Wrong basket test finished---");
+	    System.out.println("---testWrongBasket   end---");
 	}
 	
 	// Does not arrive in basket
 	@Test
 	public void testNoBasket() throws InterruptedException {
-		if(true) return;
-		System.out.println("---No basket test---");
+		
+		System.out.println("---testNoBasket start---");
 		
 		AbstractMain m = new MockMain();
 		
@@ -175,14 +244,14 @@ public class Tests {
 		m.cycle(); // Go to abort state for Does Not Reach Basket fatal error
 		assertTrue(m.currentState instanceof AbortState);
 		
-		System.out.println("---Not basket test finished---");
+		System.out.println("---testNoBasket   end---");
 	}
 	
 	// Wrong input error
 	@Test
 	public void testWrongInput() {
 		
-		System.out.println("---Wrong Input test---");
+		System.out.println("---testWrongInput start---");
 		
 		AbstractMain m = new MockMain();
 		MockColorSensor color = MockMain.color;
@@ -194,14 +263,14 @@ public class Tests {
 		m.cycle();
 		assertTrue(m.currentState instanceof WarningState);		
 		
-		System.out.println("---Wrong Input test finished---");
+		System.out.println("---testWrongInput   end---");
 	}
 	
 	// Battery low warning
 	@Test
 	public void testBatteryLow() {
 		
-		System.out.println("---Battery Low test---");
+		System.out.println("---testBatteryLow start---");
 		
 		AbstractMain m = new MockMain();
 		MockBattery battery = MockMain.battery;
@@ -211,14 +280,14 @@ public class Tests {
 		
 		// Read the console
 		
-		System.out.println("---Battery Low test finished---");  
+		System.out.println("---testBatteryLow   end---");  
 		
 	}
 	
 	// Deviates from average warning
 	@Test
 	public void testDeviatesFromAverage() throws InterruptedException {
-		 System.out.println("---Deviates from average test---");
+		 System.out.println("---testDeviatesFromAverage start---");
 		 
 		 AbstractMain m = new MockMain();
 		 m.setMode(Mode.SAFE);
@@ -229,14 +298,14 @@ public class Tests {
 		 m.cycle();
 		 assertTrue(m.currentState instanceof WarningState);
 		 
-		 System.out.println("---Deviates from average test finished---");
+		 System.out.println("---testDeviatesFromAverage   end---");
 	}
 	
 	// Abort by user
 	@Test
 	public void testAbort() {
 		
-		System.out.println("---Abort by user test---");
+		System.out.println("---testAbort start---");
 		
 		AbstractMain m = new MockMain();
 		MockButton button = MockMain.aButton;
@@ -245,7 +314,7 @@ public class Tests {
 		button.setDown(false);
 		assertTrue(m.currentState instanceof AbortState);
 		
-		System.out.println("---Abort by user test finished---");
+		System.out.println("---testAbort  end---");
 		
 	}
 	
@@ -253,7 +322,7 @@ public class Tests {
 	@Test
 	public void testGyroDoesNotStabilize() throws InterruptedException {
 		
-		System.out.println("---Gyro stabilization test---");
+		System.out.println("---testGyroDoesNotStabilize start---");
 		
 		AbstractMain m = new MockMain();
 		m.currentState = new StabilizeState();
@@ -263,7 +332,7 @@ public class Tests {
 		
 		assertTrue(m.currentState instanceof AbortState);
 		
-		System.out.println("---Gyro stabilization test finished---");
+		System.out.println("---testGyroDoesNotStabilize   end---");
 	}
 	
 	
