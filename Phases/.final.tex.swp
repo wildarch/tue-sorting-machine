@@ -41,7 +41,9 @@
 
 %-------- Title --------%
 
-\title{\vspace{-\baselineskip}\sffamily\bfseries \Huge Final report 2IO70}
+\title{\vspace{-\baselineskip}\sffamily\bfseries \Huge{ Final report 2IO70}
+\small \\or \naam
+}
 \author{
 	\makebox[.25\linewidth]{Sergio van Amerongen}\\0952200 \and
 	\makebox[.25\linewidth]{Stefan Cloudt}\\0940775 \and
