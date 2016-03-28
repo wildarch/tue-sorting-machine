@@ -1,0 +1,91 @@
+\documentclass[a4paper,oneside,11pt]{report}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb, standalone}
+
+\usepackage{algpseudocode}
+%-------- Macros and Definitions --------%
+
+\setlength\headheight{20pt}
+\addtolength\topmargin{-10pt}
+\addtolength\footskip{20pt}
+
+\newcommand{\subject}{2IO70 embedded systems}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ch}{\mathcal{CH}}
+
+\newcommand{\naam}{Reinhard Heinrich Bertram Vinzenz Freiherr von Pelden genannt Cloudt zu Lauersfort und Impel}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\large technische universiteit eindhoven}
+\fancyhead[RO,LE]{\sffamily\bfseries\large \subject}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily\bfseries\large technische universiteit eindhoven}
+\fancyhead[LO,RE]{\sffamily\bfseries\large \subject}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{graphicx}
+
+%-------- Title --------%
+
+\title{\vspace{-\baselineskip}\sffamily\bfseries \Huge Final report 2IO70}
+\author{
+	\makebox[.25\linewidth]{Sergio van Amerongen}\\0952200 \and
+	\makebox[.25\linewidth]{Stefan Cloudt}\\0940775 \and
+	\makebox[.25\linewidth]{Daan de Graaf}\\0956112 \and
+	\makebox[.25\linewidth]{Robert van Lente}\\0953343 \and
+	\makebox[.25\linewidth]{Tom Peters}\\0948730 \and
+	\makebox[.25\linewidth]{Berrie Trippe}\\0948147 
+	\and \makebox[.75\linewidth]{\textbf{Responsible:}} \and
+	Daan de Graaf\\ \tt{d.j.a.d.graaf@student.tue.nl}
+}
+\date{\today}
+
+%-------- Document --------%
+
+\begin{document}
+\maketitle
+
+\chapter{Introduction}
+\textit{
+On an easter morning, you are rudely woken by the merciless beeping of your alarm clock. In a reflex, you grab your phone from the nightstand to check up on your social media. You catch a glimpse of the time on your phone, and cry out in horror as you realize that your alarm clock does not account for daylight savings. Fueled by adrenalin you sprint downstairs, and are subsequently greeted by the smell of fresh coffee, which your coffee machine is programmed to make you every day. You resist your craving for caffeine and enter your car. You enter your sister's new address on your satellite navigation and drive off in silence, as your little one recently discovered the disc drive slot on the car stereo and decided it would make an ideal place to dispose of chewing gum. As much as that confused the car stereo, your GPS system is equally bewildered to find you taking a right turn where you should only have gone slightly right.
+}
+\\\\
+Nowadays, embedded systems are ubiquitous. They make sure you awake in time, satisfy your caffeine addiction and guide you from A to B. These devices all work flawlessly, were it not for one misbehaving part: Us. These machines have to work with our complicated time zones and daylight savings, deal with improper usage and even know the things we forget to tell them in order to do their jobs right! Surely, we can not expect any machine to account for all of this? Therefore, the best we can do is make machines as fault-tolerant as possible, and clearly communicate with the user when something inevitably goes wrong.
+
+This project is about sorting black and white discs. The machine made in this project is not only able to sort, but it can also detect errors during its process and give an adequate response. The machine is therefore able to tell something about its operating state, which is considered difficult.
+
+
+\chapter{Machine design}
+\input{"Machine Design/MachineDesign.tex"}
+
+\chapter {Software specification}
+\input{"Software Specification/SoftwareSpecification.tex"} 
+
+\chapter{Software design}
+\input{"Software Design/software design.tex"}
+
+\chapter{Software implementation}
+\input{"Software Implementation/software implementation.tex"}
+
+\chapter{System validation and testing}
+\input{"Testing _ Validating/V2 System Validation _ Testing.tex"}
+
+\chapter{Conclusion}
+After extensive proofs in Uppaal, logical reasoning and unit tests, we could go on to say that our machine is extremely reliable. It passed all these tests with flying colours, yet we do not consider it to be dependable. The truth is that there are many ways in which the sorting process can be disrupted. Disconnecting one or more of the peripherals from the brick for instance is considered undefined behaviour, as there exists no straightforward way of detecting this. However, many of the possible errors due to the environment can be detected at run time and will either be handled automatically or are reported to the user, and the machine is immediately halted in case of a fatal or potentially dangerous error.
+While it is impossible to build a totally reliable machine, we have been able to create a fast and safe solution to the initial problem. The use of a Mindstorms kit instead of a PP2 with fischertechnik has been both a blessing and a curse: It was relatively simple to write the software, as we could use a high-level language. This did make us very dependent on the platform we used, which is still in beta and did not always suit our purposes. We had sensors that could be queried easily and were well-integrated with the platform, but were not designed for our small, light stones and only a single sensor of each type was provided, forcing us to design a rather clever contraption.
+All in all, this project has been a great adventure, resulting in a fast, safe and verbose sorting machine: One that, combined with better equipment, might even become incredibly reliable.
+\end{document}

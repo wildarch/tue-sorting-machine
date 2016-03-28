@@ -1,0 +1,248 @@
+\documentclass[a4paper,oneside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb}
+
+%----------------------- Macros and Definitions --------------------------
+
+\setlength\headheight{20pt}
+\addtolength\topmargin{-10pt}
+\addtolength\footskip{20pt}
+
+\newcommand{\subject}{2IO70 embedded systems}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ch}{\mathcal{CH}}
+
+\newcommand{\naam}{Reinhard Heinrich Bertram Vinzenz Freiherr von Pelden genannt Cloudt zu Lauersfort und Impel}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\large technische universiteit eindhoven}
+\fancyhead[RO,LE]{\sffamily\bfseries\large \subject}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily\bfseries\large technische universiteit eindhoven}
+\fancyhead[LO,RE]{\sffamily\bfseries\large \subject}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[margin=1in]{geometry}
+
+%-------------------------------- Title ----------------------------------
+
+\title{\vspace{-\baselineskip}\sffamily\bfseries Workplan}
+\author{
+	\makebox[.25\linewidth]{Sergio van Amerongen}\\0952200 \and
+	\makebox[.25\linewidth]{Stefan Cloudt}\\0940775 \and
+	\makebox[.25\linewidth]{Daan de Graaf}\\0956112 \and
+	\makebox[.25\linewidth]{Robert van Lente}\\0953343 \and
+	\makebox[.25\linewidth]{Tom Peters}\\0948730 \and
+	\makebox[.25\linewidth]{Berrie Trippe}\\0948147 
+	\and \makebox[.75\linewidth]{\textbf{Responsible:}} \and
+	Stefan Cloudt\\\tt{s.d.cloudt@student.tue.nl}\and Tom Peters 		\\\tt{t.peters@student.tue.nl}
+}
+\date{February 15, 2016}
+
+%--------------------------------- Text ----------------------------------
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This document contains the workplan. We have documented what will be done when and by who. It is assumed that we have 96 man hours available every week for 7 weeks, because we have 4 timeslots, 4 hours per slot and 6 people. According to this assumption, deadlines are chosen which are also documented in this document. For each deliverable document, one person is pointed responsible for that document.
+
+\section{Absence}
+All group members will be present on times the group decides to meet and during the tutor hours. Exceptions are noted in the table below. All of those cases of absence are approved by the tutor.\\
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Who & When\\
+\hline
+Stefan & 5-2-2016 after 11:00\\
+\hline
+Stefan & From 16-2-2016 untill 22-2-2016\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Deadlines of deliverables}
+We have included two deadlines. One deadline for which we want to have a finished document and one deadline for handing in the document to the tutor. The time in between of those two dates is the time spend to solve unforeseen situations, for example illness or travel problems.\\
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Document & Responsible & Finished & Delivery\\
+\hline
+Abstract & Individual & 5-2-2016 & 5-2-2016\\
+\hline
+Self-Reflection & Individual & 12-2-2016 & 12-2-2016\\
+\hline
+Workplan & Stefan, Tom & 19-2-2016 & 19-2-2016\\
+\hline
+Machine Design & Robert & 19-2-2016 & 26-2-2016\\
+\hline
+Software Specification & Tom & 26-2-2016 & 4-3-2016\\
+\hline
+software Design & Stefan & 4-3-2016 & 11-3-2016\\
+\hline
+Software Implementation & Berrie & 11-3-2016 & 18-3-2016\\
+\hline
+System Validation and Testing & Sergio & 18-3-2016 & 25-3-2016\\
+\hline
+Final Report & Daan & 7-4-2016 & 7-4-2016\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Presentations}
+There will be three internal presentations by the group members for the group members. These presentations are used to decide who will do the midterm presentations and who will do the final presentations.\\
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Subject & Who & Date & Time\\
+\hline
+V-Model & Stefan, Tom & 5-2-2016 & 9:15\\
+\hline
+Testing & Daan, Sergio & 5-2-2016 & 9:30\\
+\hline
+UPPAAL & Berrie, Robert & 15-2-2016 & 13:00\\
+\hline
+\end{tabular}
+\end{center}
+
+As decided on 15-2-2016 after the internal presentations, the following presentations will be as shown in the table.\\
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Presentation & Who & Date\\
+\hline
+Midterm & Sergio, Tom and Berrie & 23-2-2016, 25-2-2016 or 26-2-2016\\
+\hline
+Final & Stefan, Daan and Robert & 29-3-2016, 31-3-2016 or 1-4-2016\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Tasks}
+Machine Design.\\
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Experiment with LEGO & 18 & \\
+\hline
+Define SLR & 36 & \\
+\hline
+Define machine interface & 12 & SLR\\
+\hline
+Creating documents & 6 & All tasks of phase\\
+\hline
+\end{tabular}
+\end{center}
+Software Specification
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Define inputs & 3 & Machine interface\\
+\hline
+Define outputs & 3 & Machine interface\\
+\hline
+Define dependency of input output & 6 & Define inputs, define outputs\\
+\hline
+Finite State automaton & 12 & Define dependency of I/O\\
+\hline
+UPPAAL model & 18 &  Finite state automaton\\
+\hline
+Creating documents & 6 & All tasks of phase\\
+\hline
+\end{tabular}
+\end{center}
+Software Design
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Class diagram & 18 & \\ \hline
+State machines & 6 & \\ \hline
+Message sequence charts & 12 & \\ \hline
+Pseudo code of functions & 12 & All above\\ \hline
+Creating documents & 6 & All above\\
+\hline
+\end{tabular}
+\end{center}
+Implementation
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Coding & 1 & \\ \hline
+Writing code & 24 & Coding standard\\
+\hline
+\end{tabular}
+\end{center}
+System validation and testing
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Machine Design test & 8 & Machine design\\ \hline
+Software Specification test & 12 & Software specification\\ \hline
+Software Design test & 6 & Software design\\ \hline
+Implementation test & 12 & Implementation\\ \hline
+Fixing failed test & 18 & One of the above\\ 
+\hline
+\end{tabular}
+\end{center}
+Completion
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Task & Estimated & Dependent\\
+\hline
+Final report & 36 & Everything of other phases\\ \hline
+Final presentation & 24 & Everything of other phases\\
+\hline
+\end{tabular}
+\end{center}
+\section{Role division}
+The roles of the group members are as shown inside the table.\\
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Week & President & Secretary & QA Manager & Materials Manager\\
+\hline
+1 & Daan & Sergio & Robert & Berrie\\
+\hline
+2 & Tom & Sergio & Robert & Berrie\\
+\hline
+3 & Stefan & Berrie & Robert & Berrie\\
+\hline
+4 & Sergio & Stefan & Daan & Berrie\\
+\hline
+5 & Robert & Tom & Daan & Berrie\\
+\hline
+6 & Berrie & Daan & Sergio & Berrie\\
+\hline
+7 & Daan & Robert & Sergio & Berrie\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Tutor Meetings}
+Weekly two tutor meetings are planned. Wednesday at 14:15 and on Friday at 13:00.
+
+
+
+\end{document}
