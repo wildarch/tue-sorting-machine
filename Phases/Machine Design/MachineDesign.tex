@@ -73,7 +73,7 @@ In order to create a functioning sorting machine that can sort black and white d
 \end{itemize}
 
 \section{Final Design}
-The machine consists of a vertical tube in which the discs can be stored. A pin can be removed from the bottom of the tube, allowing the discs to fall on a platform below, one by one. A color sensor is attached underneath this platform, such that it can detect the color of the disc.
+The machine consists of a vertical tube in which the discs can be stored. A pin can be removed from the bottom of the tube, allowing the discs to fall on a platform below, one by one. A colour sensor is attached underneath this platform, such that it can detect the colour of the disc.
 Next to this platform, a step motor is attached that rotates a wheel with three arms. These arms can push the disc of the platform, either on the left or the right side.
 Below the platform, a seesaw is attached with both sides of the same length, such that the discs that fall on the platform can fall on these arms. A gyroscope is attached to the axis of this seesaw, such that rotations of the seesaw can be detected.
 The discs then slide off the seesaw, allowing it to stabilize, and fall into one of two mountable trays.
@@ -183,7 +183,7 @@ Possible errors are as follows:
 \hline
 Error type & Fatal (= go to abort state)\\\hline
 Disc does not reach the tray & Yes\\\hline
-Disc arrives in the wrong tray & Yes\\\hline
+Disc arrives in the wrong tray & No\\\hline
 Time to tray is higher than average & No\\\hline
 Wrong input (i.e. different colour disc) & No\\\hline
 Motor jams & Yes \\\hline
@@ -313,8 +313,6 @@ are heavily dependent on the machine interface described in this document, since
 interface describe our assumptions about the machine API and the mechanical implementation.
 The software specifications will describe how we are going to use this interface and how the
 machine will behave.
-
-\newpage
 
 \section{Sources}
 \begin{description}

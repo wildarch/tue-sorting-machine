@@ -59,10 +59,10 @@
 \maketitle
 
 \section{Introduction}
-After having designed the machine, we are able to specify how our software should behave. We do this by describing the software in a state machine with abstract states. This state machine also implements the different operation modes. After this we characterize the distinct inputs and outputs. We will convert the state diagram into a working UPPAAL model and explain the working systems in detail. Finally we explain the verification of our model. This document is called the software specification.
+After having designed the machine, we are able to specify how our software should behave. We do this by describing the software in a state machine with abstract states. This state machine also implements the different operation modes. After this we characterise the distinct inputs and outputs. We will convert the state diagram into a working UPPAAL model and explain the working systems in detail. Finally we explain the verification of our model. This document is called the software specification.
 
 \section{Operation modes}
-Because the gyroscope is rather slow and has to stabilize, we have to wait for it to stabilize before we can sort the next disc, thus causing a bottleneck. If we want to sort very fast, we should skip the input from the gyroscope and sort the discs immediately after each other. Therefore, we want to implement 2 modes: a fast mode in which we don’t check for input from the gyroscope and thus don’t check if the disc actually reaches the tray, and a slower safe mode, where we check for input from the gyroscope and we can make sure that discs do reach the tray. Besides this, we want to make an additional incremental mode for debug purposes, in which the user has to press a button for the machine to sort the next disc.
+Because the gyroscope is rather slow and has to stabilise, we have to wait for it to stabilise before we can sort the next disc, thus causing a bottleneck. If we want to sort very fast, we should skip the input from the gyroscope and sort the discs immediately after each other. Therefore, we want to implement 2 modes: a fast mode in which we don’t check for input from the gyroscope and thus don’t check if the disc actually reaches the tray, and a slower safe mode, where we check for input from the gyroscope and we can make sure that discs do reach the tray. Besides this, we want to make an additional incremental mode for debug purposes, in which the user has to press a button for the machine to sort the next disc.
 
 \subsection{Fast mode}
 The machine starts in a resting state. If the Start/Pause button is pressed in this state, the machine should go to the checking state. In this state, the machine checks which color disc is present on top of the light sensor. There are four different transitions the machine can make at this point, depended on the detected colour. If the machine is black or white, it should go to a respective state in which the motor is rotated accordingly. When the motor has finished moving, the machine simply returns to the checking state. The machine can be paused by pressing the Start/Pause button anytime during the checking process. The machine then goes to a paused state as soon as it enters the checking state and waits for the Start/Pause again to return to the checking process.
@@ -217,7 +217,7 @@ We want to ensure that the machine halts in case of a fatal error. This check en
 
 \paragraph{Peripheral reset}
 Query: A[] (ProcessReinhard.paused or ProcessReinhard.INIT) imply (ProcessMotor.INIT and ProcessGyroSensor.INIT) \\
-Description: Whenever the system is in the paused or initialization state, the motor and gyro sensor must be in their initial state. \\
+Description: Whenever the system is in the paused or initialisation state, the motor and gyro sensor must be in their initial state. \\
 The goal is this check is twofold: We want to ensure that all peripherals are idle when the machine is in the paused state or has not yet started, and we have to be certain that after reaching the ABORT state, all peripherals are correctly reset. If we would leave the gyroscope in its left or right state, we would cause deadlock in the next cycle. Worse still, leaving the motor running after an ABORT could harm to machine.
 
 \paragraph{Full speed independent of gyroscope}
@@ -245,6 +245,6 @@ Query: A[] not deadlock \\
 Description: The system never deadlocks in any case \\
 
 \section{Conclusion}
-This document provided the information about the behavior of our software. We introduced our state machine diagram which we then implemented in UPPAAL. We clearly explained the working of our systems in UPPAAL and verified our model using this program. This part is used as the basis for the design of the software and is very important.
+This document provided the information about the behaviour of our software. We introduced our state machine diagram which we then implemented in UPPAAL. We clearly explained the working of our systems in UPPAAL and verified our model using this program. This part is used as the basis for the design of the software and is very important.
 
 \end{document}
