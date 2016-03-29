@@ -1,5 +1,6 @@
 package states;
 import error.MotorJammedError;
+import lejos.hardware.Sound;
 import sorter.AbstractMain;
 import sorter.Mode;
 import sorter.Say;
@@ -21,7 +22,8 @@ public class InitialState extends State {
 				m.gyroSensor.calibrate();
 			}
 			m.motor.slowForward();
-		} else if(m.motor.isStalled()) {
+		}
+		else if(m.motor.isStalled()) {
 			return new AbortState(new MotorJammedError(), m);
 		}
 		else if(m.touchSensor.isPressed()){
@@ -43,7 +45,7 @@ public class InitialState extends State {
 			this.pressed = true;
 		}
 		
-		if(m.isReset()){
+		if(m.isReset() && this.calibrationFinished){
 			m.variableReset();
 			return new ModeSelectionState(m);
 		}
