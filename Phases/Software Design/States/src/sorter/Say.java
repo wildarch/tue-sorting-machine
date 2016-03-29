@@ -80,11 +80,16 @@ public class Say {
 	private static SThread thread = new SThread();
 	
 	private static void play(File sound){
-		if(!thread.isRunning()){
-			thread.start();
+		try{
+			if(!thread.isRunning()){
+				thread.start();
+			}
+			
+			thread.play(new File(sound.getAbsolutePath()));
 		}
-		
-		thread.play(new File(sound.getAbsolutePath()));
+		catch(IllegalThreadStateException e) {
+			//Np
+		}
 	}
 	
 	private static void stop(){

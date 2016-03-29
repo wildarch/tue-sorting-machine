@@ -9,7 +9,12 @@ public class DoneState extends State {
 	public DoneState(){
 		//Say.done();
 		Say.dumpert();
-		Button.LEDPattern(7);
+		try {
+			Button.LEDPattern(7);
+		}
+		catch(NoClassDefFoundError e){
+			//Np
+		}
 	} 
 
 	@Override
