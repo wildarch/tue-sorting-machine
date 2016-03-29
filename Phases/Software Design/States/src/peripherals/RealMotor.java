@@ -62,4 +62,8 @@ public class RealMotor implements Motor {
 	public void rotate(int i) {
 		motor.rotate(i);
 	}
+
+	public void flt() {
+		motor.flt();
+	}
 }

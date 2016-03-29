@@ -1,11 +1,13 @@
 package error;
 
+import sorter.AbstractMain;
 import sorter.Say;
 
 public class MotorJammedError extends FatalError {
 
-	public MotorJammedError() {
+	public MotorJammedError(AbstractMain m) {
 		super("Motor jammed");
+		m.motor.flt();
 	}
 	
 	@Override

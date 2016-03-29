@@ -43,4 +43,7 @@ public class MockMotor implements Motor {
 		System.out.println("Rotating "+i+" degrees");
 	}
 
+	public void flt() {
+	}
+
 }

@@ -11,6 +11,7 @@ public class AbortState extends State {
 	public AbortState(FatalError e, AbstractMain abstractMain){
 		e.say();
 		abstractMain.motor.stop();
+		abstractMain.motor.flt(); 
 		error = e;
 	}
 

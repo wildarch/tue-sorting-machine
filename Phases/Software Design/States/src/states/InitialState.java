@@ -24,7 +24,7 @@ public class InitialState extends State {
 			m.motor.slowForward();
 		}
 		else if(m.motor.isStalled()) {
-			return new AbortState(new MotorJammedError(), m);
+			return new AbortState(new MotorJammedError(m), m);
 		}
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();

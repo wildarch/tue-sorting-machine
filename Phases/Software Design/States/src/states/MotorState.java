@@ -54,7 +54,7 @@ public abstract class MotorState extends State {
 		}
 		
 		if (m.motor.isStalled()){
-			return new AbortState(new MotorJammedError(), m);
+			return new AbortState(new MotorJammedError(m), m);
 		}
 		
 		if ((m.getMode() == Mode.SAFE || m.getMode() == Mode.INCREMENTAL)){

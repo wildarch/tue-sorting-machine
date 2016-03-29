@@ -20,4 +20,6 @@ public interface Motor {
 	public void reset();
 
 	public void rotate(int i);
+
+	public void flt();
 }
