@@ -87,13 +87,13 @@ We had the option to attach the colour sensor in various ways to the machine. We
 \subsection{Container}
 The decision to use a tube-like structure was made early on, as it is the most compact way to store the discs. The vertical storage also has the added benefit of removing the need to create an additional transporter to move the discs from the container to the sensor, since a new disc will simply fall in place when the previous disc is moved away.
 
-The height between the tube and the platform is designed to be slightly higher than the height of one disc. This ensures that only one disc will be moved from the tube at the time.
+The height between the tube and the platform is designed to be slightly higher than the height of one disc. This ensures that only one disc will be moved from the tube at a time.
 
 \subsection{Rotating arm}
 The wheel to which the arms are attached are used to transport the discs from the sensor to the trays. We had options to put 3 or 4 arms on the wheel. We chose to go for 3 arms because then we would be able to attach a touch sensor which is used for calibration.
 
 \subsection{Seesaw}
-Initially, the plan was to use touch sensors to detect if a disc arrived in the correct tray. However, we quickly found that the discs did not weigh enough to trigger the touch sensors. Therefore we settled finally with the seesaw and a gyroscope attached to it.
+Initially, the plan was to use touch sensors to detect if a disc arrived in the correct tray. However, we quickly found that the discs did not weigh enough to trigger the touch sensors. Therefore we finally settled with the seesaw and a gyroscope attached to it.
 
 \subsection{Trays}
 We chose to use coffee cups for the trays in the machine, since these where readily and freely available. Other options would be buying plastic trays or building trays out of LEGO, which was not possible because there was not a sufficient number of parts in the construction set.
@@ -120,8 +120,7 @@ We chose to use coffee cups for the trays in the machine, since these where read
 
 \section{System Level Requirements}
 \subsection{Use Cases}
-The machine can be described as a finite automaton. This finite automaton is shown in figure
-3. The machine has three buttons, which the user can utilize to control the machine. The
+The machine can be described as a finite automaton. This finite automaton is shown in figure \ref{machinedesign}. The machine has three buttons, which the user can utilize to control the machine. The
 START/PAUSE button is used to start and pause the machine. The ABORT button is used to
 stop the machine in case of emergency. The RESET button is used to reset the machine. The
 user is required to add black or white discs to the container before starting the machine.
@@ -162,14 +161,13 @@ State.
 
 \subsection{User Constraints}
 \subsubsection{Machine Preparation}
-Machine Preparation Before starting the operation of the machine with the START/PAUSE
-button in the resting state, the user is expected to fill the disc storage device with black and
+Before starting the operation of the machine with the START/PAUSE button in the resting state, the user is expected to fill the disc storage with black and
 white colored discs that need to be sorted. Only discs are allowed in the disc storage and no
 other objects should be placed in it. The user must also ensure that no discs are present in
 other parts of the machine and that the disc trays are mounted to their mounting points prior
 to starting execution. The disc trays should be empty. At most 12 discs may place into the
-container. The user then has to proceed by starting the program. The tube can be filled with
-discs after the machine has finished calibrating the moving arm.
+container. The user then has to proceed by starting the program. At this point, the machine will calibrate the arm to the standard position. After the calibration, the tube can be filled with
+discs by pulling out the plug.
 
 After the machine has finished execution, the user will have access to two trays, one containing exclusively white discs, the other only contains black discs. When the machine indicates
 that it has finished its sorting procedure, the user should remove the trays from their mounts
@@ -211,7 +209,7 @@ destination to white, or we dispose all unknown discs into a separate tray.
 %in the controlling parts of the machine prevent it from functioning properly for obvious reasons.
 %The user has to fix this by hand before the machine can be used again.
 
-The machine will stop operation when the battery has less than 5% of charge left. This
+The machine will stop operation when the battery has less than 5\% of charge left. This
 is done to prevent the machine running out of power in between operations and ending in an
 invalid state.
 

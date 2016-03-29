@@ -48,10 +48,7 @@ public class RealColorSensor implements ColorSensor {
 		ColorEstimator.whiteGS = white;
 		ColorEstimator.noneGS = none;
 		ColorEstimator.calibrate();
-		
-		System.out.println("black:"+black);
-		System.out.println("white:"+white);
-		System.out.println("none:"+none);
+
 		LCD.clear();
 		//TODO say calibration done
 		Sound.beepSequence();
