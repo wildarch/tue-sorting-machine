@@ -70,7 +70,7 @@ Unit tests are small programs that test a small part of the main program, usuall
 
 We chose to use JUnit as our unit testing framework. Unit tests will execute automatically when code is being changed in our IDE, eclipse. The unit testing framework will evaluate the code changes and run the tests for which the tested code is possibly affected by the changes. This ensures that we spot bugs and errors early on in the implementation, granted there are enough tests to cover the codebase.
 
-\subsubsection{Mock}
+\subsubsection{Mocking}
 Several mock peripherals are needed to simulate inputs and outputs during unit tests:
 
 \paragraph{Battery mock:} We use this to simulate the voltage given by the battery. This way we can test whether the software handles a low battery exception properly.

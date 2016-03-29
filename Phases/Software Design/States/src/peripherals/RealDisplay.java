@@ -54,11 +54,16 @@ public class RealDisplay implements Display {
 		g.setFont(Font.getSmallFont());
 		g.drawString("Left", 0, SH-20, g.BASELINE);
 		g.drawString("Right", SW-30, SH-20, g.BASELINE);
-		g.drawString("Middle", SW/2, SH-20, g.BASELINE|g.HCENTER);
+		g.drawString("Up", SW/2, SH-60, g.BASELINE|g.HCENTER);
+		g.drawString("Middle", SW/2, SH-40, g.BASELINE|g.HCENTER);
+		g.drawString("Down", SW/2, SH-20, g.BASELINE|g.HCENTER);
+		
 		
 		g.drawString("Fast", 0, SH-10, g.BASELINE);
 		g.drawString("Step", SW-25, SH-10, g.BASELINE);
-		g.drawString("Safe", SW/2, SH-10, g.BASELINE|g.HCENTER);
+		g.drawString("Exit", SW/2, SH-10, g.BASELINE|g.HCENTER);
+		g.drawString("Safe", SW/2, SH-30, g.BASELINE|g.HCENTER);
+		g.drawString("Calibrate", SW/2, SH-50, g.BASELINE|g.HCENTER);
 		
 		g.refresh();
 		return true;
