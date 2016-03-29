@@ -21,7 +21,6 @@ public class ReadColorState extends State {
 		}
 		
 		float grayScale = m.colorSensor.getGrayScale();
-		//System.out.println("GrayScale: "+grayScale);
 		DetectedColor color = m.colorSensor.detectColor(grayScale);
 		m.stats.addWrongChance(ColorEstimator.getWrongChance(grayScale, color));
 		switch(color){
