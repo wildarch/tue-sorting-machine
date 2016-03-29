@@ -1,6 +1,7 @@
 package peripherals;
 
 import sorter.AbstractMain;
+import sorter.Say;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.Port;
@@ -51,7 +52,7 @@ public class RealColorSensor implements ColorSensor {
 		ColorEstimator.calibrate();
 
 		LCD.clear();
-		//TODO say calibration done
+		Say.ready();
 		Sound.beepSequence();
 	}
 }
