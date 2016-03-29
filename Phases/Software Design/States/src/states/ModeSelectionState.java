@@ -2,6 +2,7 @@ package states;
 
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import peripherals.ColorEstimator;
 import sorter.AbstractMain;
 import sorter.Mode;
 import sorter.Say;
@@ -14,6 +15,7 @@ public class ModeSelectionState extends State {
 
 	@Override
 	public State nextState(AbstractMain m) {
+		ColorEstimator.readFromFile();
 		while(!m.display.drawModeSelect()) {}
 		int button = Button.waitForAnyPress();
 		switch(button){
