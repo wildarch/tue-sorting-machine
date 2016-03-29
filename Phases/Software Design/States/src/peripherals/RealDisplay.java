@@ -49,7 +49,6 @@ public class RealDisplay implements Display {
 		if(!isReady()) return false;
 		g.clear();
 		
-		drawTitle("Choose mode:");
 		g.drawImage(Images.modeSelect, SW/2, 0, g.HCENTER|g.TOP);
 		g.setFont(Font.getSmallFont());
 		
