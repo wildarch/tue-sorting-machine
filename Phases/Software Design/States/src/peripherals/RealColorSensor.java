@@ -21,7 +21,7 @@ public class RealColorSensor implements ColorSensor {
 	
 	public float getGrayScale(){
 		float avg = 0;
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < 1; i++){
 			grayScaleProvider.fetchSample(sample, 0);
 			avg = avg * i + sample[0];
 			avg/=i+1;

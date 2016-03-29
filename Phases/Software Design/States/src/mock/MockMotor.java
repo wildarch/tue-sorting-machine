@@ -39,4 +39,8 @@ public class MockMotor implements Motor {
 
 	public void reset() {}
 
+	public void rotate(int i) {
+		System.out.println("Rotating "+i+" degrees");
+	}
+
 }

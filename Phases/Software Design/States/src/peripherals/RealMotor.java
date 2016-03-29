@@ -58,4 +58,8 @@ public class RealMotor implements Motor {
 	public void reset(){
 		motor.resetTachoCount();
 	}
+
+	public void rotate(int i) {
+		motor.rotate(i);
+	}
 }

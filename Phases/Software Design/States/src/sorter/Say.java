@@ -27,6 +27,7 @@ public class Say {
 	static File gyroNotStab = new File("/sounds/Gyro not stabilize.wav");
 	static File ready = new File("/sounds/Ready.wav");
 	static File dumpert = new File("/sounds/Dumpert.wav");
+	static File akbar = new File("/sounds/akbar.wav");
 	
 	private static class SThread extends Thread{
 		private volatile boolean running;
@@ -187,5 +188,9 @@ public class Say {
 	
 	public static void black(){
 		play(black);
+	}
+	
+	public static void akbar(){
+		play(akbar);
 	}
 }

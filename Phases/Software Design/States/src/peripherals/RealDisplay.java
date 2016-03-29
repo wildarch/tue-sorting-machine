@@ -24,7 +24,7 @@ public class RealDisplay implements Display {
     }
     
 	@SuppressWarnings("static-access")
-	public void drawCount(State state, Statistics stats){
+	public void drawCount(State state, Statistics stats, boolean refresh){
 		if(!isReady()) return;
 		Button.LEDPattern(1);
 		String name = state.getClass().getSimpleName();
@@ -41,7 +41,11 @@ public class RealDisplay implements Display {
 		g.drawString("W", 2*SW/3, SH/2-10, g.BASELINE|g.HCENTER);
 		String w = String.valueOf(stats.white);
 		g.drawString(w, 2*SW/3, SH/2+30, g.BASELINE|g.HCENTER);
-		g.refresh();
+		if(refresh) g.refresh();
+	}
+	
+	public void drawCount(State s, Statistics st){
+		drawCount(s, st, true);
 	}
 	
 	@SuppressWarnings("static-access")
@@ -66,8 +70,7 @@ public class RealDisplay implements Display {
 	public void drawSuccessChance(float chance){
 		if(!isReady()) return;
 		g.setFont(Font.getDefaultFont());
-		g.drawString("Success: "+(chance)*100 + "%", SW/2, SH-10, g.BASELINE|g.HCENTER, true);
-		g.refresh();
+		g.drawString("Success: "+(chance)*100 + "%", SW/2, SH, g.BOTTOM|g.HCENTER, true);
 	}
 	
 	@SuppressWarnings("static-access")
@@ -76,8 +79,7 @@ public class RealDisplay implements Display {
 		int seconds = (int)t/1000;
 		long miliseconds = t - seconds * 1000; 
 		g.setFont(Font.getDefaultFont());
-		g.drawString("Time: " + seconds + "." + miliseconds + "s", SW/2, SH-25, g.BASELINE|g.HCENTER, true);
-		g.refresh();
+		g.drawString("Time: " + seconds + "." + miliseconds + "s", SW/2, SH-g.getFont().getHeight(), g.BOTTOM|g.HCENTER, true);
 	}
 	
 	private boolean isReady() {
@@ -114,5 +116,9 @@ public class RealDisplay implements Display {
 	
 	public void setDisplayReadyTime(long t){
 		this.displayReadyTime = t;
+	}
+	
+	public void refresh(){
+		g.refresh();
 	}
 }

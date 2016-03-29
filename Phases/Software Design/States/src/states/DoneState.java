@@ -1,6 +1,7 @@
 package states;
 import lejos.hardware.Button;
 import sorter.AbstractMain;
+import sorter.Mode;
 import sorter.Say;
 
 public class DoneState extends State {
@@ -32,9 +33,10 @@ public class DoneState extends State {
 	
 	@Override
 	public void displayUpdate(AbstractMain m){
-		super.displayUpdate(m);
+		m.display.drawCount(this, m.stats, false);
 		m.display.drawSuccessChance(m.stats.getChanceSuccess());
-		m.display.drawTime(time);
+		if(m.getMode() != Mode.INCREMENTAL) m.display.drawTime(time);
+		m.display.refresh();
 	}
 	
 }

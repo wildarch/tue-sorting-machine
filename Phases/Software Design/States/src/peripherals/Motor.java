@@ -18,4 +18,6 @@ public interface Motor {
 	public void slowForward();
 	
 	public void reset();
+
+	public void rotate(int i);
 }

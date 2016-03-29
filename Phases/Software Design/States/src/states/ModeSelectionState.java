@@ -2,6 +2,7 @@ package states;
 
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import lejos.utility.Delay;
 import peripherals.ColorEstimator;
 import sorter.AbstractMain;
 import sorter.Mode;
@@ -10,11 +11,12 @@ import sorter.Say;
 public class ModeSelectionState extends State {
 
 	public ModeSelectionState(AbstractMain m) {
-		m.stats.reset();
+		m.variableReset();
 	}
 
 	@Override
 	public State nextState(AbstractMain m) {
+		m.variableReset();
 		while(!m.display.drawModeSelect()) {}
 		ColorEstimator.readFromFile();
 		int button = Button.waitForAnyPress();
@@ -24,6 +26,7 @@ public class ModeSelectionState extends State {
 			case Button.ID_RIGHT: m.setMode(Mode.INCREMENTAL); Say.incremental(); break;
 			case Button.ID_DOWN: Sound.beepSequence(); System.exit(0); break;
 			case Button.ID_UP: Sound.beepSequenceUp(); m.colorSensor.calibrationSequence(m); return this;
+			case Button.ID_ESCAPE: Say.akbar(); m.motor.rotate(12*120); return this;
 		}
 		//System.out.println("Mode: "+m.getMode());
 		while(m.spButton.isDown()){

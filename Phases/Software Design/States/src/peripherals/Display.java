@@ -19,4 +19,8 @@ public interface Display {
 	public void drawTime(long t);
 
 	public void setDisplayReadyTime(long t);
+
+	public void refresh();
+
+	public void drawCount(State state, Statistics stats, boolean b);
 }
