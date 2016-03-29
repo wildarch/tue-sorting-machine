@@ -2,6 +2,7 @@ package sorter;
 
 import lejos.hardware.DeviceException;
 import lejos.hardware.Key;
+import lejos.hardware.KeyListener;
 import lejos.hardware.device.DeviceIdentifier;
 import lejos.hardware.port.SensorPort;
 import peripherals.Battery;
@@ -78,6 +79,26 @@ public abstract class AbstractMain {
 	
 	public void run(){
 		try {
+			spButton.addKeyListener(new KeyListener(){
+				public void keyPressed(Key k) {
+					setPaused(true);
+				}
+
+				public void keyReleased(Key k) {
+				}				
+			});
+			rButton.addKeyListener(new KeyListener(){
+				public void keyPressed(Key k) {
+					setReset(true);
+					display.setDisplayReadyTime(System.currentTimeMillis());
+				}
+
+				public void keyReleased(Key k) {
+				}
+				
+			});
+			
+			
 			while(true){
 				//testPeripherals();
 				cycle();
@@ -102,12 +123,10 @@ public abstract class AbstractMain {
 		} 
 		else if(spButton.isDown()){
 			setPaused(true);
-			System.out.println("Paused is set to true");
 		}
 		else if(rButton.isDown()){
 			setReset(true);
 			display.setDisplayReadyTime(System.currentTimeMillis());
-			System.out.println("Reset is set to true");
 		}
 		//check battery
 		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
