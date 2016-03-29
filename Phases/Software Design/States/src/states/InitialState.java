@@ -1,4 +1,5 @@
 package states;
+import error.MotorJammedError;
 import sorter.AbstractMain;
 import sorter.Mode;
 import sorter.Say;
@@ -20,6 +21,8 @@ public class InitialState extends State {
 				m.gyroSensor.calibrate();
 			}
 			m.motor.slowForward();
+		} else if(m.motor.isStalled()) {
+			return new AbortState(new MotorJammedError(), m);
 		}
 		else if(m.touchSensor.isPressed()){
 			m.motor.stop();
@@ -38,6 +41,11 @@ public class InitialState extends State {
 		
 		if(this.calibrationFinished && m.spButton.isDown()){
 			this.pressed = true;
+		}
+		
+		if(m.isReset()){
+			m.variableReset();
+			return new ModeSelectionState(m);
 		}
 		
 		if(this.pressed && m.spButton.isUp()){

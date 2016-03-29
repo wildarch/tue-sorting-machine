@@ -15,8 +15,8 @@ public class ModeSelectionState extends State {
 
 	@Override
 	public State nextState(AbstractMain m) {
-		ColorEstimator.readFromFile();
 		while(!m.display.drawModeSelect()) {}
+		ColorEstimator.readFromFile();
 		int button = Button.waitForAnyPress();
 		switch(button){
 			case Button.ID_LEFT: m.setMode(Mode.FAST); Say.fast(); break;

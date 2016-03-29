@@ -1,5 +1,9 @@
 package sorter;
 
+import error.AbortButtonError;
+import error.BatteryWarning;
+import error.PeripheralConnectionLostError;
+import error.SofwareError;
 import lejos.hardware.DeviceException;
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
@@ -12,27 +16,20 @@ import peripherals.GyroSensor;
 import peripherals.Motor;
 import peripherals.TouchSensor;
 import states.AbortState;
-import states.MotorLeftState;
-import states.MotorRightState;
-import states.ReadColorState;
 import states.State;
 import states.WarningState;
-import error.AbortButtonError;
-import error.BatteryWarning;
-import error.PeripheralConnectionLostError;
-import error.SofwareError;
 
 public abstract class AbstractMain {
-	public static final int MOTOR_TURN_STEP = 		120;
-	public static final int MOTOR_SAFE_SPEED = 		4*MOTOR_TURN_STEP;
-	public static final int MOTOR_FAST_SPEED = 		900;
-	public static final int GYRO_STABLE_TRESHOLD = 	10;
-	public static final float BATTERY_TRESHOLD = 	7.5f;
-	
+	public static final int MOTOR_TURN_STEP = 120;
+	public static final int MOTOR_SAFE_SPEED = 4 * MOTOR_TURN_STEP;
+	public static final int MOTOR_FAST_SPEED = 900;
+	public static final int GYRO_STABLE_TRESHOLD = 10;
+	public static final float BATTERY_TRESHOLD = 7.5f;
+
 	public final Key spButton;
 	public final Key aButton;
 	public final Key rButton;
-	
+
 	public final Motor motor;
 	public final ColorSensor colorSensor;
 	public final GyroSensor gyroSensor;
@@ -41,30 +38,20 @@ public abstract class AbstractMain {
 	public final Battery battery;
 	public final Timer timer = new Timer();
 	public final Timer totalTimer = new Timer();
-	
+
 	private volatile boolean paused = true;
 	private volatile boolean reset = false;
 	private Mode mode;
-	
-	private long tavg = 2000;	//average time for disc to fall
-	private long tdmax = 5000;	//maximum allowed time for disc to fall
-	private long tgmax = 2000;	//maximum allowed time for gyro to stabilize
-	
+
+	private long tavg = 2000; // average time for disc to fall
+	private long tdmax = 5000; // maximum allowed time for disc to fall
+	private long tgmax = 2000; // maximum allowed time for gyro to stabilize
+
 	public State currentState;
 	public Display display;
-	
-	public AbstractMain(
-			Key sp,
-			Key a,
-			Key r,
-			Motor m,
-			ColorSensor c,
-			GyroSensor g,
-			TouchSensor t,
-			Display d,
-			Statistics s,
-			Battery b
-			){
+
+	public AbstractMain(Key sp, Key a, Key r, Motor m, ColorSensor c, GyroSensor g, TouchSensor t, Display d,
+			Statistics s, Battery b) {
 		spButton = sp;
 		aButton = a;
 		rButton = r;
@@ -76,18 +63,18 @@ public abstract class AbstractMain {
 		stats = s;
 		battery = b;
 	}
-	
-	public void run(){
+
+	public void run() {
 		try {
-			spButton.addKeyListener(new KeyListener(){
+			spButton.addKeyListener(new KeyListener() {
 				public void keyPressed(Key k) {
 					setPaused(true);
 				}
 
 				public void keyReleased(Key k) {
-				}				
+				}
 			});
-			rButton.addKeyListener(new KeyListener(){
+			rButton.addKeyListener(new KeyListener() {
 				public void keyPressed(Key k) {
 					setReset(true);
 					display.setDisplayReadyTime(System.currentTimeMillis());
@@ -95,50 +82,45 @@ public abstract class AbstractMain {
 
 				public void keyReleased(Key k) {
 				}
-				
+
 			});
-			
-			
-			while(true){
-				//testPeripherals();
+
+			while (true) {
+				// testPeripherals();
 				cycle();
 			}
-		}
-		catch(DeviceException e) {
+		} catch (DeviceException e) {
 			currentState = new AbortState(new PeripheralConnectionLostError(), this);
 			currentState.displayUpdate(this);
 			run();
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			currentState = new AbortState(new SofwareError(this), this);
 			currentState.displayUpdate(this);
 			run();
 		}
 	}
-	
-	public void cycle(){
-		//check buttons
-		if(aButton.isDown() && !(currentState instanceof AbortState)){
+
+	public void cycle() {
+		// check buttons
+		if (aButton.isDown() && !(currentState instanceof AbortState)) {
 			currentState = new AbortState(new AbortButtonError(), this);
-		} 
-		else if(spButton.isDown()){
+		} else if (spButton.isDown()) {
 			setPaused(true);
-		}
-		else if(rButton.isDown()){
+		} else if (rButton.isDown()) {
 			setReset(true);
 			display.setDisplayReadyTime(System.currentTimeMillis());
 		}
-		//check battery
-		if(battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD){
+		// check battery
+		if (battery.getVoltage() < AbstractMain.BATTERY_TRESHOLD) {
 			currentState = new WarningState(new BatteryWarning(), this, currentState);
 		}
-		
+
 		currentState.displayUpdate(this);
-		
+
 		State newState = currentState.nextState(this);
 		currentState = newState;
 	}
-	
+
 	public void testPeripherals() throws DeviceException {
 		try {
 			System.out.println("TEST START");
@@ -147,30 +129,30 @@ public abstract class AbstractMain {
 			d.close();
 			System.out.println("TEST PASSED");
 			throw new DeviceException();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("TEST FAILED");
 		}
 	}
-	
-	public void variableReset(){
+
+	public void variableReset() {
 		this.reset = false;
 		this.paused = false;
 		this.stats.reset();
 	}
-	
-	public boolean isPaused(){
+
+	public boolean isPaused() {
 		return this.paused;
 	}
-	
-	public boolean isReset(){
+
+	public boolean isReset() {
 		return this.reset;
 	}
-	
-	public void setReset(boolean reset){
+
+	public void setReset(boolean reset) {
 		this.reset = reset;
 	}
-	
-	public void setPaused(boolean paused){
+
+	public void setPaused(boolean paused) {
 		this.paused = paused;
 	}
 
@@ -181,17 +163,17 @@ public abstract class AbstractMain {
 	public void setMode(Mode mode) {
 		this.mode = mode;
 	}
-	
-	public long getTAvg(){
+
+	public long getTAvg() {
 		return this.tavg;
 	}
-	
-	public long getTDMax(){
+
+	public long getTDMax() {
 		return this.tdmax;
 	}
-	
-	public long getTGMax(){
+
+	public long getTGMax() {
 		return this.tgmax;
 	}
-	
+
 }
