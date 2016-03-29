@@ -47,6 +47,7 @@ public class RealColorSensor implements ColorSensor {
 		ColorEstimator.blackGS = black;
 		ColorEstimator.whiteGS = white;
 		ColorEstimator.noneGS = none;
+		ColorEstimator.writeToFile(none, black, white);
 		ColorEstimator.calibrate();
 
 		LCD.clear();
