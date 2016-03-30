@@ -1,30 +1,29 @@
-\contentsline {chapter}{\numberline {1}Introduction}{2}
-\contentsline {chapter}{\numberline {2}Machine design}{3}
-\contentsline {section}{\numberline {2.1}Introduction}{3}
-\contentsline {section}{\numberline {2.2}Design requirements}{3}
-\contentsline {section}{\numberline {2.3}Final Design}{3}
-\contentsline {section}{\numberline {2.4}Design Decisions}{3}
-\contentsline {subsection}{\numberline {2.4.1}Position of the colour sensor}{4}
-\contentsline {subsection}{\numberline {2.4.2}Container}{4}
-\contentsline {subsection}{\numberline {2.4.3}Rotating arm}{4}
-\contentsline {subsection}{\numberline {2.4.4}Seesaw}{4}
-\contentsline {subsection}{\numberline {2.4.5}Trays}{4}
-\contentsline {section}{\numberline {2.5}System Level Requirements}{5}
-\contentsline {subsection}{\numberline {2.5.1}Use Cases}{5}
-\contentsline {subsection}{\numberline {2.5.2}User Constraints}{6}
-\contentsline {subsubsection}{Machine Preparation}{6}
-\contentsline {subsubsection}{Exceptions}{6}
-\contentsline {paragraph}{Safety properties}{7}
-\contentsline {section}{\numberline {2.6}Machine Interface}{7}
-\contentsline {subsection}{\numberline {2.6.1}Lejos API}{7}
-\contentsline {subsection}{\numberline {2.6.2}Peripherals}{8}
-\contentsline {subsubsection}{Motor rotating arm}{8}
-\contentsline {subsubsection}{Touch sensor calibrator}{8}
-\contentsline {subsubsection}{Gyroscope with seesaw}{8}
-\contentsline {subsubsection}{Colour sensor}{9}
-\contentsline {subsubsection}{The brick}{9}
-\contentsline {section}{\numberline {2.7}Conclusion}{9}
-\contentsline {section}{\numberline {2.8}Sources}{10}
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {chapter}{\numberline {2}Machine design}{4}
+\contentsline {section}{\numberline {2.1}Introduction}{4}
+\contentsline {section}{\numberline {2.2}Design requirements}{4}
+\contentsline {section}{\numberline {2.3}Final Design}{4}
+\contentsline {section}{\numberline {2.4}Design Decisions}{4}
+\contentsline {subsection}{\numberline {2.4.1}Position of the colour sensor}{5}
+\contentsline {subsection}{\numberline {2.4.2}Container}{5}
+\contentsline {subsection}{\numberline {2.4.3}Rotating arm}{5}
+\contentsline {subsection}{\numberline {2.4.4}Seesaw}{5}
+\contentsline {subsection}{\numberline {2.4.5}Trays}{5}
+\contentsline {section}{\numberline {2.5}System Level Requirements}{6}
+\contentsline {subsection}{\numberline {2.5.1}Use Cases}{6}
+\contentsline {subsection}{\numberline {2.5.2}User Constraints}{7}
+\contentsline {subsubsection}{Machine Preparation}{7}
+\contentsline {subsubsection}{Exceptions}{7}
+\contentsline {paragraph}{Safety properties}{8}
+\contentsline {section}{\numberline {2.6}Machine Interface}{9}
+\contentsline {subsection}{\numberline {2.6.1}Lejos API}{9}
+\contentsline {subsection}{\numberline {2.6.2}Peripherals}{9}
+\contentsline {subsubsection}{Motor rotating arm}{9}
+\contentsline {subsubsection}{Touch sensor calibrator}{9}
+\contentsline {subsubsection}{Gyroscope with seesaw}{9}
+\contentsline {subsubsection}{Colour sensor}{10}
+\contentsline {subsubsection}{The brick}{10}
+\contentsline {section}{\numberline {2.7}Conclusion}{10}
 \contentsline {chapter}{\numberline {3}Software specification}{11}
 \contentsline {section}{\numberline {3.1}Introduction}{11}
 \contentsline {section}{\numberline {3.2}Operation modes}{11}
