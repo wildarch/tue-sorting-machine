@@ -10,3 +10,163 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Design requirements}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Final Design}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Design Decisions}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Position of the colour sensor}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Container}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Rotating arm}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Seesaw}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Trays}{4}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{firstfront}{{2.1a}{4}}
+\newlabel{sub@firstfront}{{a}{4}}
+\newlabel{top}{{2.1b}{4}}
+\newlabel{sub@top}{{b}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The initial design of the machine.\relax }}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces The final front view of the machine.\relax }}{5}}
+\newlabel{front}{{2.2}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}System Level Requirements}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Use Cases}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces The finite state automaton of the machine.\relax }}{6}}
+\newlabel{machinedesign}{{2.3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}User Constraints}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{Machine Preparation}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{Exceptions}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Safety properties}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Machine Interface}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Lejos API}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Peripherals}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Motor rotating arm}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Touch sensor calibrator}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Gyroscope with seesaw}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Colour sensor}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{The brick}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces The buttons on the brick.\relax }}{9}}
+\newlabel{brickbuttons}{{2.4}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Conclusion}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Sources}{10}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Software specification}{11}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Operation modes}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Fast mode}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Safe mode}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Incremental mode}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Signals}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Inputs:}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Color c:}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Motor M:}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Abort A:}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Reset R:}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Start/Pause S/P:}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Gyroscope G:}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Outputs}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Colour Sensor CS:}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Motor M:}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{LED Active E:}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Sound:}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}State Machine}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces This state machine defines the behaviour of the software. The three modes of our machine have been embedded into the figure. Black coloured transitions are done in all modes.\relax }}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}UPPAAL model}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces This state machine defines the behaviour of the software. The three modes of our machine have been embedded into the figure. Black coloured transitions are done in all modes.\relax }}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Main process}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{Choosing the mode}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{Initialiation}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{Reading colours}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{Check sequence}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Finishing up}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Exceptions}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Subprocesses}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessColorSensor}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessMotor}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessGyroSensor}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessButtons}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessTimer}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{ProcessPauseListener}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Verification}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{Abort state reachability}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{Peripheral reset}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Subprocesses\relax }}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{Full speed independent of gyroscope}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{DONE state reachability}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{Machine pause justify}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{Valid mode specified}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{No deadlock}{19}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Conclusion}{19}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Software design}{20}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Introduction}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Object Oriented Design}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces The class diagram\relax }}{21}}
+\newlabel{classdiagram}{{4.1}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Main class}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{Run method}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Statistics class}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Display class}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}Mode enumerable}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}Abstract class state}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.6}State implementation classes}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{WarningState class}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{AbortState class}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Arguing correctness}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}State implementation}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Button flags}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Abort button}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Conclusion}{24}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Software implementation}{25}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Naming/Java conventions}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Proper indentation and brackets.}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Naming conventions}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}User Manual}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Machine preparation}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Starting the machine and program}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Selecting a mode}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.4}Filling the input tube}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.5}Start the sorting operation}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.6}Pausing and resuming the sorting operation}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.7}Stopping the sorting operation}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.8}Shutting down the machine}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.9}Troubleshooting}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Timer}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Conclusion}{27}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}System validation and testing}{29}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Test cases}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Manual tests}{29}}
+\@writefile{toc}{\contentsline {paragraph}{Colour sensor test}{29}}
+\@writefile{toc}{\contentsline {paragraph}{Gyroscope test}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Unit tests}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{Mocking}{30}}
+\@writefile{toc}{\contentsline {paragraph}{Battery mock:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockGyroSensor:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockButton:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockColourSensor:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockDisplay:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockMotor:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{MockTouchSensor:}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{Testing the sorting process}{30}}
+\@writefile{toc}{\contentsline {paragraph}{TestMotorCalibration:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{TestcolourSensor:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{TestSortingProcess:}{30}}
+\@writefile{toc}{\contentsline {paragraph}{TestReset:}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{Testing the errors}{30}}
+\@writefile{toc}{\contentsline {paragraph}{TestMotorJammed:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestWrongBasket:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestNoBasket:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestWrongInput:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestBatteryLow:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestDeviatesFromAverage:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestAbort:}{31}}
+\@writefile{toc}{\contentsline {paragraph}{TestGyroDoesNotStabilize:}{31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Test coverage}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Formal proofs}{31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Properties}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Conclusion}{33}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{34}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}

@@ -1,0 +1,139 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {chapter}{\numberline {2}Machine design}{3}
+\contentsline {section}{\numberline {2.1}Introduction}{3}
+\contentsline {section}{\numberline {2.2}Design requirements}{3}
+\contentsline {section}{\numberline {2.3}Final Design}{3}
+\contentsline {section}{\numberline {2.4}Design Decisions}{3}
+\contentsline {subsection}{\numberline {2.4.1}Position of the colour sensor}{4}
+\contentsline {subsection}{\numberline {2.4.2}Container}{4}
+\contentsline {subsection}{\numberline {2.4.3}Rotating arm}{4}
+\contentsline {subsection}{\numberline {2.4.4}Seesaw}{4}
+\contentsline {subsection}{\numberline {2.4.5}Trays}{4}
+\contentsline {section}{\numberline {2.5}System Level Requirements}{5}
+\contentsline {subsection}{\numberline {2.5.1}Use Cases}{5}
+\contentsline {subsection}{\numberline {2.5.2}User Constraints}{6}
+\contentsline {subsubsection}{Machine Preparation}{6}
+\contentsline {subsubsection}{Exceptions}{6}
+\contentsline {paragraph}{Safety properties}{7}
+\contentsline {section}{\numberline {2.6}Machine Interface}{7}
+\contentsline {subsection}{\numberline {2.6.1}Lejos API}{7}
+\contentsline {subsection}{\numberline {2.6.2}Peripherals}{8}
+\contentsline {subsubsection}{Motor rotating arm}{8}
+\contentsline {subsubsection}{Touch sensor calibrator}{8}
+\contentsline {subsubsection}{Gyroscope with seesaw}{8}
+\contentsline {subsubsection}{Colour sensor}{9}
+\contentsline {subsubsection}{The brick}{9}
+\contentsline {section}{\numberline {2.7}Conclusion}{9}
+\contentsline {section}{\numberline {2.8}Sources}{10}
+\contentsline {chapter}{\numberline {3}Software specification}{11}
+\contentsline {section}{\numberline {3.1}Introduction}{11}
+\contentsline {section}{\numberline {3.2}Operation modes}{11}
+\contentsline {subsection}{\numberline {3.2.1}Fast mode}{11}
+\contentsline {subsection}{\numberline {3.2.2}Safe mode}{12}
+\contentsline {subsection}{\numberline {3.2.3}Incremental mode}{12}
+\contentsline {section}{\numberline {3.3}Signals}{12}
+\contentsline {subsection}{\numberline {3.3.1}Inputs:}{12}
+\contentsline {subsubsection}{Color c:}{12}
+\contentsline {subsubsection}{Motor M:}{12}
+\contentsline {subsubsection}{Abort A:}{12}
+\contentsline {subsubsection}{Reset R:}{12}
+\contentsline {subsubsection}{Start/Pause S/P:}{13}
+\contentsline {paragraph}{Gyroscope G:}{13}
+\contentsline {subsection}{\numberline {3.3.2}Outputs}{13}
+\contentsline {subsubsection}{Colour Sensor CS:}{13}
+\contentsline {subsubsection}{Motor M:}{13}
+\contentsline {subsubsection}{LED Active E:}{13}
+\contentsline {subsubsection}{Sound:}{13}
+\contentsline {section}{\numberline {3.4}State Machine}{14}
+\contentsline {section}{\numberline {3.5}UPPAAL model}{14}
+\contentsline {subsection}{\numberline {3.5.1}Main process}{15}
+\contentsline {subsubsection}{Choosing the mode}{15}
+\contentsline {subsubsection}{Initialiation}{15}
+\contentsline {subsubsection}{Reading colours}{15}
+\contentsline {subsubsection}{Check sequence}{16}
+\contentsline {subsubsection}{Finishing up}{16}
+\contentsline {subsubsection}{Exceptions}{16}
+\contentsline {subsection}{\numberline {3.5.2}Subprocesses}{16}
+\contentsline {subsubsection}{ProcessColorSensor}{16}
+\contentsline {subsubsection}{ProcessMotor}{16}
+\contentsline {subsubsection}{ProcessGyroSensor}{17}
+\contentsline {subsubsection}{ProcessButtons}{17}
+\contentsline {subsubsection}{ProcessTimer}{17}
+\contentsline {subsubsection}{ProcessPauseListener}{17}
+\contentsline {section}{\numberline {3.6}Verification}{17}
+\contentsline {subsubsection}{Abort state reachability}{17}
+\contentsline {subsubsection}{Peripheral reset}{17}
+\contentsline {subsubsection}{Full speed independent of gyroscope}{19}
+\contentsline {subsubsection}{DONE state reachability}{19}
+\contentsline {subsubsection}{Machine pause justify}{19}
+\contentsline {subsubsection}{Valid mode specified}{19}
+\contentsline {subsubsection}{No deadlock}{19}
+\contentsline {section}{\numberline {3.7}Conclusion}{19}
+\contentsline {chapter}{\numberline {4}Software design}{20}
+\contentsline {section}{\numberline {4.1}Introduction}{20}
+\contentsline {section}{\numberline {4.2}Object Oriented Design}{20}
+\contentsline {subsection}{\numberline {4.2.1}Main class}{21}
+\contentsline {subsubsection}{Run method}{21}
+\contentsline {subsection}{\numberline {4.2.2}Statistics class}{22}
+\contentsline {subsection}{\numberline {4.2.3}Display class}{22}
+\contentsline {subsection}{\numberline {4.2.4}Mode enumerable}{22}
+\contentsline {subsection}{\numberline {4.2.5}Abstract class state}{22}
+\contentsline {subsection}{\numberline {4.2.6}State implementation classes}{22}
+\contentsline {subsubsection}{WarningState class}{22}
+\contentsline {subsubsection}{AbortState class}{23}
+\contentsline {section}{\numberline {4.3}Arguing correctness}{23}
+\contentsline {subsection}{\numberline {4.3.1}State implementation}{23}
+\contentsline {subsection}{\numberline {4.3.2}Button flags}{23}
+\contentsline {subsection}{\numberline {4.3.3}Abort button}{23}
+\contentsline {section}{\numberline {4.4}Conclusion}{24}
+\contentsline {chapter}{\numberline {5}Software implementation}{25}
+\contentsline {section}{\numberline {5.1}Introduction}{25}
+\contentsline {section}{\numberline {5.2}Naming/Java conventions}{25}
+\contentsline {subsection}{\numberline {5.2.1}Proper indentation and brackets.}{25}
+\contentsline {subsection}{\numberline {5.2.2}Naming conventions}{25}
+\contentsline {section}{\numberline {5.3}User Manual}{26}
+\contentsline {subsection}{\numberline {5.3.1}Machine preparation}{26}
+\contentsline {subsection}{\numberline {5.3.2}Starting the machine and program}{26}
+\contentsline {subsection}{\numberline {5.3.3}Selecting a mode}{26}
+\contentsline {subsection}{\numberline {5.3.4}Filling the input tube}{26}
+\contentsline {subsection}{\numberline {5.3.5}Start the sorting operation}{27}
+\contentsline {subsection}{\numberline {5.3.6}Pausing and resuming the sorting operation}{27}
+\contentsline {subsection}{\numberline {5.3.7}Stopping the sorting operation}{27}
+\contentsline {subsection}{\numberline {5.3.8}Shutting down the machine}{27}
+\contentsline {subsection}{\numberline {5.3.9}Troubleshooting}{27}
+\contentsline {section}{\numberline {5.4}Timer}{27}
+\contentsline {section}{\numberline {5.5}Conclusion}{27}
+\contentsline {chapter}{\numberline {6}System validation and testing}{29}
+\contentsline {section}{\numberline {6.1}Introduction}{29}
+\contentsline {section}{\numberline {6.2}Test cases}{29}
+\contentsline {subsection}{\numberline {6.2.1}Manual tests}{29}
+\contentsline {paragraph}{Colour sensor test}{29}
+\contentsline {paragraph}{Gyroscope test}{29}
+\contentsline {subsection}{\numberline {6.2.2}Unit tests}{29}
+\contentsline {subsubsection}{Mocking}{30}
+\contentsline {paragraph}{Battery mock:}{30}
+\contentsline {paragraph}{MockGyroSensor:}{30}
+\contentsline {paragraph}{MockButton:}{30}
+\contentsline {paragraph}{MockColourSensor:}{30}
+\contentsline {paragraph}{MockDisplay:}{30}
+\contentsline {paragraph}{MockMotor:}{30}
+\contentsline {paragraph}{MockTouchSensor:}{30}
+\contentsline {subsubsection}{Testing the sorting process}{30}
+\contentsline {paragraph}{TestMotorCalibration:}{30}
+\contentsline {paragraph}{TestcolourSensor:}{30}
+\contentsline {paragraph}{TestSortingProcess:}{30}
+\contentsline {paragraph}{TestReset:}{30}
+\contentsline {subsubsection}{Testing the errors}{30}
+\contentsline {paragraph}{TestMotorJammed:}{31}
+\contentsline {paragraph}{TestWrongBasket:}{31}
+\contentsline {paragraph}{TestNoBasket:}{31}
+\contentsline {paragraph}{TestWrongInput:}{31}
+\contentsline {paragraph}{TestBatteryLow:}{31}
+\contentsline {paragraph}{TestDeviatesFromAverage:}{31}
+\contentsline {paragraph}{TestAbort:}{31}
+\contentsline {paragraph}{TestGyroDoesNotStabilize:}{31}
+\contentsline {subsection}{\numberline {6.2.3}Test coverage}{31}
+\contentsline {section}{\numberline {6.3}Formal proofs}{31}
+\contentsline {subsection}{\numberline {6.3.1}Properties}{31}
+\contentsline {section}{\numberline {6.4}Conclusion}{33}
+\contentsline {chapter}{\numberline {7}Conclusion}{34}
