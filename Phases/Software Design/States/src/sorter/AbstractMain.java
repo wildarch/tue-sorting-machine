@@ -94,7 +94,7 @@ public abstract class AbstractMain {
 			currentState.displayUpdate(this);
 			run();
 		} catch (Exception e) {
-			currentState = new AbortState(new SofwareError(this), this);
+			currentState = new AbortState(new SofwareError(this, e), this);
 			currentState.displayUpdate(this);
 			run();
 		}

@@ -35,9 +35,6 @@ public class InitialState extends State {
 			}
 			m.motor.setSpeed(m.getMode());
 			this.calibrationFinished = true;
-//			m.setPaused(false);
-//			m.setReset(false);
-//			return new PausedState(m);
 		}
 		
 		
