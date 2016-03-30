@@ -128,10 +128,7 @@ The machine, when finished without fatal error, produces two trays, one filled w
 and one filled with black discs. The machine will also display information about its current
 state and progress on the display during the sorting process.
 
-The sorting process is described by the following automaton. The initial state is the mode selection state. In this state, the mode in which the machine operates can be selected. These modes are explained further in the document. After the mode has been selected, the machine goes to the initial state of the sorting process. This initial state is the rest-
-ing state. The user is required to prepare the machine as described in the User Constraints segment further in the document. None of the buttons should have any effect, except for the
-START/PAUSE button, which starts the sorting process and the ABORT button, which triggers an abort. When this button is pressed, the machine should proceed to the
-operating state.
+The sorting process is described by the following automaton. The initial state is the mode selection state. In this state, the mode in which the machine operates can be selected. These modes are explained further in the document. After the mode has been selected, the machine goes to the initial state of the sorting process. This initial state is the resting state. The user is required to prepare the machine as described in the User Constraints segment further in the document. None of the buttons should have any effect, except for the START/PAUSE button, which starts the sorting process and the ABORT button, which triggers an abort. When this button is pressed, the machine should proceed to the operating state.
 
 In this state, the machine sorts the discs. Internally, it has a state in which it checks the
 color of the disc, after which it moves to the correct sorting state in which it transports the disc
