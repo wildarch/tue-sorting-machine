@@ -59,26 +59,27 @@
 \maketitle
 
 \section{Introduction}
-After having designed the machine, we are able to specify how our software should behave. We do this by describing the software in a state machine with abstract states. This state machine also implements the different operation modes. After this we characterise the distinct inputs and outputs. We will convert the state diagram into a working UPPAAL model and explain the working systems in detail. Finally we explain the verification of our model. This chapter is called the software specification.
+After having designed the machine, we are able to specify how our software should behave. We do this by describing the software in a state machine with abstract states. This state machine also implements the different operation modes. After this we characterise the distinct inputs and outputs. We will convert the state diagram into a working UPPAAL model and explain its different systems in detail. Finally we explain the verification of our model.
 
 \section{Operation modes}
 The gyroscope can be quite a bottleneck in the sorting process, as it is rather slow. If we want to sort very fast, we should skip the input from the gyroscope and sort the discs immediately after each other. Therefore, we want to implement 2 modes: a fast mode in which we do not check for input from the gyroscope and thus do not check if the disc actually reaches the tray, and a slower safe mode, where we check for input from the gyroscope and we can make sure that discs do reach the tray. Besides this, we want to make an additional incremental mode for debug purposes, in which the user has to press a button for the machine to sort the next disc.
 
 \subsection{Fast mode}
-The machine starts in a resting state. If the left button is pressed in this state, the machine should go to the read color state. In this state, the machine checks which color disc is present on top of the light sensor. There are four different transitions the machine can make at this point, depended on the detected colour. If the machine is black or white, it should go to a respective state in which the motor is rotated accordingly. When the motor has finished moving, the machine simply returns to the read color state. The machine can be paused by pressing the Start/Pause button anytime during the sorting process. The machine then goes to a paused state as soon as it enters the read color state and waits for the Start/Pause again to return to the checking process.
+This mode can be accessed by pressing the left button during mode selection. The machine starts in a resting state. If the left button is pressed in this state, the machine should go to the read color state. In this state, the machine checks which color disc is present on top of the light sensor. There are four different transitions the machine can make at this point, depended on the detected colour. If the machine is black or white, it should go to a respective state in which the motor is rotated accordingly. When the motor has finished moving, the machine simply returns to the read color state and repeats the process until no more discs are detected. The user should be able to pause the machine by pressing the START/PAUSE button anytime during the sorting process. The machine should then go to a paused state as soon as it enters the read color state and wait for a press of the START/PAUSE button again to continue the checking process. The user should also be able to abort the machine at any time using the ABORT button and reset it afterwards to let the machine return to the mode selection state.
 
 \newpage
 
 \subsection{Safe mode}
-This mode can be accessed by pressing the middle button in the mode selection state (START/PAUZE) The safe mode is exactly the same as the fast mode, with a few additional safety checks. This means that it has the same assumptions according to the input. There is still an arrow from every state except the initial state to the abort state for when the ABORT button is pressed. There are two additional states. One for each colour, black or white. After the motor is finished turning, it enters a state in which it waits for input from the gyroscope (G), which can indicate a disc that felt to the right (R) or to the left (L). When the input is correct, it goes to the state in which the colour is checked. When the input is wrong (Exception) (wrong side, no input at all after a while), the machine goes to the abort state.
+This mode can be accessed by pressing the middle button during mode selection. The safe mode is operates similarly to the fast mode, with some additional safety checks. After the motor has finished turning, the machine should enter a state in which it waits for input from the gyroscope to confirm that the disc arrived in the correct tray. Based on this input, the machine should be able to detect most errors described in Machine Design. 
+
 \subsection{Incremental mode}
-This mode can be accessed by pushing the rightmost button. The incremental mode is again almost the same as the safe mode, so again the same assumptions about the input and the state machine, but now there is 1 extra state between the ingoing arrows to the state in which the colour is checked. In this state, the machine waits for a press on a button, the START/STOP button (S/P) to continue. If that button is pressed, it goes to the state in which the colour is checked. All the ingoing arrow that were going to the colour-check state are now going to the wait-for-button-press state. There is 1 exception for this. From the resting state, you go to the colour-check state immediately after a press on the button. It would be silly if you would have to press that button twice for something to happen.
+This mode can be accessed by pressing the right button during mode selection. The incremental mode is very similar to the safe mode. The difference is that the machine should go to a seperate state when it is finished sorting a single disc. In this state, the machine waits for a press on the START/STOP button to continue. Then, it simply continues the sorting process.
 
 \subsection{Colour sensor calibration}
-This mode can be accessed by pushing the up button. Before accessing this state, the user should put a black disc and a white disc in the machine, ready to be sorted. Above these 2 discs, there should be nothing. When this mode is entered, the colour sensor reads the values of a black disc, a white disc and nothing and saves them to use these values later in a sorting process.
+This feature can be accessed by pressing the up button during mode selection. Before accessing this state, the user should put a black disc and a white disc in the machine in that order. The rest of the tube should be left empty and tilted upwards. When this mode is entered, the colour sensor reads the values of a black disc, a white disc and nothing and saves them to use these values later in a sorting process.
 
 \subsection{Exit}
-By pressing the down button (RESET), the program quits.
+By pressing the down button during mode selection, the program quits.
 
 \section{Signals}
 \subsection{Inputs:}
@@ -131,18 +132,18 @@ An UPPAAL model consist of multiple systems that communicate over several channe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=150mm]{mainprocess}
-	\caption{This state machine defines the behaviour of the software. The three modes of our machine have been embedded into the figure. Black coloured transitions are done in all modes.}
+	\caption{The main process in the UPPAAL model.}
 \end{figure}
 
 \subsection{Main process}
 \subsubsection{Choosing the mode}
-The initial state is mode\_pick, which is not present in the state machine. In this mode one of the three operation modes is chosen. This is important for the verification process, because the UPPAAL model uses an internal variable to store the mode, whereas the state machine indicates the different modes with colours. If it is not possible to set this variable in the model itself, the verification process will only verify if a query holds for one mode.
+The initial state is mode\_pick. In this mode one of the three operation modes is chosen. This is important for the verification process, because the UPPAAL model uses an internal variable to store the mode, whereas the state machine indicates the different modes with colours. If it is not possible to set this variable in the model itself, the verification process will only verify if a query holds for one mode.
 
 \subsubsection{Initialiation}
-Upon choosing a mode, we enter the state INIT, which is equivalent to the initial state in the state machine. Here, the model waits for the button\_startpause signal from ProcessButtons. Also, it sets the machinePaused and machineReset variable to 0, which ensures that the model does not immediately pause or reset.
+Upon choosing a mode, we enter the state INIT, which is equivalent to the initial state in the state machine. Here, the model waits for the button\_startpause signal from ProcessButtons. When the signal is received, it sets the machinePaused and machineReset variable to 0, which ensures that the model does not immediately pause or reset and moves to the next state.
 
 \subsubsection{Reading colours}
-Upon leaving the INIT state we enter the read\_color state(read in the state machine). Whenever the machinePaused variable is 1 in the read\_color state, the model goes to the paused state. If the machineReset variable is 1, the machine returns to the INIT state, but this has the lower priority. If both of these are 0, the color\_test signal is send and the model transitions to the check\_color state.  In the check\_color state it waits for a signal of the ColorSensor system depending on whether there is a disc and which colour the disc has. Depending on the colour, it goes to one of two parts of the main system, one for each distinct colour (black or white). We will describe one of these parts as they are mirrored. Upon receiving the signal of a colour, the model transitions to a detected state. Here, it sends a signal to ProcessMotor to start moving in the appropriate direction and goes into a move state. The transition the model makes here is dependent on the mode variable.
+Upon leaving the INIT state we enter the read\_color state (read in the state machine). Whenever the machinePaused variable is 1 in the read\_color state, the model goes to the paused state. If the machineReset variable is 1, the machine returns to the mode\_pick state, but this has the lower priority. If both of these are 0, the color\_test signal is send and the model transitions to the check\_color state.  In the check\_color state it waits for a signal of the ColorSensor system depending on whether there is a disc and which colour the disc has. Depending on the colour, it goes to one of two parts of the main system, one for each distinct colour (black or white). We will describe one of these parts as they are mirrored. Upon receiving the signal of a colour, the model transitions to a detected state. Here, it sends a signal to ProcessMotor to start moving in the appropriate direction and goes into a move state. The transition the model makes here is dependent on the mode variable.
 
 \subsubsection{Check sequence}
 If mode is not 0, indicating that the system is in the safe or incremental mode, it will add a check sequence using the gyroscope. After the signal from the motor is received that it has stopped, the main system will send a test signal to the GyroSensor waiting for a signal back. If the correct signal is received back, indicating that the disc has arrived in the correct tray, it will return to read\_color state. If mode is 0, indicating that the system is in fast mode, this check is skipped and the model returns to the read\_color state from the move state as soon as it receives the motor\_stopped signal from ProcessMotor.
@@ -151,7 +152,7 @@ If mode is not 0, indicating that the system is in the safe or incremental mode,
 When the model receives the color\_nothing signal from ProcessColorSensor, the machine is finished and the model goes to the DONE state. Here it waits for the button\_reset signal and returns to the initial state.
 
 \subsubsection{Exceptions}
-In our machine design is it specified that there is an ABORT button present that will stop the whole machine almost immediately. However, we have chosen not to include the abort button in our UPPAAL model as a possible transition for every state because this would be rather cumbersome and just a small implementation. We have however chosen to include possible exceptions such as a jammed motor or a signal that has not arrived in decent time. These transitions will lead the system into the ABORT state. In this state the process waits for the reset button to give a signal, after which it will reset the other processes and return to the intitial state. Note that it is not required to actually reset the gyroscope in the actual machine, just in the UPPAAL model. Non-fatal exceptions are also represented in the model. Deviating average detection time is represented in the states WARNING and WARNING2, which the model reaches when the timer\_dfa is send from ProcessTimer. Process ColorSensor can also send a color\_unknown signal, which sends the machine to WARNING3. These warning states simply return to the state they were detected in and let the model continue.
+In our machine design is it specified that there is an ABORT button present that will stop the whole machine almost immediately. However, we have chosen not to include the abort button in our UPPAAL model as a possible transition for every state because this would be rather cumbersome and just a small implementation. We have however chosen to include the relevant exceptions specified in Machine Design. These transitions will lead the system into the ABORT state. In this state the process waits for the reset button to give a signal, after which it will reset the other processes and return to the initial state. Note that it is not required to actually reset the gyroscope in the actual machine, just in the UPPAAL model. Non-fatal exceptions are also represented in the model. Deviating average detection time is represented in the states WARNING and WARNING2, which the model reaches when the timer\_dfa is send from ProcessTimer. These warning states simply return to the state they were detected in and let the model continue.
 
 \subsection{Subprocesses}
 The following are all subprocesses that the main process depends on:
@@ -168,23 +169,23 @@ The following are all subprocesses that the main process depends on:
 
 \subsubsection{ProcessPauseListener} and \textbf{ProcessResetListener} continuously listen to the $button\_startpause$ and $button\_reset$ signals from ProcessButtons. When they detect the respective signals, they set the respective variables to 1 to alert the main process that the button is pressed.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.1\textwidth}
 \centering
-\includegraphics[height=55mm]{processcolorsensor}
+\includegraphics[height=50mm]{processcolorsensor}
 \caption{Colour sensor}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.3\textwidth}
 \centering
-\includegraphics[height=55mm]{processmotor}
+\includegraphics[height=50mm]{processmotor}
 \caption{Motor}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.3\textwidth}
 \centering
-\includegraphics[height=55mm]{processgyrosensor}
+\includegraphics[height=50mm]{processgyrosensor}
 \caption{Gyroscope}
 \end{subfigure}
 
@@ -202,56 +203,67 @@ The following are all subprocesses that the main process depends on:
 
 \begin{subfigure}{0.45\textwidth}
 \centering
-\includegraphics[height=50mm]{processpauselistener}
+\includegraphics[height=40mm]{processpauselistener}
 \caption{Pause listener}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.45\textwidth}
 \centering
-\includegraphics[height=50mm]{processresetlistener}
+\includegraphics[height=40mm]{processresetlistener}
 \caption{Reset listener}
 \end{subfigure}
 \caption{Subprocesses}
 \end{figure}
 
 \section{Verification}
-The main reason for recreating the state machine in UPPAAL was to allow extensive verification of the model. With UPPAAL we can verify the events like deadlock will never occur. The UPPAAL query language is a minimalistic but functional language to specify these properties. We use the following queries to verify our model:
+The main reason for recreating the state machine in UPPAAL was to allow extensive verification of the model. With UPPAAL we can verify whether certain queries hold for our model. The UPPAAL query language is a minimalistic but functional language to specify these properties. We use the following queries to verify our model:
 
-\subsubsection{Abort state reachability}
-Query: E$<>$ ProcessReinhard.ABORT \\
-Description: There exists a path where the system reaches the ABORT state.\\
-We want to ensure that the machine halts in case of a fatal error. This check ensures that it is theoretically possible for a fatal error to occur and jump to the ABORT state.
+\subsection{No deadlock}
+Query: A[] not deadlock \\
+Description: The system never deadlocks in any case \\
+The machine will never stop responding to input.
 
-\subsubsection{Peripheral reset}
-Query: A[] (ProcessReinhard.paused or ProcessReinhard.INIT) imply (ProcessMotor.INIT and ProcessGyroSensor.INIT) \\
-Description: Whenever the system is in the paused or initialisation state, the motor and gyro sensor must be in their initial state. \\
-The goal is this check is twofold: We want to ensure that all peripherals are idle when the machine is in the paused state or has not yet started, and we have to be certain that after reaching the ABORT state, all peripherals are correctly reset. If we would leave the gyroscope in its left or right state, we would cause deadlock in the next cycle. Worse still, leaving the motor running after an ABORT could harm to machine.
-
-\subsubsection{Full speed independent of gyroscope}
-Query: A[] mode == 0 imply ProcessGyroSensor.INIT \\
-Description: When in full speed mode, the system must leave the gyroscope in its initial state. \\
-Full speed mode is supposed to ignore the gyroscope to speed up the sorting process. Here we check if the machine correctly uses the mode setting.
-
-\subsubsection{DONE state reachability}
-Query: E$<>$ ProcessReinhard.DONE \\
-Description: There exists a path where the system reaches the ABORT state \\
-This check ensures that the machine can eventually finish the sorting process.
-
-\subsubsection{Machine pause justify}
-Query: A[] ((ProcessReinhard.paused and mode != 2) imply machinePaused==1) \\
-Description: Whenever the system is in the paused state and not in incremental mode, machinePaused must be set to 1. \\
-Verifies that in the full speed and safe modes, the machine only reaches the paused state when the pause button was pressed beforehand.
-
-\subsubsection{Valid mode specified}
+\subsection{Valid mode specified}
 Query: A[] mode==0 or mode==1 or mode==2 \\
 Description: Mode must be one of: full speed, safe or incremental. \\
 The mode value must be valid.
 
-\subsubsection{No deadlock}
-Query: A[] not deadlock \\
-Description: The system never deadlocks in any case \\
+\subsection{DONE state reachability}
+Query: E$<>$ ProcessReinhard.DONE \\
+Description: There exists a path where the system reaches the ABORT state \\
+This check ensures that the machine can eventually finish the sorting process.
+
+\subsection{ABORT state reachability}
+Query: E$<>$ ProcessReinhard.ABORT \\
+Description: There exists a path where the system reaches the ABORT state.\\
+We want to ensure that the machine halts in case of a fatal error. This check ensures that it is theoretically possible for a fatal error to occur and jump to the ABORT state.
+
+\subsection{ABORT state avoidability}
+Query: E[] not ProcessReinhard.ABORT \\
+Description: There exists a path where the system does not reach the ABORT state.\\
+We want to ensure that the machine is capable of running correctly without encountering fatal errors. This check ensures that it is possible to complete the sorting process error-free.
+
+\subsection{Peripheral reset}
+Query: A[] (ProcessReinhard.paused or ProcessReinhard.INIT) imply (ProcessMotor.INIT and ProcessGyroSensor.INIT) \\
+Description: Whenever the system is in the paused or initialisation state, the motor and gyro sensor must be in their initial state. \\
+The goal is this check is twofold: We want to ensure that all peripherals are idle when the machine is in the paused state or has not yet started, and we have to be certain that after reaching the ABORT state, all peripherals are correctly reset. If we would leave the gyroscope in its left or right state, we would cause deadlock in the next cycle. Worse still, leaving the motor running after an ABORT could harm to machine.
+
+\subsection{Fast mode independent of gyroscope}
+Query: A[] mode == 0 imply ProcessGyroSensor.INIT \\
+Description: When in full speed mode, the system must leave the gyroscope in its initial state. \\
+Full speed mode is supposed to ignore the gyroscope to speed up the sorting process. Here we check if the machine correctly uses the mode setting.
+
+\subsection{Safe modes dependent on gyroscope}
+Query: E$<>$ (mode != 0) imply (not ProcessGyroSensor.INIT) \\
+Description: When the machine is not in fast mode, the gyroscope is used by the system. \\
+In safe and incremental mode, the system is supposed to check the gyroscope before returning to the color reading state. This query checks if the gyroscope leaves its initial state, and is hence used, in these modes.
+
+\subsection{Machine pause justify}
+Query: A[] ((ProcessReinhard.paused and mode != 2) imply machinePaused==1) \\
+Description: Whenever the system is in the paused state and not in incremental mode, machinePaused must be set to 1. \\
+Verifies that in the full speed and safe modes, the machine only reaches the paused state when the pause button was pressed beforehand.
 
 \section{Conclusion}
-this chapter provided the information about the behaviour of our software. We introduced our state machine diagram which we then implemented in UPPAAL. We clearly explained the working of our systems in UPPAAL and verified our model using this program. This part is used as the basis for the design of the software and is very important.
+This chapter provided the information about the behaviour of our software. We introduced our state machine diagram which we then implemented in UPPAAL. We clearly explained the working of our systems in UPPAAL and verified our model using this program. This part is used as the basis for the design of the software and is very important.
 
 \end{document}
