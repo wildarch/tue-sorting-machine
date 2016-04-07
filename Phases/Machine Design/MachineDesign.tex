@@ -82,18 +82,18 @@ The discs then slide off the seesaw, allowing it to stabilize, and fall into one
 The machine went through several iterations before we settled on the final design. The decisions that we made during the design process are listed below.
 
 \subsection{Position of the colour sensor}
-We had the option to attach the colour sensor in various ways to the machine. We chose to put it underneath the platform with the sensor pointing up, in such way that the arm of the motor could easily wipe the discs away.  Placing the sensor below the discs makes the sensor more reliable, since the surface of the discs on the bottom is larger than the surface on the side of the discs. It would also have been significantly more difficult to mount the colour sensor in a sideways or upright position because of the structural limitations of the lego construction set.
+We had the option to attach the colour sensor in various ways to the machine. We chose to put it underneath the platform with the sensor pointing up, in such way that the arm of the motor could easily swipe the discs away.  Placing the sensor below the discs makes the sensor more reliable, since the surface of the discs on the bottom is larger than the surface on the side of the discs. It would also have been significantly more difficult to mount the colour sensor in a sideways or upright position because of the structural limitations of the lego construction set.
 
 \subsection{Container}
 The decision to use a tube-like structure was made early on, as it is the most compact way to store the discs. The vertical storage also has the added benefit of removing the need to create an additional transporter to move the discs from the container to the sensor, since a new disc will simply fall in place when the previous disc is moved away.
 
-The height between the tube and the platform is designed to be slightly higher than the height of one disc. This ensures that only one disc will be moved from the tube at a time.
+The height between the tube and the platform is designed to be slightly higher than the height of one disc. This ensures that only one disc will be moved from underneath the tube at a time.
 
-\subsection{Rotating arm}
-The wheel to which the arms are attached are used to transport the discs from the sensor to the trays. We had options to put 3 or 4 arms on the wheel. We chose to go for 3 arms because then we would be able to attach a touch sensor which is used for calibration.
-
+\subsection{Rotating wheel}
+The sorting wheel was initially equipped with four arms. We later switched to using three arms since it allowed for simple positioning of the touch sensor for calibration, as well as being easier to construct.
+ 
 \subsection{Seesaw}
-Initially, the plan was to use touch sensors to detect if a disc arrived in the correct tray. However, we quickly found that the discs did not weigh enough to trigger the touch sensors. Therefore we finally settled with the seesaw and a gyroscope attached to it.
+Initially, the plan was to use touch sensors to detect if a disc arrived in the correct tray. However, we quickly found that the mass of the discs was too small to trigger the touch sensors. Other available sensor proved irreliable, hence we eventually settled on using the seesaw.
 
 \subsection{Trays}
 We chose to use coffee cups for the trays in the machine, since these where readily and freely available. Other options would be buying plastic trays or building trays out of LEGO, which was not possible because there was not a sufficient number of parts in the construction set.
@@ -109,13 +109,13 @@ We chose to use coffee cups for the trays in the machine, since these where read
 	\includegraphics[width=80mm]{top.png}
 	\caption{\label{top}Top view.}
 \end{subfigure}	
-\caption{The initial design of the machine.}
+\caption{The initial design schematics of the machine.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=90mm]{frontnew.png}
-	\caption{\label{front}The final front view of the machine.}
+	\caption{\label{front}Front view of the final machine.}
 \end{figure}
 
 \section{System Level Requirements}
@@ -166,49 +166,46 @@ to starting execution. The disc trays should be empty. At most 12 discs may be p
 container. The user then has to proceed by starting the program. At this point, the machine will calibrate the arm to the standard position. After the calibration, the tube can be filled with
 discs by pulling out the plug.
 
-After the machine has finished execution, the user will have access to two trays, one containing exclusively white discs, the other only contains black discs. When the machine indicates
+After the machine has finished execution, the user will have access to two trays, one containing exclusively white discs, the other only contains black discs, in the case everything goes as expected. When the machine indicates
 that it has finished its sorting procedure, the user should remove the trays from their mounts
 so he can dispose the discs somewhere else.
 
 \subsubsection{Exceptions}
-Possible errors are as follows:
+Our machine should be capable of detecting the following errors:
 \begin{figure}[H]
 \centering
 \begin{tabular}{|l|l|}
 \hline
-Error type & Fatal (= go to abort state)\\\hline
+Error type & Fatal (= go to exception state)\\\hline
 Disc does not reach the tray & Yes\\\hline
-Disc arrives in the wrong tray & No\\\hline
 Time to tray is higher than average & No\\\hline
+Disc arrives in the wrong tray & No\\\hline
 Wrong input (i.e. different colour disc) & No\\\hline
 Motor jams & Yes \\\hline
 Gyroscope does not stabilise & Yes \\\hline
-%Connection to peripheral lost & Yes \\\hline
 Battery low & Yes \\\hline
 Abort by user & Yes \\\hline
 Software exception & Yes \\\hline
 \end{tabular}
 \end{figure}
-When a disc does not reach the tray, the machine should stop, as there is may be an
-obstruction in the path the disc takes from the sorting arm to the lever.
+When a disc does not reach the tray, the machine should stop, as there is may be an obstruction in the path the disc takes from the sorting arm to the lever.
 
-When a disc arrives in the wrong tray, the machine should stop, as something happened
-that caused the disc to move to the wrong tray, even though the sorting arm tried to move
-it to the correct tray. This means there must be a mechanical failure somewhere. However, because of the limitations the gyroscope and lejos give us, we can not thrust this check entirely. Therefore, we have decided to make this a non-fatal error instead, so the machine doesn't halt in the wrong cases.
+When a disc arrives in the wrong tray, the machine should stop, as something happened that caused the disc to move to the wrong tray, even though the sorting arm tried to move it to the correct tray. This means there must be a mechanical failure somewhere. However, because of the limitations the gyroscope and the API have given us, we can not trust this check entirely. Therefore, we have decided to make this a non-fatal error instead, so the machine does not halt when it should not. The machine should also detect when the time it takes for a disc to reach the tray takes longer than usual, as this could indicate that some obstruction may be present.
 
-The Wrong Input error occurs when a disc is being detected with another color than white
-or black. This could, for example, be a disc with the color red. This is not a fatal error because
+When a disc is detected with a color other than white
+or black, the user has input wrong discs. This is not a fatal error because
 we can specify an action that will be taken when this exception occurs. We may for example
-want the machine to simply put the unknown disc in one of the trays anyway, say default the
-destination to white, or we dispose all unknown discs into a separate tray.
+want the machine to simply put the unknown disc in one of the trays and notify the user of this, or dispose all unknown discs into a separate tray.
 
-%The connection to peripherals lost exception is marked as a fatal exception, because a defect
-%in the controlling parts of the machine prevent it from functioning properly for obvious reasons.
-%The user has to fix this by hand before the machine can be used again.
+When the motor is jammed or the gyroscope does not stabilize, the machine should stop immediately, so that the user can remove whatever is blocking the motor or the gyroscope.
 
 The machine will give a warning when the battery has less than 5\% of charge left. This
 is done to prevent the machine running out of power in between operations and ending in an
 invalid state. The user should act appropriately when this happens.
+
+The machine should obviously stop when the user presses the abort button.
+
+When the software in the machine encounters an exception, the machine should stop running, so that nothing goes wrong and the error can be corrected.
 
 When an error occurs in the machine that is indicated with fatal, the user must remove all
 discs from all parts of the machine. To help the user with this, the machine has a build-in function that spits out all the discs to the right when pressing the ABORT  button in the mode selection state. The user should first make sure this can be done safely and without harming the machine. The user should then press the RESET button in order
@@ -221,12 +218,12 @@ guarantees about the working and stopping conditions of the machine, in case som
 pected happens.
 
 \begin{itemize}
-	\item The ABORT button must stop all moving parts within 10 ms. This to make sure that the user is able to quickly stop the machine in case something can not be handled by the Machine.
-	\item When the machine starts with discs loaded into the container, then the discs will be sorted
-when it arrives in the finished state. The sorting process takes at most 5 minutes in the
-default safe mode. However software specification may specify more modes.
+	\item The ABORT button must stop all moving parts within 10 ms. This to make sure that the user is able to quickly stop the machine in case something can not be handled by the machine.
 	\item A fatal exception must stop all moving parts within 10 ms. This ensures that the machine
 does not damage or even destroy itself when it is blocked in any way.
+	\item When the machine starts with discs loaded into the container, then the discs will be sorted
+when it arrives in the finished state. The sorting process takes at most 5 minutes in the
+default safe mode.
 \end{itemize}
 
 \section{Machine Interface}
@@ -266,7 +263,7 @@ To the seesaw a gyroscope is attached, which is wired to port 2. The seesaw has 
 This is analogous for the right side down state. The gyroscope is unreliable at best: Its value tends to drift at an arbitrary rate, making the gyroscope unreliable if not unusable in some cases. While the seesaw is in motion no further discs should be sorted, as it will not be possible to accurately measure the angle rate change. Extensive testing suggests, although it is not documented anywhere, that the gyro sensor is much more reliable if one at first calibrates the sensor by quickly switching from rate change mode to angle\footnote{The gyro sensor has both an angle and a rate change mode, which return the measured angle and the rate of change of this angle, respectively. The angle mode is so unreliable that it is considered unusable for our purposes} and back. If the sensor is then kept completely stable, a lower drift rate may be acquired.
 
 \subsubsection{Colour sensor}
-The colour sensor, connected to port 1, gives a value indicating the grayscale of the surface above it. The colour sensor returns a float indicating the grayscale (e.g. 0 uptil 1) of the disc currently on the platform, or the grayscale of the environment, which means that there is no disc above it. After extensive testing, we found that the following values are usefull:
+The colour sensor, connected to port 1, gives a value indicating the grayscale of the surface above it. The colour sensor returns a float indicating the grayscale (e.g. 0 uptil 1) of the disc currently on the platform, or the grayscale of the environment, which means that there is no disc above it. After extensive testing, we found that the following values yield the correct result from the machine:
 
 \begin{figure}[H]
 \begin{tabular}{|l|l|}
@@ -280,7 +277,9 @@ White & 0.86 \\
 \end{tabular}
 \end{figure}
 
-However, in the mode selection state, these values can be calibrated by pushing the button UP. The user has to put a black disc, then a white disc on the sensor and wait for the program to finish. The values will be changed according to the values found. If no calibration is done, the values of last calibration will be used.
+However, the user should be able to calibrate the machine in the mode selection state, before running the sorting process, by placing a black disc and a white disc on the sensor and running a calibration sequence. The grayscale values should be changed according to the values found. If no calibration is done, the values of last calibration will be used.
+
+\newpage
 
 \subsubsection{The brick}
 The brick controls the sensors and actuators. The state of the buttons is either
