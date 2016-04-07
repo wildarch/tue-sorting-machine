@@ -4,3 +4,5 @@ final.log
 final.pdf
 final.synctex.gz
 final.toc
+final.fdb_latexmk
+final.fls

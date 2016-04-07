@@ -90,6 +90,9 @@ Though this project is given to multiple groups, does our group differ from othe
 \chapter{System validation and testing}
 \subimport{"Testing _ Validating/"}{"V2 System Validation _ Testing.tex"}
 
+\chapter{Reflection}
+\subimport{"Reflection/}{"Reflection.tex"}
+
 \chapter{Conclusion}
 After extensive proofs in Uppaal, logical reasoning and unit tests, we could go on to say that our machine is extremely reliable. It passed all these tests with flying colours, yet we do not consider it to be dependable. The truth is that there are many ways in which the sorting process can be disrupted. Disconnecting one or more of the peripherals from the brick for instance is considered undefined behaviour, as there exists no straightforward way of detecting this. However, many of the possible errors due to the environment can be detected at run time and will either be handled automatically or are reported to the user, and the machine is immediately halted in case of a fatal or potentially dangerous error.
 While it is impossible to build a totally reliable machine, we have been able to create a fast and safe solution to the initial problem. The use of a Mindstorms kit instead of a PP2 with fischertechnik has been both a blessing and a curse: It was relatively simple to write the software, as we could use a high-level language. This did make us very dependent on the platform we used, which is still in beta and did not always suit our purposes. We had sensors that could be queried easily and were well-integrated with the platform, but were not designed for our small, light stones and only a single sensor of each type was provided, forcing us to design a rather clever contraption.
