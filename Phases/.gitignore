@@ -1,8 +1,7 @@
-final.aux
-final.dvi
-final.log
-final.pdf
-final.synctex.gz
-final.toc
-final.fdb_latexmk
-final.fls
+*.aux
+*.dvi
+*.log
+*.synctex.gz
+*.toc
+*.fdb_latexmk
+*.fls
