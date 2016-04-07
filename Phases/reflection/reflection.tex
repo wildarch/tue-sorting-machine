@@ -58,6 +58,40 @@
 \begin{document}
 \maketitle
 \section{Introduction}
+This project was about creating a sorting machine which sorts black and white discs. Other groups doing the same project used the Fisher Technik and the PP2 processor, our group did use the Lego Mindstorms EV3. This makes our group being a pilot. As usual with a pilot things go wrong, but there are also things which will be better. We have used the LeJOS platform for programming the EV3, so we will reflect on the use of LeJOS. However there exist other platforms for the EV3 which might be quite good.
+
+\section{Practical Inconveniences}
+Using the Lego set, there are some inconveniences:
+
+\begin{itemize}
+    \item \textbf{SD-card:} in order to setup the LeJOS platform an SD card is needed due to limited storage space on the EV3.
+    \item \textbf{Lockers are too small:} the lockers provided are too small for storing the two boxes the set comes in. Besides that, it is not possible to put the box into the locker in a horizontal position. The disadvantage of this is that the user of the set needs to check whether or not the box is properly closed. If the box is not properly closed, then the Lego parts will fall out of the box.
+\end{itemize}
+
+\section{Disadvantages}
+\begin{itemize}
+    \item \textbf{Very few sensors:} the Lego set only provides a limited amount of sensors. We only get 1 sensor of each type. This makes implementing an very trivial error check like, did the disc arrive at the tray, quite difficult.
+    \item \textbf{Sensors are not meant for small objects:} the sensors provided by Lego are not optimized for small discs which needed to be sorted. This makes the sensors less reliable. We had this problem with the color sensor. We solved the problem by adding a calibration sequence before sorting. This made the color sensor more reliable.
+    \item \textbf{LeJOS is beta software: } the LeJOS platform is still in its beta release. Many problems arise from that.
+        \begin{itemize}
+            \item The platform lacks documentation. Lacking documentation makes it difficult to solve bugs in the code. Also the coding itself gets a lot more difficult when you do not exactly know how you can use the API.
+            \item The cable bug. When we attach the cable to the motor to the EV3 and when the cable is not put in entirely but just enough to make contact, then the LeJOS platform does not detect that and we loose the feedback from the motor. In our case this resulted in the motor getting a turn command, and eventually the motor never stopped turning when it was only supposed to make a half turn.
+            \item The peripheral connection bug. When we remove a cable from the EV3, the LeJOS platform will not raise an exception. Even when we access a peripheral after we have disconnected it.
+            \item Memory leak. It might be a problem with the garbage collector of the Java Runtime Environment running on the EV3, but the memory usage keeps growing and growing. We have a suspicion that some part of LeJOS like the sound system or the screen system contains the leak, since our software does not allocate much memory.
+        \end{itemize}
+    \item \textbf{We have no access to an emulator: } this adds an extra restriction on programming, since only one person can use the EV3 and test the machine. If we had access to an emulator, we could test our program in the emulator before running it on the EV3,
+    \item \textbf{Unreliable gyroscope: } the gyroscope is very unreliable, since the values given tend to drift away and get higher and higher.
+    \item \textbf{Difficult to build with Lego: } though lego is quite easy to build something with, it is difficult to use Lego parts for a sorting machine. For example, it is quite difficult to create a tube to store the discs in, since the size of the discs differs a bit from the size of lego parts. Also if we put the color sensor to the side, we could not manage to position the sensor in such a way that the sensor would read the color values correctly.
+\end{itemize}
+
+As we can clearly see, many problems arise from the fact that we have used LeJOS. But LeJOS is not the only software which runs on the EV3. RoboC also works on the EV3 and might solve problems which LeJOS has. Another point is that many problems above arise from the fact that the discs seem not to be suited for the Lego. We could say that it is a problem of the Lego, but we might need to use some other objects to be sorted.
+
+\section{Advantages}
+\begin{itemize}
+    \item \textbf{Programming Java:} the LeJOS platform makes it possible to program the EV3 in Java. This is a great advantage over the PP2 since Java programming is a lot easier than Assembly programming. However, programming Assembly also gives an rich learning opportunity which you do not get when using Java.
+    \item \textbf{The motor control:} controlling the motor using LeJOS is very easy. LeJOS provides an interface which we can use to let the motor only turn a certain number of degrees.
+\end{itemize}
 
 \section{Conclusion}
+When using the Lego set there are some problems which are difficult to solve. We would definetely recommand to provide more sensors to build the sorting machine. Also many problems arise from using the LeJOS platform, LeJOS has bugs which are difficult to solve. Therefore we would definetly recommand to try to use another platform to see how the Lego behaves with that. Though it was difficult to get it done, we did manage to build a working sorting machine using the Lego set.
 \end{document}
