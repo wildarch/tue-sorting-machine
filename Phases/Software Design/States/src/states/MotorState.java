@@ -1,5 +1,4 @@
 package states;
-import lejos.hardware.Sound;
 import peripherals.Orientation;
 import sorter.AbstractMain;
 import sorter.Mode;
